@@ -309,6 +309,107 @@ Using a json like varible which is composed of many key value pairs is a recomme
 ![best practice](./airflow_images/016.png)
 
 
+# Basic Concepts
+
+1) Web is a service running on the ineternet.  Internet is anarchitecture, web is a service. There are other services like IRC (internet relay chat) , e-mail, Voip and telnet, which run on the internet.
+
+2) Client makes a request to Server via browser.
+
+3) Web is a term used in order to mean servers that use HTTP
+
+4) Client makes a request using HTTP and TCP/IP and server responds to the client.
+
+5) URL = access_method://server_name:port/location/to/go
+
+6) DNS is abbreviating Domain Name Server. It matches domain names and correspondent IP.
+
+7) HTTP is an application protocol.
+
+8) ISP is abbreviating Internet Service Provider like Turkcell Superonline and Türk Telekom.
+
+9) `ping website.com` is a command to check whether a server is up or not.
+
+10) Protocol Stack is built on OS. Protocol stack is referred as TCP/IP protocol stack.
+
+![protocol stack](./network_images/000.png)
+
+11) Data is composed of chunks(packets).
+
+12) On TCP, each packet was given a port number.
+
+13) On IP, each packet was given its destination IP.
+
+14) On Hardware Layer, alphabetic text was converted to eloctronic signal.
+
+15) The packets transmitted over te internet. When packets reach the destination, IP address and port number info was removed because it already reached.
+
+16) `traceroute` is a Unix-like or Windows command to track packages sent to destination
+
+17) Router directs dispatched packets to its destination
+
+18) ROuter examines destination address of packets and determines where to send it.
+
+19) Client Computer -> Modem -> Public Telephone Network -> Modem Pool -> ISP Port Number -> Router(x10) -> ISP Backbone(x10)
+
+20) DNS is a distributed database which keeps track of computer's names and their corresponing IP addresses. My request to a destination first goes to a DNS Server. After obtaining correspondent IP, my computer connects to target computer.
+
+21) The government is able to block youtube.com because ISP's have DNS's. Google is providing a free DNS.
+
+22) HTTP is Hyper Text Transfer Protocol. It is an application protocol that makes the web works.
+
+23) HTTP is the protocol that web browsers and web servers use to communicate with each other over the internet. HTTP sits on top of TCP layer.
+
+24) Ports can be thought of as separate channels on each computers.
+
+25) TCP receives data for application layer protocol and segments it into chunks. TCP assigns port numbers to these chunks.
+
+26) Some important port numbers
+
+| Port    | Operation |
+| 20,21   | FTP       |
+| 22      | SSH, SFTP |
+| 23      | Telnet    |
+| 53      | DNS       |
+| 80      | HTTP      |
+| 443     | HTTPS     |
+| 3389    | RDP       |
+
+27) IP's job is to send and route packets to other computers
+
+28) Packet has IP Header, TCP Header, data from application layer.
+
+29) FTP Server: a computer on the internet that offers FTP
+
+30) Filezilla is an FTP client. There are other methods like using Terminal or using browser.
+
+31) There are 2 types of IP:
+
+- Public IP: Same for devices connected to same modem
+
+- Private IP: Assigned by modem. For each device, it is unique.
+
+32) Public IP address may change around time. A private IP address might be like 192.168.1.100 etc.
+
+33) Routers are handling internet traffic for multiple computers at once using a single public IP address.
+
+34) There are 65525 TCP ports in a computer.
+
+35) Modern internet more closely follows the simpler internet protocol suite, known as TCP/IP.
+
+36) Search engine is a web service helping us find other web pages.
+
+37) Static web server is a server that sends its hosted files to browser.
+
+38) Dynamic web server is a static web server + application server + database.
+
+39) A protocol is a set of rules for communication between 2 computers.
+
+40) Sending an HTML form from our browser to server is made using HTTP.
+
+
+
+
+
 
 
 
