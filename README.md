@@ -308,6 +308,71 @@ Using a json like varible which is composed of many key value pairs is a recomme
 
 ![best practice](./airflow_images/016.png)
 
+# MLFlow
+
+[Link 1](https://www.youtube.com/watch?v=859OxXrt_TI&ab_channel=InfoQ)
+
+[Link 2](https://www.youtube.com/watch?v=6z0_n8kxh-g&ab_channel=PyData)
+
+1) MLFlow is a platform for the complete ML lifecycle. It is open source and started at DataBricks. It may be installed locally or on a remote server to be used via multiple developers. MLFlow is language agnostic.
+
+2) ML lifecycle is below:
+
+![ml lifecycle](./mlflow_images/001.jpeg)
+
+3) There are some platforms like Facebook's FBLearner and Uber's Michelangelo and Google's TFX to standardize ML lifecycle. They aren't completely open source. They are limited to a few algorithms or frameworks. [Weights & Biases](https://wandb.ai/site) is paid service like MLFlow, which is a competitor to MLFlow.
+
+4) Characteristis of MLFlow
+
+![characteristics](./mlflow_images/002.jpeg)
+
+5) MLFlow faciliates reproducibility.
+
+6) MLFlow components:
+
+![mlflow_concepts](./mlflow_images/003.jpeg)
+
+7) **Tracking** is a centralized repository for metadata about training sessions within an organization. **Projects** is a reproducible & self contains packaging format for model training code, ensuring that training code runs the same way regardless of execution environment. **Models** is a general purpose model format enabling any model produced with MLFlow to be deployed to a variety of production environments.
+
+8) Some key concepts in Tracking
+
+![tracking](./mlflow_images/004.png)
+
+9) MLFlow Tracking Server
+
+![tracking](./mlflow_images/005.png)
+
+10) MLFlow Tracking usage example
+
+![tracking](./mlflow_images/006.png)
+
+11) A tracking result from MLFlow GUI
+
+![tracking](./mlflow_images/007.png)
+
+12) MLFlow stores entity(metadata) store and artifact store.
+
+![tracking](./mlflow_images/008.png)
+
+13) MLFlow Project is a directory structure. It automates fetching a project from github and run it via parameters defined conda.yaml.
+
+14) Sample MLFlow Project:
+
+![tracking](./mlflow_images/009.png)
+
+15) ML models can be productionized via various solutions. The motivation behing **MLFlow models** is below. The solution to this complexity is a unified model abstraction called **MLFlow model**.
+
+![tracking](./mlflow_images/010.png)
+
+16) A Sample MLFlow models 
+
+![tracking](./mlflow_images/011.png)
+
+17) MLFlow Flavors Example
+
+![tracking](./mlflow_images/012.png)
+
+
 
 # Basic Concepts
 
@@ -451,6 +516,7 @@ pip install -r requirements.txt
 
 11) Google BigQuery is a big data analytics product from Google. Its architecture is serverless.
 
+12) [Unsplash](https://unsplash.com/) is a websie having lots of high-quality pictures.
 
 
 
