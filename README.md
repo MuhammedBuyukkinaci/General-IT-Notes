@@ -372,6 +372,12 @@ Using a json like varible which is composed of many key value pairs is a recomme
 
 ![tracking](./mlflow_images/012.png)
 
+18) 2 key concepts of MLFlow:
+
+- Run: A collection of hyperparameters, training metrics, labels, and artifacts related to a machine learning model
+
+- Experiment: COnsists of lots of different runs.
+
 
 
 # Basic Concepts
