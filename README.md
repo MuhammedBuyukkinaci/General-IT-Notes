@@ -1,3 +1,72 @@
+# Vs code settings
+
+1 ) Global settings for Vscode setup. It is located on /home/muhammed/.config/Code/User/settings.json.
+
+
+```settings.json
+{
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        },
+        "zsh (2)": {
+            "path": "/usr/bin/zsh"
+        }
+    },
+    "window.zoomLevel": 2,
+    "workbench.startupEditor": "none",
+    "workbench.iconTheme": "ayu",
+    "workbench.colorTheme": "Ayu Dark",
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultSettings": true,
+    "workbench.settings.useSplitJSON": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "code-runner.executorMap": {
+        "python": "$pythonPath -u $fullFileName"
+    },
+    "code-runner.showExecutionMessage": false,
+    "code-runner.clearPreviousOutput": true,
+    "python.testing.pytestArgs": [
+        "pytest"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.languageServer": "Pylance",
+}
+
+```
+
+2) Install the following extensions on Vscode marketplace.
+
+  - Python(installing Pylance, pylint(remove it later), jupyter notebook, debugging etc)
+  - isort(sorting our imports)
+  - Black Formatter to format our files
+  - Code Runner to run our code via right-upper green triangle
+  - Ayu to have a different theme workplace
+
+
 # My-Nginx-Notes
 
 1) Http = Hyper Text Transfer Protocol
