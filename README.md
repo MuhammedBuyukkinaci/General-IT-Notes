@@ -268,13 +268,14 @@ index index.html index.htm;
 26) Some important port numbers
 
 | Port    | Operation |
-| 20,21   | FTP       |
-| 22      | SSH, SFTP |
-| 23      | Telnet    |
-| 53      | DNS       |
-| 80      | HTTP      |
-| 443     | HTTPS     |
-| 3389    | RDP       |
+| --------- | ----------- |
+|  20,21    | FTP         |
+|  22       | SSH, SFTP   |
+|  23       | Telnet      |
+|  53       | DNS         |
+|  80       | HTTP        |
+|  443      | HTTPS       |
+|  3389     | RDP         |
 
 27) IP's job is to send and route packets to other computers
 
