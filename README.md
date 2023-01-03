@@ -81,7 +81,7 @@
 
 6) Daemon in unix-like OS = Service in Windows.
 
-7) Some web servers =  Apache, Nginx, Microsoft IIS
+7) Some web servers =  Apache, Nginx, Microsoft IIS, Httpd. Httpd is used with PHP generally.
 
 8) Nginx is
   - A http and reverse proxy server
