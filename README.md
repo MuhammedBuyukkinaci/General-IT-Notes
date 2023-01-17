@@ -378,6 +378,44 @@ index index.html index.htm;
 
 40) Sending an HTML form from our browser to server is made using HTTP.
 
+# FastAPI Notes
+
+1) FastAPI is very fast to make an API.
+
+2) Traditionally, we aren't explicitly defining what kind of data our API is expecting(Flask, Django). When you create an API in FastAPI, you define what kind of data your API is expecting. First advantage of FastAPI is data validation.
+
+3) Another advantage of FastAPI is automatic documentation. It is using FastAPI.
+
+4) The last advantage of FastAPI is AutoCompletion and Code Suggestions in VS Code and PyCharm.
+
+5) To use FastAPI, install FastAPI and Uvicorn via `pip install fastapi` and `pip install uvicorn`. Uvicorn is enabling us to run our API's like a web server.
+
+6) An API Endpoint(Router,) is the point of entry in a communication channel when two systems are interacting. It refers to touchpoints of the communication between an API and a server. It is like /hello or /get-item.
+
+7) Endpoint HTTP Verbs:
+
+- When we have an endpoint that has a GET method, this endpoint will be returning information.       
+- When we have an endpoint that has a POST method, this endpoint will be creating something new(adding a record to DB etc). 
+- When we have an endpoint that has a PUT method, PUT method updates the information.
+- When we have an endpoint that has a DELETE method, DELETE method deletes the information.
+
+8) To run uvicorn, run the following. temp is our file as temp.py but .py not typed. Click [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+
+```uvicorn.sh
+uvicorn temp:app --reload
+```
+
+```first_api.py
+from fastapi import FastAPI
+
+# Creating a FastAPI instance
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"Data": "Testing"}
+
+```
 
 
 
