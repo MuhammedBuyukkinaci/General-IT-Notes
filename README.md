@@ -2,7 +2,6 @@
 
 1 ) Global settings for Vscode setup. It is located on /home/muhammed/.config/Code/User/settings.json.
 
-
 ```settings.json
 {
     "terminal.integrated.defaultProfile.linux": "zsh",
@@ -58,6 +57,7 @@
 
 ```
 
+) 
 2) Install the following extensions on Vscode marketplace.
 
   - Python(installing Pylance, pylint(remove it later), jupyter notebook, debugging etc)
@@ -66,6 +66,16 @@
   - Code Runner to run our code via right-upper green triangle
   - Ayu to have a different theme workplace
 
+# PyCharm Settings
+
+1) Install Rainbow brackets, rainbow csv, rainbow indent as plugins.
+2) Download black pycharm formatter and install it via **load from disc**. Install the library
+   via `pip install 'black[d]'`. Follow the
+   instructions [here](https://black.readthedocs.io/en/stable/integrations/editors.html)
+3) Open up plugin pages and type pylint to search. Install and enable the plugin.
+4) Open up plugin pages and type **One Dark Theme**. Install and enable the plugin. Choose *One Dark Vivid Italic* as
+   color scheme.
+5) Create a .pylintrc file in root folder.
 
 # My-Nginx-Notes
 
@@ -73,9 +83,9 @@
 
 2) Protocol = A set of rules that are agreed upon 2 or more parties for communication
 
-3) Http uses port 80 of computer/server but it is easily changable.
+3) Http uses port 80 of computer/server but it is easily changeable.
 
-4) All modern Web browsers have Network tab to display Netowk activities.
+4) All modern Web browsers have Network tab to display Network activities.
 
 5) Generally, data transferred on top of Http protocol are zipped via some algorithm provided by web servers and web browsers are able to unzip it in the background.
 
@@ -390,7 +400,7 @@ index index.html index.htm;
 
 5) To use FastAPI, install FastAPI and Uvicorn via `pip install fastapi` and `pip install uvicorn`. Uvicorn is enabling us to run our API's like a web server.
 
-6) An API Endpoint(Router,) is the point of entry in a communication channel when two systems are interacting. It refers to touchpoints of the communication between an API and a server. It is like /hello or /get-item.
+6) An API Endpoint(Router) is the point of entry in a communication channel when two systems are interacting. It refers to touchpoints of the communication between an API and a server. It is like /hello or /get-item.
 
 7) Endpoint HTTP Verbs:
 
@@ -417,11 +427,20 @@ def home():
 
 ```
 
+9) Any response coming from an endpoint will be converted to JSON by FastAPI in the background.
 
+10) We can send path parameters to /get-item/{item_id} endpoint via [http://127.0.0.1:8000/get-item/1](http://127.0.0.1:8000/get-item/1) and get ***{"name":"bread","price":5.99}***. [http://127.0.0.1:8000/get-item/4](http://127.0.0.1:8000/get-item/4) will return ***Internal Server Error***. [http://127.0.0.1:8000/get-item/any_object](http://127.0.0.1:8000/get-item/any_object)
+will return ***{"detail":[{"loc":["path","item_id"],"msg":"value is not a valid integer","type":"type_error.integer"}]}***.
 
+11) We can pass 2 path parameters {item_id, name} to an endpoint like we did in *get_item_2_path_params* function.
 
+12) `from fastapi import Path` is allowing us to add more details or enforcements or constraints to our actual path parameter. Before the information, we need to set a default value to Path. gt means greater than, lt means less than in Path parameters.
 
+13) Query parameter is something that comes after a question mark(?) in a url. An example is https://example.com?redirect=/home&message=fail. **get_item_by_query** is implementing query parameter example. An example url is [http://127.0.0.1:8000/get-by-name?name=milk](http://127.0.0.1:8000/get-by-name?name=milk) and it returns *{"name":"milk","price":20.99}*. [http://127.0.0.1:8000/get-by-name?name=banana](http://127.0.0.1:8000/get-by-name?name=banana) returns *{"Data":"Not Found"}*. We have to fill query parameter if we want to send a request to relevant url. If we don't want to make it obligatory, a default None value should be passed to query parameter.
 
+14) We can combine path parameters and query parameters in an endpoint. *get_item_by_path_param_query_param* does exatly this. [http://127.0.0.1:8000/get-by-name-path-param-and-query/3?test=2](http://127.0.0.1:8000/get-by-name-path-param-and-query/3?test=2) will run **get_item_by_path_param_query_param** function and return *{"name":"egg","price":3.0}*.
+
+15) *create_item* function is a post function. It adds a new record to database(python dictionary in our case). The body should cover the attributes of Item class. Item class is inherited from Basemodel of PyDantic. Open up [docs](http://127.0.0.1:8000/docs) page and send a body via POST /create-item/{item_id}.
 
 # General-IT-Notes
 Including my experiences on Software Development
