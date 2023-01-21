@@ -442,6 +442,14 @@ will return ***{"detail":[{"loc":["path","item_id"],"msg":"value is not a valid 
 
 15) *create_item* function is a post function. It adds a new record to database(python dictionary in our case). The body should cover the attributes of Item class. Item class is inherited from Basemodel of PyDantic. Open up [docs](http://127.0.0.1:8000/docs) page and send a body via POST /create-item/{item_id}.
 
+16) update_item function is updating an existing data. It is a PUT request. It uses UpdateItem pydantic class.
+
+17) delete_item function is deleting an existing data. If data doesn't exist, it returns a 404 status code.
+
+18) To try POST, PUT and DELETE, run POST request first. Run PUT request second. Run DELETE request last.
+
+
+
 # General-IT-Notes
 Including my experiences on Software Development
 
