@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional, Union
 
 from fastapi import FastAPI, HTTPException, Path, Query, status
 from pydantic import BaseModel
@@ -48,6 +48,7 @@ def get_item_2_path_params(
 ):
     return inventory[item_id]
 
+# the below query parameter is obligaroty and should be filled out.
 @app.get("/get-by-name")
 def get_item_by_query(name: str):
     for item_id in inventory:
@@ -103,3 +104,41 @@ def delete_item(item_id: int = Query(..., description = "The ID of the item to d
         return HTTPException(status_code=404, detail="Item name not found to delete")
     del inventory_new[item_id]
     return {"Success": "Item deleted"}
+
+# Enum & str
+
+from enum import Enum
+
+
+class Sport(str, Enum):
+    football = "football"
+    basketball = "basketball"
+
+
+@app.get('/get-sport/{sport}')
+def get_sport(sport: Sport):
+    if sport == Sport.basketball:
+        return {"Sport": "basketball"}
+    # another way of accessing value
+    if sport.value == "football":
+        return {"Sport": "football"} 
+    return {"Message": "Sport not found in Enum class"}
+
+# Post and BaseModel
+
+class MlModel(BaseModel):
+    name: str
+    number_of_param: int
+    size_of_model: str = None
+
+
+@app.post('/post-model/')
+def post_ml_model(ml_model: MlModel):
+    return ml_model.name, ml_model.number_of_param, ml_model.size_of_model
+
+@app.get('/get-multiple-query/')
+def get_multiple_query(q: Union[List[str], None]= Query(default=None)):
+    return q
+
+
+

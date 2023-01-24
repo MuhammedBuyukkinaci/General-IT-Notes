@@ -400,7 +400,7 @@ index index.html index.htm;
 
 5) To use FastAPI, install FastAPI and Uvicorn via `pip install fastapi` and `pip install uvicorn`. Uvicorn is enabling us to run our API's like a web server.
 
-6) An API Endpoint(Router) is the point of entry in a communication channel when two systems are interacting. It refers to touchpoints of the communication between an API and a server. It is like /hello or /get-item.
+6) An API Endpoint(can be also called as Route or Path) is the point of entry in a communication channel when two systems are interacting. It refers to touchpoints of the communication between an API and a server. It is like /hello or /get-item.
 
 7) Endpoint HTTP Verbs:
 
@@ -408,8 +408,9 @@ index index.html index.htm;
 - When we have an endpoint that has a POST method, this endpoint will be creating something new(adding a record to DB etc). 
 - When we have an endpoint that has a PUT method, PUT method updates the information.
 - When we have an endpoint that has a DELETE method, DELETE method deletes the information.
+- There are other HTTP words which aren't used frequenly as above one. These are OPTIONS, HEAD, PATCH, TRACE.
 
-8) To run uvicorn, run the following. temp is our file as temp.py but .py not typed. Click [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+8) To run uvicorn, run the following. temp is our file as temp.py but .py not typed. Click [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). An alternative documentation is working on [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
 ```uvicorn.sh
 uvicorn temp:app --reload
@@ -436,7 +437,15 @@ will return ***{"detail":[{"loc":["path","item_id"],"msg":"value is not a valid 
 
 12) `from fastapi import Path` is allowing us to add more details or enforcements or constraints to our actual path parameter. Before the information, we need to set a default value to Path. gt means greater than, lt means less than in Path parameters.
 
-13) Query parameter is something that comes after a question mark(?) in a url. An example is https://example.com?redirect=/home&message=fail. **get_item_by_query** is implementing query parameter example. An example url is [http://127.0.0.1:8000/get-by-name?name=milk](http://127.0.0.1:8000/get-by-name?name=milk) and it returns *{"name":"milk","price":20.99}*. [http://127.0.0.1:8000/get-by-name?name=banana](http://127.0.0.1:8000/get-by-name?name=banana) returns *{"Data":"Not Found"}*. We have to fill query parameter if we want to send a request to relevant url. If we don't want to make it obligatory, a default None value should be passed to query parameter.
+13) Query parameter is something that comes after a question mark(?) in a url. An example is https://example.com?redirect=/home&message=fail. **get_item_by_query** is implementing query parameter example. An example url is [http://127.0.0.1:8000/get-by-name?name=milk](http://127.0.0.1:8000/get-by-name?name=milk) and it returns *{"name":"milk","price":20.99}*. [http://127.0.0.1:8000/get-by-name?name=banana](http://127.0.0.1:8000/get-by-name?name=banana) returns *{"Data":"Not Found"}*. We have to fill query parameter if we want to send a request to relevant url. If we don't want to make it obligatory, a default None value should be passed to query parameter. We can define some query parameters as required, some as having a default value, and some entirely optional. product_id is a path parameter. brand is an obligatory query parameter. size is a query parameter having a default value and not have to be filled out. Color is a query parameter which can be None or str but it is None by default.
+
+```query.py
+from typing import Union
+@app.get('get-product/{product_id}'):
+def get_proruct(product_id: int, brand: str, size: str = 'L', color: Union[str, None] = None ):
+    pass
+
+```
 
 14) We can combine path parameters and query parameters in an endpoint. *get_item_by_path_param_query_param* does exatly this. [http://127.0.0.1:8000/get-by-name-path-param-and-query/3?test=2](http://127.0.0.1:8000/get-by-name-path-param-and-query/3?test=2) will run **get_item_by_path_param_query_param** function and return *{"name":"egg","price":3.0}*.
 
@@ -448,7 +457,81 @@ will return ***{"detail":[{"loc":["path","item_id"],"msg":"value is not a valid 
 
 18) To try POST, PUT and DELETE, run POST request first. Run PUT request second. Run DELETE request last.
 
+19) Typer is a CLI of FastAPI.
 
+20) `from fastapi import FastAPI` is a class that inherits directly from [Starlette](https://www.starlette.io/). We can use the existing features of Starlette.
+
+21) The functions used by FastAPI decorators can return dict, list, int, str, Pydantic Models etc. They are going to be converted into json in the background by FastAPI.
+
+22) We don't have to specify the data type in a function listening an endpoint. However,  we will lose the advantages of having a type hint in this scenario.
+
+23) The order in the file having functions that are decorated by FastAPI matter. Below is an example. We should define `/users/me` before `/users/{item_id}`. This is because `/users/me` also fits `/users_user_id`.
+
+```order_matters.py
+@app.get("/users/me")
+async def read_user_me():
+    return {"user_id": "the current user"}
+
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: str):
+    return {"user_id": user_id}
+```
+
+24) We can't have the same endpoint for 2 functions.
+
+25) If we want to have path parameters but we want these parameters to be predefined, we should use FastAPI with Enum as below.
+
+```predefined_enum.py
+from enum import Enum
+
+
+class Sport(str, Enum):
+    football = "football"
+    basketball = "basketball"
+
+
+@app.get('/get-sport/{sport}')
+def get_sport(sport: Sport):
+    if sport == Sport.basketball:
+        return {"Sport": "basketball"}
+    # another way of accessing value
+    if sport.value == "football":
+        return {"Sport": "football"} 
+    return {"Message": "Sport not found in Enum class"}
+
+```
+
+26) [OpenAPI](https://github.com/OAI/OpenAPI-Specification) is a standard to define API's. Following OpenAPI instructions is the best practice.
+
+27) We can have path of a file in endpoint having path parameter. For more details, check out [this link](https://fastapi.tiangolo.com/tutorial/path-params/#path-parameters-containing-paths).
+
+28) A request body is data sent from our client(browser etc.). Response body is data sent from our API. We can generally send request body via POST, PUT and DELETE. However, we can send data via GET but it isn't best practice. The recommended way to send data is to use PyDantic.
+
+29) PyDantic is similar to dataclass. However, it is more validation oriented. PyDantic has a Pycharm plugin in Pycharm. We can convert pydantic objects to dictionaries.
+
+30) We can use request body parameters, path parameters and query parameters at the same time like below.
+
+```all_here.py
+@app.put("/items/{item_id}")
+async def create_item(item_id: int, item: Item, q: Union[str, None] = None):
+    result = {"item_id": item_id, **item.dict()}
+```
+
+31) `from fastapi import Query` is a way to add extra validation for query parameters. We can add more validation like min_length, regular expression etc. We can pass default values into Query class instead of barely setting equal. We can add title and description to Query class to be displayed on documentation. Also, we can use alias parameter of Query to resolve query parameter that aren't suitable for Python. A query parameter named my-string isn't a valid string name in Python. alias parameter is assigned to Query class and it will map to q in function decoreated by @app.get.
+
+```query.py
+async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
+
+```
+
+32) We can pass many query parameters with same query parameter. [http://127.0.0.1:8000/get-multiple-query/?q=Muhammed&q=Ali](http://127.0.0.1:8000/get-multiple-query/?q=Muhammed&q=Ali) will return **["Muhammed","Ali"]** . We can also assign default values to multiple query parameters via Query class. An example is **['Hasan', 'Hüseyin']**.
+
+```
+@app.get('/get-multiple-query/')
+def get_multiple_query(q: Union[List[str], None] = Query(default=None)):
+    return q
+```
 
 # General-IT-Notes
 Including my experiences on Software Development
