@@ -545,7 +545,7 @@ from fastapi import Body
 async def update_item(item_id: int, item: Item, user: User, importance: int = Body()):
 ```
 
-36) `from fastapi import Body` is a parameter called embed. When you set it to True, it will return or expect the former instead of the latter. If we have one body parameter for our endpoint, FastAPI expects the former. If we have more than 1 Body parameters, FastAPI expects a pattern like latter one.
+36) `from fastapi import Body` is a parameter called embed. When you set it to True, it will return or expect the latter instead of the former. If we have one body parameter for our endpoint, FastAPI expects the former. If we have more than 1 Body parameters, FastAPI expects a pattern like latter one.
 
 ```former.json
 {"name": "Muhammed"}
@@ -556,6 +556,134 @@ async def update_item(item_id: int, item: Item, user: User, importance: int = Bo
     {"name": "Muhammed"}
 }
 ```
+
+37) `from pydantic import Field` is a way to add validation(less than 50 characters etc) & metadata (title or description) to PyDantic models like we did in `from fastapi import Query, Path, Body`.  Field works the same as Path, Query, Parameter.
+
+```field_example.py
+# Field Example
+from pydantic import Field
+
+
+class ItRole(BaseModel):
+    role: Union[str, None] = Field(default=None,max_length= 10)
+    writes_code: bool = Field(title= "whether the role writes code or not", description= "True if the rol writes code else False" )
+
+
+
+@app.post("/it-roles/{role_number}")
+async def update_item(role_number: int, it_role: ItRole = Body(embed=True)):
+    results = {"item_id": role_number, "it_role": it_role}
+    return results
+
+```
+
+38) We can send list style objects to our API and get the result as List or Set. The sent data is below
+
+```list_set.json
+{
+  "is_collected": true,
+  "unique_pieces": [
+    "fan", "fan", "anakart"
+  ],
+  "all_pieces": [
+    "fan", "fan", "anakart", "ram", "işlemci"
+  ]
+}
+```
+
+```list_set.py
+# List & Set fields
+
+class ComputerPieces(BaseModel):
+    is_collected: bool# it is obligatory, can't be None
+    unique_pieces: Set[str]# it is obligatory, can't be None
+    all_pieces: List[str]# it is obligatory, can't be None
+
+@app.post("/computer-pieces/")
+async def post_computer_pieces(computer_piece: ComputerPieces):
+    results = {"computer_piece": computer_piece}
+    print(results)
+    return results
+
+# {'computer_piece': ComputerPieces(is_collected=True, unique_pieces={'anakart', 'fan'}, all_pieces=['fan', 'fan', 'anakart', 'ram', 'işlemci'])}
+
+```
+
+39) We can have nested custom PyDantic models. One PyDantic model can be an attirbute of another PyDantic model. A list or set of custom pydantic model can be an attribute of a custom pydantic model.
+
+```expected.json
+{
+  "age": 0,
+  "teacher": {
+    "name": "string",
+    "specialty": "string"
+  }
+}
+```
+
+```nested.py
+# Nested Models
+class Teacher(BaseModel):
+    name: str
+    specialty: str
+
+class Student(BaseModel):
+    age: int
+    teacher: Teacher
+
+@app.post('/post-student/')
+async def post_student(student: Student):
+    print(student)
+    return student
+
+```
+
+40) We can have exotic PyDantic data types. Click [here](https://docs.pydantic.dev/usage/types/) to learn more. A popular one is **HttpUrl**.
+
+41) JSON only supports string keys. However, PyDantic has automatic data conversion. Even though the client sends string data in key, we can autoconvert it to integer thanks to Pydantic. For more information, click [here](https://fastapi.tiangolo.com/tutorial/body-nested-models/#bodies-of-arbitrary-dicts)
+
+42) In order to have a examplified documentation, we can add a class name **Config** to a custom PyDantic model. We can make the similar thing via **example** parameter of Field for detailed documentation in custom PyDantic classes. This examplification doesn't apply data validation. It just provides extra documentation. **example** parameter way can be used in Body, Query, Path etc to extend documentation. For plural, use **examples** instead of example in Body, Query, Path.
+
+![example](./fastapi_images/001.png)
+
+```config_way.py
+class Job(BaseModel):
+    title: str
+    salary: float
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "title": "Developer",
+                "salary": 10000.5
+            }
+        }
+
+@app.post('/post-job/')
+async def post_job(job: Job):
+    results = {"job": job}
+    return results
+```
+
+```field_way.py
+class Expertise(BaseModel):
+    title: str = Field(example="A very nice Item")
+    salary: float = Field(example=10000.5)
+
+@app.post('/post-expertise/')
+async def post_expertise(expertise: Expertise):
+    results = {"expertise": expertise}
+    return results
+
+```
+
+43) We can use other data types like datetime, time,  date, timedelta, bytes, UUID etc as parameters in functions decorated by FastAPI.
+
+44) We can also deal with HTTP Cookies in FastAPI. Click [here](https://fastapi.tiangolo.com/tutorial/cookie-params/) for more information.
+
+45) Http Header is an additional way to send data from server to client or from client to server. `from fastapi import Header` is a way to deal with Headers. Most of the standard headers are separated via **-(hyphen)**. Click [here](https://fastapi.tiangolo.com/tutorial/header-params/) for more information about headers.
+
+
 
 # General-IT-Notes
 Including my experiences on Software Development

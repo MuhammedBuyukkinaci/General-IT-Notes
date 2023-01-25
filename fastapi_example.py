@@ -1,6 +1,6 @@
-from typing import List, Optional, Union
+from typing import List, Optional, Set, Union
 
-from fastapi import FastAPI, HTTPException, Path, Query, status
+from fastapi import Body, Cookie, FastAPI, HTTPException, Path, Query, status
 from pydantic import BaseModel
 
 
@@ -141,4 +141,74 @@ def get_multiple_query(q: Union[List[str], None]= Query(default=None)):
     return q
 
 
+# Field Example
+from pydantic import Field
+
+
+class ItRole(BaseModel):
+    role: Union[str, None] = Field(default=None,max_length= 10)
+    writes_code: bool = Field(title= "whether the role writes code or not", description= "True if the rol writes code else False" )
+
+
+
+@app.post("/it-roles/{role_number}")
+async def update_item(role_number: int, it_role: ItRole = Body(embed=True)):
+    results = {"item_id": role_number, "it_role": it_role}
+    return results
+
+# List & Set fields
+
+class ComputerPieces(BaseModel):
+    is_collected: bool# it is obligatory, can't be None
+    unique_pieces: Set[str]# it is obligatory, can't be None
+    all_pieces: List[str]# it is obligatory, can't be None
+
+@app.post("/computer-pieces/")
+async def post_computer_pieces(computer_piece: ComputerPieces):
+    results = {"computer_piece": computer_piece}
+    print(results)
+    return results
+
+
+# Nested Models
+class Teacher(BaseModel):
+    name: str
+    specialty: str
+
+class Student(BaseModel):
+    age: int
+    teacher: Teacher
+
+@app.post('/post-student/')
+async def post_student(student: Student):
+    print(student)
+    return student
+
+# Providing example data to be displayed in documentations
+class Job(BaseModel):
+    title: str
+    salary: float
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "title": "Developer",
+                "salary": 10000.5
+            }
+        }
+
+@app.post('/post-job/')
+async def post_job(job: Job):
+    results = {"job": job}
+    return results
+
+
+class Expertise(BaseModel):
+    title: str = Field(example="A very nice Item")
+    salary: float = Field(example=10000.5)
+
+@app.post('/post-expertise/')
+async def post_expertise(expertise: Expertise):
+    results = {"expertise": expertise}
+    return results
 
