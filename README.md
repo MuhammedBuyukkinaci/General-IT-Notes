@@ -510,7 +510,7 @@ def get_sport(sport: Sport):
 
 29) PyDantic is similar to dataclass. However, it is more validation oriented. PyDantic has a Pycharm plugin in Pycharm. We can convert pydantic objects to dictionaries.
 
-30) We can use request body parameters, path parameters and query parameters at the same time like below.
+30) We can use request **body parameters**, path parameters and query parameters at the same time like below. item_id is a Path parameter, item is a Body parameter. q is a Query parameter. Setting a Body parameter to None makes it optional. We can also have multiple Body parameters for the same endpoint.
 
 ```all_here.py
 @app.put("/items/{item_id}")
@@ -531,6 +531,30 @@ async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
 @app.get('/get-multiple-query/')
 def get_multiple_query(q: Union[List[str], None] = Query(default=None)):
     return q
+```
+
+33) We can also append validations via `from fastapi import Path` like **Query**. We can also add the same parameters for **Path**. We can also number validations like **gt(greater than)** or **le(less than or equal)**.
+
+34) Path, Query, Body (and others) are subclasses of Param. Actually, Path & Query are functions, not Classes.
+
+35) The below is an example of 2 Body parameters composed of Pydantic model and additional 1 body parameter(importance). `from fastapi import Body` is making importance a Body parameter instead of a Query parameter.
+
+```two_body_and_additional.py
+from fastapi import Body
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item, user: User, importance: int = Body()):
+```
+
+36) `from fastapi import Body` is a parameter called embed. When you set it to True, it will return or expect the former instead of the latter. If we have one body parameter for our endpoint, FastAPI expects the former. If we have more than 1 Body parameters, FastAPI expects a pattern like latter one.
+
+```former.json
+{"name": "Muhammed"}
+```
+
+```
+{
+    {"name": "Muhammed"}
+}
 ```
 
 # General-IT-Notes
