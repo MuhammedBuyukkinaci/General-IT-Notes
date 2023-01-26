@@ -212,3 +212,15 @@ async def post_expertise(expertise: Expertise):
     results = {"expertise": expertise}
     return results
 
+## Response Model for decorators
+
+class Listing(BaseModel):
+    listing_id: str
+    price: int
+
+
+@app.get('/response-model-example/',response_model=List[Listing])
+def get_listings():
+    return_element = [{"listing_id": "012", "price": 10},{"listing_id": "013", "price": 11}]
+    return return_element
+

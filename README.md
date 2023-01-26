@@ -683,6 +683,10 @@ async def post_expertise(expertise: Expertise):
 
 45) Http Header is an additional way to send data from server to client or from client to server. `from fastapi import Header` is a way to deal with Headers. Most of the standard headers are separated via **-(hyphen)**. Click [here](https://fastapi.tiangolo.com/tutorial/header-params/) for more information about headers.
 
+46) We can also specify return type of a function via decorator's **response_model** parameter. **response_model_exclude_unset** is aparameter in a decorator, which means unset values aren't sent back to clients.
+
+47) We can use inheritance to create a new custom pydantic model from a custom pydantic model.
+
 
 
 # General-IT-Notes
