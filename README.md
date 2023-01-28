@@ -408,12 +408,18 @@ index index.html index.htm;
 - When we have an endpoint that has a POST method, this endpoint will be creating something new(adding a record to DB etc). 
 - When we have an endpoint that has a PUT method, PUT method updates the information.
 - When we have an endpoint that has a DELETE method, DELETE method deletes the information.
+- When we have an endpoint that has a PATCH method, PATCH method PARTIALLY UPDATES the information.
 - There are other HTTP words which aren't used frequenly as above one. These are OPTIONS, HEAD, PATCH, TRACE.
 
-8) To run uvicorn, run the following. temp is our file as temp.py but .py not typed. Click [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). An alternative documentation is working on [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
+8) To run uvicorn, run the following. temp is our file as temp.py but .py not typed. Click [http://127.0.0.1:8000/](http://127.0.0.1:8000/) or [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). An alternative documentation is working on [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc). Uvicorn can be run from main.py via below
+
+```uvicorn_python.py
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=8000)
+```
 
 ```uvicorn.sh
-uvicorn temp:app --reload
+uvicorn first_api:app --reload
 ```
 
 ```first_api.py
@@ -685,7 +691,26 @@ async def post_expertise(expertise: Expertise):
 
 46) We can also specify return type of a function via decorator's **response_model** parameter. **response_model_exclude_unset** is aparameter in a decorator, which means unset values aren't sent back to clients.
 
-47) We can use inheritance to create a new custom pydantic model from a custom pydantic model.
+47) We can use inheritance to create a new custom pydantic model from a custom pydantic model. This is especially useful in taking user info from user, returning a success/fail response to user, saving the info into a DB.
+
+48) A GET function can return multiple types of data thanks to `from typing import Union`. Take a look at **get_vehicle** function.
+
+49) In order to get data via Form instead of JSON, use `from fastapi import Form`. It is inherited from Body and similar to Path, Query, Cookie class. Form encodes data in some way and therefore it is more secure. To use form data, install **python-multipart** via `pip install python-multipart`.
+
+50) We can send files from client via `from fastapi import File` and `from fastapi import UploadFile`. It uses POST HTTP word. Both do the same thing. However, File will store data in memory and performs well for small files. File is inherited from From. We can upload several files at the same time via expecting a list of File or UploadFile. We can have Form, File UploadFile at the same time. Install **python-multipart** via `pip install python-multipart`.
+
+51) We should always RAISE exception instead of RETURN. FastAPI has an exception dealer named `from fastapi import HTTPException`.
+
+52) We can add summary, description, response model in the decorators(@app.get, @app.post). This is Path Operation Configuration. We can add tags, description, title, deprecated, response_model to decorators.
+
+53) `from fastapi.encoders import jsonable_encoder` is a way to convert objects created from custom PyDantic models to json-compatible objects.
+
+54) We can either use PUT or PATCH for updating. PUT is generally more used in the industry, even for partial updates.
+
+55) Dependency injection is used in FastAPI. Let's assume we have 4 different endpoints. All of them expect the same type of Path/Query/Body parameters. Instead of explicitly defining each endpoint function, define a dependency and use it in all 4 of endpoints. This dependency will be in function format or Class format. In addition to attaching the dependency to function, we can attach it to whole application. All endpoints attached to this application will use them. Dependencies can be dependent on different dependencies(nested). Dependencies reduce redundant code.
+
+
+
 
 
 
