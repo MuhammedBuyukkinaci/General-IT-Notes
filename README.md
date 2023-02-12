@@ -709,7 +709,107 @@ async def post_expertise(expertise: Expertise):
 
 55) Dependency injection is used in FastAPI. Let's assume we have 4 different endpoints. All of them expect the same type of Path/Query/Body parameters. Instead of explicitly defining each endpoint function, define a dependency and use it in all 4 of endpoints. This dependency will be in function format or Class format. In addition to attaching the dependency to function, we can attach it to whole application. All endpoints attached to this application will use them. Dependencies can be dependent on different dependencies(nested). Dependencies reduce redundant code.
 
+# Big O Notes
 
+1) It lists my notes from [this video](https://www.youtube.com/watch?v=Mo4vesaut8g&ab_channel=freeCodeCamp.org)
+
+2) Big O complexity chart:
+
+![big_o](./big_O_images/001.png)
+
+3) Orders of Growth. In Big O Notation, determining the efficiency of an algorithm was carried out via considering only the worst case.
+
+![big_o](./big_O_images/002.png)
+
+4) Big O notation is used to analyze the efficiency of an algorithm as its input approaches to infinity.
+
+5) O(n) means linear scaling. The below function is an example.
+
+```o_n.py
+def o_n(arr):
+    for i in arr:
+        print(i)
+```
+
+6) Constant is any step that doesn't scale with the input of a function. The below function scales linearly and therefore their complexity is O(n).
+
+```t.py
+def func1(x):
+    return x+1
+def func2(x):
+    return x+200000000
+```
+
+7) O(1) is a time complexity with constant.
+
+```o_1.py
+def o_1(arr):
+    print("hello)
+```
+
+8) O(n^2) is a time complexity created via looping over an array twice.
+
+```o_n_2.py
+def o_n_2(arr):
+    for i in arr:
+        for j in arr:
+            print(i,j)
+```
+
+8) O(n^3) is a time complexity created via looping over an array twice.
+
+```o_n_3.py
+def o_n_3(arr):
+    for i in arr:
+        for j in arr:
+            for k in arr:
+                print(i,j,k)
+```
+
+9) In computer science, unless specified otherwise, we can always assume that the number we want to raise to some number is 2.
+
+10) The time complexity of a recursive function is O(log n).
+
+```o_log_n_recursive.py
+def o_log_n_recursive(n):
+    if n < 1:
+        return "reached to 1"
+    else:
+        divided_by_2 = n/2
+        return o_log_n_recursive(divided_by_2)
+```
+
+11) O(log n) can belong to a non-recursive function like below.
+
+```o_log_n_iterative.py
+def o_log_n_iterative(n):
+    while n > 1:
+        n = n / 2
+        print(f"{n=}, {n/2=}")
+
+o_log_n_iterative(16)
+```
+
+12) Binary Search is carried out on an ordered array. The order doesn't matter. It may be ascending or descending order. The complexity of Bİnary Search is O(log n).
+
+13) O(nlogn) is a time complexity belonging to a function like below. 
+
+```o_n_log_n.py
+def o_n_log_n(n):
+    m = n
+    while n >1:
+        n = n/2
+        for i in range(m):
+            print(n, m)
+```
+
+14) Mergesort is an example of O(nlogn). It uses divide and conquer approach.
+
+15) Fibonacci has a time complexity of O(2^n).
+
+16) O(n!) is the worst scenario that can be visualized as below.
+
+![big_o](./big_O_images/003.png)
 
 
 
@@ -728,7 +828,7 @@ bash /path/to/directory/runall.sh
 
 2) Don't FTP python environment(conda or venv etc.) to VPS. Instead, upload requirements.txt and install it via 
 
-```
+```b.sh
 source ENVIRONMENT_NAME/bin/activate
 
 pip install -r requirements.txt
