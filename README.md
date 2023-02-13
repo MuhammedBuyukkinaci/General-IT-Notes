@@ -434,7 +434,7 @@ def home():
 
 ```
 
-9) Any response coming from an endpoint will be converted to JSON by FastAPI in the background.
+9) Any response coming from an endpoint will be converted to JSON by FastAPI in the background. This operation is known as JSON Serialization.
 
 10) We can send path parameters to /get-item/{item_id} endpoint via [http://127.0.0.1:8000/get-item/1](http://127.0.0.1:8000/get-item/1) and get ***{"name":"bread","price":5.99}***. [http://127.0.0.1:8000/get-item/4](http://127.0.0.1:8000/get-item/4) will return ***Internal Server Error***. [http://127.0.0.1:8000/get-item/any_object](http://127.0.0.1:8000/get-item/any_object)
 will return ***{"detail":[{"loc":["path","item_id"],"msg":"value is not a valid integer","type":"type_error.integer"}]}***.
