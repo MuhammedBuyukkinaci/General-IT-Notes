@@ -811,6 +811,16 @@ def o_n_log_n(n):
 
 ![big_o](./big_O_images/003.png)
 
+17) Space complexity is realted to how much memory used to execute a program. Space complexity is relevant to how many recursive calls exist in the call stack simultaneously. Each of them takes up memory. THe below function has a space complexity of O(n).
+
+```space_complexity_with_o_n.py
+def space_complexity_with_o_n(x):
+    if x == 0:
+        return finished
+    else:
+        return space_complexity_with_o_n(x-1)
+```
+
 
 
 
