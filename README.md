@@ -821,6 +821,58 @@ def space_complexity_with_o_n(x):
         return space_complexity_with_o_n(x-1)
 ```
 
+# Vim Notes
+
+1) `:w` is used to save a file without exit.
+
+2) In command mode, **h**, **j**, **k**, **l** is used to move cursor. **h** moves the cursor to the left, **l** moves to cursor to the right. **k** moves the cursor to the above, **j** moves the cursor to the below. 
+
+3) `G` is used to go down and `gg` is used to go down.
+
+4) `}` is used to skip the next code block. `{` is used to skip the former code block.
+
+5) We can append numbers as prefixes to commands. `50j` moves the cursor to 50 lines below. `3}` skips the three next code blocks.
+
+6) Ctrl + R is the undo of undo (`u`). We can do it a couple times.
+
+7) `.` is used to do what we just did. If we pressed `dd` to delete a line and want to delete the next 3 lines, press `.` 3 times instad of pressing `dd` 3 times.
+
+8) `yy` is used to copy a line and `p` is used to paste the copied line to below line and `P` is used to paste the copied line to above line. `p` is used more.
+
+9) `dd` is used to delete a line. It copies the deleted line into clipboard and therefore we can paste it.
+
+10) `V` is opening Visual mode. It enables us to select pieces of lines via `j` and `k` and make an operation after selection. It is a good practice to delete codes in Visual mode.
+
+11) `o` is adding a new line to below and enabling insert mode. `O` is adding a new line to above and enabling insert mode.
+
+12) To delete a piece of code, use `d{` from cursor to beginning of the code block or use `d}` from cursor to ending of the code block.
+
+13) `w` is a way to move forward to the next word. `b` is a way to move backward to the previous word. `W` and `B` ignores punctuation. 
+
+14) To move to a specific line(line 20), press `:20`.
+
+15) To jump into the beginning of a line, press `0`. To move to the beginning of the first word in a line, press `^`. To move to the end of a line, press `$`. `0w` is a good practice to the beginning of the line instead of `^`.
+
+16) `t` and `f` means go-to in a line. Pressing t and ! means go to the previous character where ! exists. Pressing f and ! means go to the character where ! exists. 
+
+17) `%` goes to the the complementary part of the code. If we are on **{**, press `%` to move to **}**. If you want to delete all content between **{** and **}**, press `d%`. If you want to copy all content between **{** and **}**, press `y%`.
+
+18) `c` stands for change. `cw` means change word and switches to insert mode. `dw` deletes a word. `C` deletes the resot of the line and switches to insert mode. `D` deletes rest of the line. `ct&` deletes all of the characters from where the cursor is to **&** character and switches to insert mode. `dt+` deletes all of the characters from where the cursor is to **+** character and switches to insert mode.
+
+19) We can use `*` to move to previous/next word where the cursor locates. If there are 20 abcde strings in the file, we can move via `*`. It ignores pucntuation.
+
+20) `;` is used to inline move. Let's assume there exists 3 question mark in the line(?). We can go to the first one via `f?`. For the second and third one, use `;`.
+
+21) To center a word that the cursor is on on a page, press `zz`.
+
+22) `a` is an alternative to `i`. However, `a` moves the cursor to the next character and switches to nsert mode and `i` doesn't move the cursor to the cursor and switches to insert mode. 
+
+23) `A` is moving to the end of the line and switches to insert mode. `I` moves to the beginning of the line and switches to insert mode.
+
+24) `x` deletes where the cursor is. `20x` deletes the next 20 characters.
+
+
+
 
 
 
