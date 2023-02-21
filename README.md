@@ -841,7 +841,7 @@ def space_complexity_with_o_n(x):
 
 9) `dd` is used to delete a line. It copies the deleted line into clipboard and therefore we can paste it.
 
-10) `V` is opening Visual mode. It enables us to select pieces of lines via `j` and `k` and make an operation after selection. It is a good practice to delete codes in Visual mode.
+10) `V` is opening Visual mode. It enables us to select pieces of lines via `j` and `k` and make an operation after selection. It is a good practice to delete codes in Visual mode. `v` is similar to V but `v` works for inline operations. Ctrl + `v` enables us to edit multiline. Ctrl + `v` can be used with `d`, `y`, `r` and I.
 
 11) `o` is adding a new line to below and enabling insert mode. `O` is adding a new line to above and enabling insert mode.
 
@@ -857,7 +857,7 @@ def space_complexity_with_o_n(x):
 
 17) `%` goes to the the complementary part of the code. If we are on **{**, press `%` to move to **}**. If you want to delete all content between **{** and **}**, press `d%`. If you want to copy all content between **{** and **}**, press `y%`.
 
-18) `c` stands for change. `cw` means change word and switches to insert mode. `dw` deletes a word. `C` deletes the resot of the line and switches to insert mode. `D` deletes rest of the line. `ct&` deletes all of the characters from where the cursor is to **&** character and switches to insert mode. `dt+` deletes all of the characters from where the cursor is to **+** character and switches to insert mode.
+18) `c` stands for change. `cw` means change word and switches to insert mode. `dw` deletes a word. `d3w` deletes 3 words. `C` deletes the rest of the line and switches to insert mode. `D` deletes rest of the line. `ct&` deletes all of the characters from where the cursor is to **&** character and switches to insert mode. `dt+` deletes all of the characters from where the cursor is to **+** character and switches to insert mode.
 
 19) We can use `*` to move to previous/next word where the cursor locates. If there are 20 abcde strings in the file, we can move via `*`. It ignores pucntuation.
 
@@ -871,6 +871,21 @@ def space_complexity_with_o_n(x):
 
 24) `x` deletes where the cursor is. `20x` deletes the next 20 characters.
 
+25) To convert upercase to lowercase or vice versa, press `~`. If you want to convert the next 10 chracters, press `10~`.
+
+26) If you want to repeat the last thing that you did, press `.`. This is a favorite command of the lecturer. `.` allows us to replay a single command.
+
+27) `r` command is used to replace. `7r6` means replacing the next 7 characters with 6.
+
+28) `>` and `<` are used for indentation and deindentation.
+
+29) Macro is a way to run multiple commands consecutively and then run them all via `@ASSIGNMENT_KEY`. Macro is used in refactoring. Press q to activate.
+
+30) Search can be done via /TEXT_TO_SEARCH. We can press `n` to move to next searched word or press `N` to move to previous searched word.
+
+31) It is good practice to key bind ESC with jj or jk.
+
+32) Google Chrome has also a vim extension. We can use Vim there too.
 
 
 
