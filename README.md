@@ -887,6 +887,7 @@ def space_complexity_with_o_n(x):
 
 32) Google Chrome has also a vim extension. We can use Vim there too.
 
+33) [Awesome Vim](https://github.com/amix/vimrc) is a vim setting that has many features.
 
 
 
