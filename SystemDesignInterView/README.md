@@ -108,3 +108,17 @@ cache.get('myKey')
 ![](./images/008.png)
 
 3) 1 ms(millisecond) = 10^-3 seconds = 1,000 µs(microsecond) = 1,000,000 ns(nanosecond)
+
+4) Some latency numbers
+
+![](./images/009.png)
+
+![](./images/010.png)
+
+5) Avoid disc seeks and prefer using RAM. Compress data before sending over the network.
+
+6) QPS means query per second. 
+
+7) Commonly asked back-of-the-envelope estimations: QPS, peak QPS, storage, cache, number of servers.
+
+
