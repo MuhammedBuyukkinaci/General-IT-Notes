@@ -101,5 +101,10 @@ cache.get('myKey')
 
 # Back-of-the-envelope Estimation
 
+1) Back-of-the-envelope calculation means rough/approximate calculation.
 
+2) A byte is a sequence of 8 bits. An ASCII character uses one byte of memory (8 bits).
 
+![](./images/008.png)
+
+3) 1 ms(millisecond) = 10^-3 seconds = 1,000 µs(microsecond) = 1,000,000 ns(nanosecond)
