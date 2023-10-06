@@ -121,4 +121,31 @@ cache.get('myKey')
 
 7) Commonly asked back-of-the-envelope estimations: QPS, peak QPS, storage, cache, number of servers.
 
+# A Framework For System Design Interviews
+
+1) Asking good questions is vital in system design interviews.
+
+2) DAU means daily active user.
+
+# Design A Rate Limiter
+
+1) "In a network system, a rate limiter is used to control the rate of traffic sent by a client or a service". It can be time-based, IP-based or device based. Rate limiter blocks excess calls.
+
+2) DoS means Denial of Service. 
+
+3) Python libraries [fastapi-limiter](https://pypi.org/project/fastapi-limiter/) and [slowapi](https://pypi.org/project/slowapi/) are 2 libraries to set a rate limit in FastAPI.
+
+4) Rate limiting can be server-side or client-side. Client-side rate limiting is untrusted because it is vulnarable to misuse of forgers. Rate limiting can be programmed in the application code or as a separate service.
+
+5) Rate limiting can be in the middleware as below:
+
+![](./images/011.png)
+
+6) Rate limiting is implemented in API Gateway in cloud apps. "API gateway is a fully managed service that supports rate limiting, SSL termination, authentication, IP whitelisting, servicing static content".
+
+7) Evolution of an API architecture
+
+![](./images/012.png)
+
+
 
