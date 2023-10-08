@@ -141,11 +141,60 @@ cache.get('myKey')
 
 ![](./images/011.png)
 
-6) Rate limiting is implemented in API Gateway in cloud apps. "API gateway is a fully managed service that supports rate limiting, SSL termination, authentication, IP whitelisting, servicing static content".
+6) Rate limiting is implemented in API Gateway in cloud apps. "API gateway is a fully managed service that supports rate limiting, SSL termination, authentication, IP whitelisting, servicing static content". Rate limiting can be implemented in API Gateway or server-side applications(FastAPI etc.). There is no clear answer to this question.
 
 7) Evolution of an API architecture
 
 ![](./images/012.png)
+
+8) Algorithms for rate limiting
+
+- Token bucket: Simple, well understood and commonly used by Amazon and Stripe. Bucket size and refill rate are 2 parameters.
+
+![](./images/013.png)
+
+- Leaking bucket: Bucket size and outflow rate are 2 parameters. Shopify uses this algorithm.
+
+![](./images/014.png)
+
+
+- Fixed window counter:
+
+![](./images/015.png)
+
+- Sliding window log:
+
+![](./images/016.png)
+
+- Sliding window counter:
+
+![](./images/017.png)
+
+9) High level architecture of rate limiting. At the high level, we need a counter of how many requests are sent from the same user, IP address etc.
+
+![](./images/018.png)
+
+10) Redis is a popular option for rate limiting as an in-memory store.
+
+11) Lyft open sourced its rate limiting library as [here](https://github.com/envoyproxy/ratelimit). It works as a configuration file.
+
+12) When a request is rate limited, a HTTP response called 429 is returned.
+
+![](./images/019.png)
+
+13) When a rate limiter server is enough, it is necessary to scale up rate limiter server.
+
+14) A good practice of multiple rate limiters with redis
+
+![](./images/020.png)
+
+15) "Multi-data center setup is crucial for a rate limiter because latency is high for users located far away from the data center"
+
+16) We talked about rate limiting at the application level(layer 7) but it is possible to rate limit at other layers. We can rate-limit IP addresses using IP Tables(IP layer 3).
+
+17) Soft rate limiting is permitting users to send requests for a short period of time even if it exceed rate limit. Hard rate limiting isn't rrmitting users to exceed the threshold.
+
+18) Avoid being rate-limited. Use client cache to avoid frequent API calls. Understand the limit and don't send too many requests in a short period of time.
 
 
 
