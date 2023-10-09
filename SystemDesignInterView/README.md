@@ -196,5 +196,35 @@ cache.get('myKey')
 
 18) Avoid being rate-limited. Use client cache to avoid frequent API calls. Understand the limit and don't send too many requests in a short period of time.
 
+# Design Consistent Hashing
+
+1) For horizontal scaling, it is significant to distribute requests over servers. Hashing is important in this topic.
+
+2) A basic approach as below. However, it is problematic in the case of adding and removing servers.
+
+![](./images/021.png)
+
+3) "Consistent hashing is a special kind of hashing such that when a hash table is re-sized and consistent hashing is used, only k/n keys need to be remapped on average, where k is the number of keys, and n is the number of slots. In contrast, in most traditional hash tables, a change in the number of array slots causes nearly all keys to be remapped"
+
+4) SHA-1 is a commonly used hash function.
+
+5) A demonstration of hash space and hash keys
+
+![](./images/022.png)
+
+6) Go clockwise from the key position on the ring until a server is found.
+
+![](./images/023.png)
+
+7) Adding a server or removing a server is easy in consistent hashing. However, when a server goes offline, its traffic will go to the clockwise server. In this way, traffic will be less even. 
+
+8) A further solution to above problem is to use virtual nodes. The more the virtual nodes, the less the imbalance of distribution.
+
+![](./images/024.png)
+
+9) Consistent hashing is used in partitioning component of Amazon's DynamoDB, partitioning across the cluster in Apache Cassandra, Discord chat application etc.
+
+
+
 
 
