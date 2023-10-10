@@ -224,6 +224,36 @@ cache.get('myKey')
 
 9) Consistent hashing is used in partitioning component of Amazon's DynamoDB, partitioning across the cluster in Apache Cassandra, Discord chat application etc.
 
+# Design A Key-value Store
+
+1) Short keys perform better. Key can be plain text like this_is_a key or hashed value like AB241AD56.
+
+2) "An intuitive approach is to store key-value pairs in a hash table, which keeps everything in memory".
+
+3) To overcome the problems of using single server key-value store, we should prefer
+
+    - Data compression
+    - Store only recent data in memory and rest in disc.
+
+4) A distributed key-value store is also called a distributed hash table, which distributes data across many servers.
+
+5) CAP Theorem states that it is impossible to provide Consistency, Availability and Partition tolerance at the same time.
+    - Consistency: All clients viewing the same data
+    - Availability: All clientst having a response even if some nodes are down.
+    - Partition Tolerance: A partition indicates a communication break between two nodes. Partition     tolerance means the system continues to operate despite network partitions
+
+![](./images/025.png)
+
+6) Meanings of different combinations
+
+    - CP: Consistency and Partition Tolerance preferred over Availability. Banks prefer. MongoDB follows this combination.
+    - AP: Availability and Partition Tolerance preferred over Consistency. Cassandra follows this combination.
+    - CA: Consistency and Availability preferred over Partition Tolerance. Since network failure is unavoidable, CA isn't possible in real life.
+
+7) In reality, partitions(breaks) happen in a distributed system.
+
+8) It isn't feasible to store all data in a single server. Thus, it is required to distribute data across many servers. One way to achieve this is to use [consistent hashing](#design-consistent-hashing).
+
 
 
 
