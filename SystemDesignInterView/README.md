@@ -226,7 +226,7 @@ cache.get('myKey')
 
 # Design A Key-value Store
 
-1) Short keys perform better. Key can be plain text like this_is_a key or hashed value like AB241AD56.
+1) "A key-value store, also referred to as a key-value database, is a non-relational database". Short keys perform better. Key can be plain text like this_is_a key or hashed value like AB241AD56.
 
 2) "An intuitive approach is to store key-value pairs in a hash table, which keeps everything in memory".
 
@@ -252,9 +252,65 @@ cache.get('myKey')
 
 7) In reality, partitions(breaks) happen in a distributed system.
 
-8) It isn't feasible to store all data in a single server. Thus, it is required to distribute data across many servers. One way to achieve this is to use [consistent hashing](#design-consistent-hashing).
+## Data partition
 
+8) It isn't feasible to store all data in a single server. Thus, it is required to distribute data across many servers. One way to achieve this is to use [consistent hashing](#design-consistent-hashing). "Using consistent hashing to partition data has the following advantages":
 
+- Automatic scaling: Automatically adding and removing servers
 
+- Heterogeneity: The number of virtual nodes is proportional to the capacity of server.
 
+## Data replication
+
+9) Data should be replicated over N servers. N is a tunable parameter. In the scenario below, data is replicated in 3 servers. The logic is to choose 3 servers in the clockwise way. Virtual Nodes shouldn't be taken into consideration.
+
+![](./images/026.png)
+
+## Consistency
+
+10) Data should be syncronized since it is distributed over multiple servers.
+
+11) Some hyperparameters to tune
+
+    - N: The number of replicas
+    - W: A write quorum of size W. In order for a write operation to be regarded as successful, write operation must be acknowledged by at least W replicas
+    - R: A read quorum of size W. In order for a read operation to be regarded as successful, read operation must be acknowledged by at least R replicas.
+
+12) "The configuration of W, R and N is a typical tradeoff between latency and consistency". If W or R is 1, an operation is returned quickly. If W or R > 1, it offers better consistency but less speed.
+
+    - If R = 1 and W = N, the system is optimized for a fast read.
+
+    - If W = 1 and R = N, the system is optimized for fast write.
+
+    - If W + R > N, strong consistency is guaranteed (Usually N = 3, W = R = 2).
+
+    - If W + R <= N, strong consistency is not guaranteed.
+
+13) A consistency model defines the degree of data consistency.
+
+    - Strong consistency: "Any read operation returns a value corresponding to the result of the most updated write data item. A client never sees out-of-date data".
+    - Weak consistency: "Subsequent read operations may not see the most updated value".
+    - Eventual consistency: "This is a specific form of weak consistency. Given enough time, all updates are propagated, and all replicas are consistent". Dynamo and Cassandra prefer this.
+
+14) "A [vector clock](https://en.wikipedia.org/wiki/Vector_clock) is a [server, version] pair associated with a data item. It can be used to check if one version precedes, succeeds, or in conflict with others".
+
+## Handling failures
+
+15) In a distributed system, at least 2 servers are required to tell that another server is down.
+
+16) [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol#:~:text=A%20gossip%20protocol%20or%20epidemic,all%20members%20of%20a%20group.) is a way to detect decentralized server detection.
+
+17) Sloppy quorum and hinted handoff are 2 techniques to deal with temporary failures. Sloppy quorum is a technique to choose write/read servers. "The first W healthy servers for writes and first R healthy servers for reads on the hash ring". It is an alternative to quorum requirement described above. Hinted handoff means that server A processes requestes of server B if server B is down. If server B becomes up, the data on B gets updated and then requests are directed to server B.
+
+19) It is significant to replicate data over multiple data centers.
+
+20) Merkle tree is a technique to handle permanent failures.
+
+21) A coordinator is a node that acts as a proxy between the client and the key-value store.
+
+![](./images/027.png)
+
+22) A summary table of above ones
+
+![](./images/028.png)
 
