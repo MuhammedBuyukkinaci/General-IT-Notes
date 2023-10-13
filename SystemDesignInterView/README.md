@@ -314,3 +314,29 @@ cache.get('myKey')
 
 ![](./images/028.png)
 
+# Design A Unique ID Generator In Distributed Systems
+
+1) The canonical way to generate unique id's in RDBMS is to use a primary key with auto increment attribute.
+
+2) Auto increment doesn't work in a distributed environment.
+
+3) Unique ID must be unique and sortable.
+
+
+
+5) The options to generate unique ID's
+
+- Multi-master replication: Using the auto increment feature of DB's. Instead of increasing one, increase by k.
+
+![](./images/029.png)
+
+- Universally unique identifier (UUID): "UUID is a 128-bit number used to identify information in computer systems". "Here is an example of UUID: 09c93e62-50b4-468d-bf8a-c07e1040bfb2".
+
+- Ticket server: Flickr uses. "The idea is to use a centralized auto_increment feature in a single database server (Ticket Server)"
+
+![](./images/030.png)
+
+- Twitter snowflake approach:
+
+![](./images/031.png)
+
