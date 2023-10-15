@@ -322,9 +322,7 @@ cache.get('myKey')
 
 3) Unique ID must be unique and sortable.
 
-
-
-5) The options to generate unique ID's
+4) The options to generate unique ID's
 
 - Multi-master replication: Using the auto increment feature of DB's. Instead of increasing one, increase by k.
 
@@ -339,4 +337,64 @@ cache.get('myKey')
 - Twitter snowflake approach:
 
 ![](./images/031.png)
+
+# Design A URL Shortener
+
+1) Tinyurl is a url shortener service. It is a paid service.
+
+2) Url shortening is a commonly asked system design question.
+
+3) The ratio of read operation over write operation is around 10 on average.
+
+4) A URL Shortener has the following 2 endpoints:
+
+    - URL shortening: POST request. Inputting a long url, converting it to a short url and outputting a short url.
+
+    - URL redirecting: GET request. Inputting a short url and returning a long url.
+
+5) This is what happens when a shortened url is entered into a browser.
+
+![](./images/032.png)
+
+6) There are 2 redirection policies:
+
+    - 301 redirect:
+
+    - 302 redirect:
+
+7) "The most intuitive way to implement URL redirecting is to use hash tables".
+
+8) URL Shortening high level design. It uses a hash function.
+
+![](./images/033.png)
+
+9) In the high-level design, hash table is stored in memory. However, the memory is limited and expensive. Thus, hash table should be stored in a RDBMS.
+
+10) Hash function is a function that is used to convert long url into short url.
+
+11) "The hashValue consists of characters from [0-9, a-z, A-Z], containing 10 + 26 + 26 = 62 possible characters".
+
+12) There are 2 types of hash functions.
+
+- Hash + collision resolution: "The first approach is to collect the first 7 characters of a hash value".
+
+![](./images/034.png)
+
+- Base 62 conversion: Base conversion helps to convert the same number between its different number representation systems
+
+![](./images/035.png)
+
+13) The comparison of Hash + collision resolution and Base 62 conversion
+
+![](./images/036.png)
+
+14) A general flow:
+
+![](./images/037.png)
+
+15) URL Redirecting with cache, db, load balancer and web servers.
+
+16) "Integrating an analytics solution to the URL shortener could help to answer important questions like how many people click on a link".
+
+
 
