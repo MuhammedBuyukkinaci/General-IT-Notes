@@ -394,7 +394,71 @@ cache.get('myKey')
 
 15) URL Redirecting with cache, db, load balancer and web servers.
 
+![](./images/038.png)
+
 16) "Integrating an analytics solution to the URL shortener could help to answer important questions like how many people click on a link".
+
+# Design A Web Crawler
+
+1) A web crawler is also known as a robot or a spider. Web crawlers are used by search engines.
+
+2) Web crawlers go to a website, then find links on that site, go to links. This lifecycle happens iteratively.
+
+![](./images/039.png)
+
+3) Why to use web crawlers:
+
+    - Search engine indexing: The most comon case
+
+    - Web archiving:
+
+    - Web mining:
+
+    - Web monitoring:
+
+4) The algorithm of web crawlers as follows:
+
+    - Given a set of URLs, download all the web pages addressed by the URLs.
+
+    - Extract URLs from these web pages
+
+    - Add new URLs to the list of URLs to be downloaded. Repeat these 3 steps.
+
+
+5) An average web size is 500 kilobytes.
+
+5) 29 percent of pages on the web are duplicates.
+
+6) A high-level design of web crawler
+
+![](./images/040.png)
+
+7) Components of a web crawler:
+
+- Seed URL's: Started as starting point of the crawl process. It can be based on domain or country.
+
+- URL Frontier: Storing URL's to be downloaded. Can be considered as First in First Out queue.
+
+- HTML Downloader: Downloading web pages from the internet.
+
+- DNS Resolver: Translating URL into an IP address
+
+- Content Parser: Parsing and validating the downloaded page.
+
+- Content Seen?: Eliminating data redundancy and shortening process time.
+
+- Content Storage: Storing HTML content. Can be in RAM or disc.
+
+- URL Extractor: Parsing and extracting links from HTML pages
+
+- URL Filter: Excluding some URL's such as blacklisted ones, error links etc.
+
+- URL Seen?: Helping to avoid the same URL multiple times.
+
+- URL Storage: Storing already visited URL's
+
+
+
 
 
 
