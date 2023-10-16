@@ -512,6 +512,61 @@ Disallow: /gp/aw/cr/
 
 19) In order to retrieve dynamically generated links, perform server-side rendering first before parsing a page.
 
+# Design A Notification System
+
+1) 3 types of notification formats
+
+- Mobile Push:
+
+- SMS:
+
+- E-mail:
+
+2) Notifications can be triggered by client applications. They can also be scheduled on the server side.
+
+3) A summary with third party libraries. APNs means Apple Push Notification Services. FCM means Firebase Cloud Messaging.
+
+![](./images/044.png)
+
+4) Twilio and Nexmo are some 3rd party service providers.
+
+5) Companies can build their own e-mail servers but it isn't preferred so much. They prefer to use 3rd party e-mail services like Sendgrip and Mailchimp since it offers a better delivery rate and data analytics.
+
+6) To send a notification on Apple, 3 components needed. 
+
+![](./images/045.png)
+
+- Provider: Sending notification requests to APN's
+
+- Device Token: Unique identifier used for sending notifications
+
+- Payload: A json dictionary containing the notification's payload. An example below:
+
+```json
+{
+   "aps":{
+      "alert":{
+         "title":"Derbide Gol",
+         "body":"Fenerbahçe 1-0 öne geçti",
+         "action-loc-key":"PLAY"
+      },
+      "badge":5
+   }
+}
+```
+
+7) A high-level and decoupled notification service diagram
+
+![](./images/046.png)
+
+8) Message queues remove dependencies between components.
+
+9) User info, device info and notification templates are stored in cache.
+
+10) DB stores data about user, notification, settings, etc.
+
+
+
 
 
 
