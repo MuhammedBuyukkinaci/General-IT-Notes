@@ -457,7 +457,60 @@ cache.get('myKey')
 
 - URL Storage: Storing already visited URL's
 
+8) Web can be thought as a directed graph where web pages are nodes and urls are edges.
 
+9) There are 2 common graph traversal algorithms to traverse the web. BFS is commonly used by web crawlers.
+
+    - Depth-first search (DFS):
+
+    - Breadth-first search (BFS):
+
+10) "The URL frontier is an important component to ensure politeness, URL prioritization, and freshness".
+
+## URL frontier
+
+11) Sending too much requests to a server can be regarded as impolite.
+
+12) The idea of politenss is about not to send too many requests from the same host. A design that manages politeness is below
+
+![](./images/041.png)
+
+13) Prioritizer is the component of URL Frontier. It prioritizes URLS. A design that manages URL prioritazitons.
+
+![](./images/042.png)
+
+14) Prioritizer is the front component of URL Frontier. Politeness is the back component of URL Frontier.
+
+![](./images/043.png)
+
+## HTML Downloader
+
+15) Robots.txt is called robot exclusion protocol. It is a standard used by websites to communicate with crawlers. It defines what can be crawled or not .
+
+```robots.txt
+User-agent: Googlebot
+Disallow: /creatorhub/\*
+Disallow: /rss/people/\*/reviews
+Disallow: /gp/pdp/rss/\*/reviews
+Disallow: /gp/cdp/member-reviews/
+Disallow: /gp/aw/cr/
+```
+
+16) To have a better performance, crawl jobs are distributed among multiple servers and multiple threads on a server.
+
+17) Some tricks for Performance optimization
+
+- Distributed crawl: Carry out crawling operation on multiple servers.
+
+- Cache DNS Resolver: Response time of DNS Servers might be too high. 
+
+- Locality: Locate servers and caches in close to where the target servers are.
+
+- Short timeout: Specify a response time. If it exceeds, move to the next page.
+
+18) Hashs and checksums help to detect duplicates.
+
+19) In order to retrieve dynamically generated links, perform server-side rendering first before parsing a page.
 
 
 
