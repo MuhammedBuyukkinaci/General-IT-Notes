@@ -565,8 +565,31 @@ Disallow: /gp/aw/cr/
 
 10) DB stores data about user, notification, settings, etc.
 
+11) Reliability is an important concept. The notification log database is included for data persistance.
 
+![](./images/047.png)
 
+12) Some additional components and considerations
+
+- Notification template: Maintaining a consistent format for notifications.
+
+- Notification setting: Storing which user prefers which channel or not. For instance, User with ID 12 want to have e-mail notifications but not want to have SMS notifications. It is checked before sending notifications.
+
+- Rate limiting: To limit number of notifications a user can take
+
+- Retry mechanism: "When a third-party service fails to send a notification, the notification will be added to the message queue for retrying".
+
+- Security in push notifications: Only authenticated clients can send push notifications.
+
+- Monitor queued notifications: Monitoring queue message count. If large, workers not processing well.
+
+- Events tracking: Monitoring after push notifications is so crucial. "Analytics service implements events tracking. Integration between the notification system and the analytics service is usually required".
+
+![](./images/048.png)
+
+13) An updated design with above considerations
+
+![](./images/049.png)
 
 
 
