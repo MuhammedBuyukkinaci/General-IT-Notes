@@ -591,5 +591,77 @@ Disallow: /gp/aw/cr/
 
 ![](./images/049.png)
 
+# Design A News Feed System
+
+1) It is a popular interview question.
+
+2) There can be many NewsFeed API's such as posting a stutus, retrieve news feed, adding friends. The most important ones are feed publishing API and news feed retrieval API.
+
+3) Authentication token is used to authenticate API requests.
+
+4) Feed publishing API has the following features:
+
+- POST /v1/me/feed
+
+    - Params:
+
+    - content: content is the text of the post.
+
+    - auth_token: it is used to authenticate API requests.
+
+5) Newsfeed retrieval API has the following features:
+
+- GET /v1/me/feed
+
+    - auth_token: it is used to authenticate API requests.
+
+6) Feed Publishing API - High Level Design
+
+- Post Service: Persisting post in DB and cache
+
+- Fanout service: Pushing the new content to friends' feed
+
+- Notification service: Informing friends that new content is available.
+
+![](./images/050.png)
+
+6) High Level Design of Newsfeed retrieval API
+
+![](./images/051.png)
+
+7) Web servers can carry out authentication and rate limiting.
+
+![](./images/052.png)
+
+8) "If a user has many friends, fetching the friend list and generating news feeds for all of them are slow and time consuming". It is called hotkey problem.
+
+9) Fanout is the process of delivering a post to all friends. 2 types of fanout:
+
+- Fanout on write(Push model): Real time model. The news feed is generated pre-computed, thus fast.
+
+- Fanout on read(Pull model): On demand model. The news feed is generated on reading time, thus slow.
+
+10) A hybrid approach can be the solution. It states that prefer push model for majority of users and prefer pull model for celebrities.
+
+11) A detailed look at fanout service
+
+![](./images/053.png)
+
+12) Graph databases are good at managing friend relationships and recommendations.
+
+13) News feed cache as a <post_id, user_id> mapping table.
+
+14) A detailed look at Newsfeed retrieval
+
+![](./images/054.png)
+
+15) Cache is so significant for a newsfeed system.
+
+![](./images/055.png)
+
+
+
+
+
 
 
