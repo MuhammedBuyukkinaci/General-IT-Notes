@@ -709,6 +709,31 @@ async def post_expertise(expertise: Expertise):
 
 55) Dependency injection is used in FastAPI. Let's assume we have 4 different endpoints. All of them expect the same type of Path/Query/Body parameters. Instead of explicitly defining each endpoint function, define a dependency and use it in all 4 of endpoints. This dependency will be in function format or Class format. In addition to attaching the dependency to function, we can attach it to whole application. All endpoints attached to this application will use them. Dependencies can be dependent on different dependencies(nested). Dependencies reduce redundant code.
 
+56) If we want to send a pydantic model to an endpoint, we should convert it from pydantic model to a a dictionary.
+
+```python
+import requests
+from pydantic import BaseModel
+
+
+class MyModel(BaseModel):
+    name: str
+    age: int
+
+data_to_send = MyModel(name="John Doe", age=30)
+
+
+response = requests.post(url, json=data_to_send.dict())
+
+if response.status_code == 200:
+    print("Request was successful.")
+    response_data = response.json()
+    # You can now work with the response data if the server sends any.
+else:
+    print(f"Request failed with status code {response.status_code}.")
+
+```
+
 # Big O Notes
 
 1) It lists my notes from [this video](https://www.youtube.com/watch?v=Mo4vesaut8g&ab_channel=freeCodeCamp.org)
