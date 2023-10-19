@@ -659,6 +659,37 @@ Disallow: /gp/aw/cr/
 
 ![](./images/055.png)
 
+# Design A Chat System
+
+1) In a chat system, clients don't communicate with each other directly. Each client connects to a chat service.
+
+![](./images/056.png)
+
+2) "When a client intends to start a chat, it connects the chats service using one or more network protocols. For a chat service, the choice of network protocols is important".
+
+3) On the sender side, the most common protocol is time based HTTP with keep-alive header. Many popular chat applications use this on the sender side.
+
+4) HTTP is client-initiated. Thus, it isn't easy to send messages from server. Some techniques are introduced to overcome this problem.
+
+    - Polling
+    - Long Polling
+    - Web Socket
+
+5) Polling is a technique in which the client asks the server whether any message exists periodically. If the frequency is high, it is costly.
+
+![](./images/057.png)
+
+6) Long polling can be the solution when polling is inefficient. "In long polling, a client holds the connection open until there are actually new messages available or a timeout threshold has been reached".
+
+![](./images/058.png)
+
+7) "WebSocket is the most common solution for sending asynchronous updates from server to client"
+
+8) "WebSocket connection is initiated by the client. It is bi-directional and persistent. It starts its life as a HTTP connection and could be “upgraded” via some well-defined handshake to a WebSocket connection. Through this persistent connection, a server could send updates to a client. WebSocket connections generally work even if a firewall is in place. This is because they use port 80 or 443 which are also used by HTTP/HTTPS connections".
+
+9) Websocket connection can be on sender-side or receiver side. Efficient connection management is crucial on the server side because web socket connections are persistent.
+
+![](./images/059.png)
 
 
 
