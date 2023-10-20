@@ -334,6 +334,8 @@ cache.get('myKey')
 
 ![](./images/030.png)
 
+## Snowflake Approach
+
 - Twitter snowflake approach:
 
 ![](./images/031.png)
@@ -687,9 +689,65 @@ Disallow: /gp/aw/cr/
 
 8) "WebSocket connection is initiated by the client. It is bi-directional and persistent. It starts its life as a HTTP connection and could be “upgraded” via some well-defined handshake to a WebSocket connection. Through this persistent connection, a server could send updates to a client. WebSocket connections generally work even if a firewall is in place. This is because they use port 80 or 443 which are also used by HTTP/HTTPS connections".
 
-9) Websocket connection can be on sender-side or receiver side. Efficient connection management is crucial on the server side because web socket connections are persistent.
+9) Websocket connection can be on sender-side or receiver side. Efficient connection management is crucial on the server side because web socket connections are persistent. Web socket is bidirectional. Web socket is used in online chat applications, online gaming, live data feeds. It uses "ws://" or "wss://". "wss" means secure connection as https means secure connection.
 
 ![](./images/059.png)
+
+10) Most component of an app(sign up, sign in, profile page etc) could use traditional HTTP way. Web socket isn't indispensable.
+
+11) A high-level design of a chat application
+
+![](./images/060.png)
+
+12) Chat service is a stateful service.
+
+13) For a chat application, the most important third party integration is push notification.
+
+14) Presence service is a service responsible for showing online/offline status. It is working real time with ws(websocket) protocol.
+
+![](./images/061.png)
+
+15) In a typical chat system, there are 2 types of data. The metadata such as user profile, setting, friend lists is stored in an RDBMS. Replication and sharding are common techniques to satisfy availability and scalability requirements.
+
+16) The second data in a chat app is chat history. The ratio of read to write in a 1 on 1 chat app is 1. The recommended data storage for chat history is key-value store. Facebook Messenger uses HBase, Discord uses Cassandra; bot are key-value stores.
+
+17) Message table of 1 on 1 chat. The primary key is message id.
+
+![](./images/062.png)
+
+18) Message table of group chat. The primary key is message id and channel id.
+
+![](./images/063.png)
+
+19) Message Id should be unique and sortable by time. The more the id, the more recent the message. [Snowflake's approach](#snowflake-approach) can be a solution for a general id. However, a better solution is to use a local id within one-on-one channel or a group channel. Every message in a 1 on 1 chat or group message has a different message id. Wherease, an id of 12345 in group a can exist as an id of 12345 in group b.
+
+20) Service discovery is responsible for choosing the best server for the client based on some criteria such as geographical location or server capacity. Apache zookeeper is a popular open source solution for service discovery.
+
+![](./images/064.png)
+
+21) 1 on 1 chat flow
+
+![](./images/065.png)
+
+22) Message synchronization across multiple devices. cur_max_message_id means the latest message id on the device.
+
+![](./images/066.png)
+
+23) Small group chat flow. Wechat uses this approach and limits a group to 5000 users. Message sync queue can be thought as an inbox for a recipient. This choice is good for small groups because
+
+    - It simplifies message sync flow as each client only needs to check its own inbox to get new messages.
+
+    - When the group number is small, storing a copy in each recipient’s inbox is not too expensive.
+
+- Sender side
+
+![](./images/067.png)
+
+- Receiver side. A receiver can take messages from multiple different users.
+
+![](./images/068.png)
+
+
 
 
 
