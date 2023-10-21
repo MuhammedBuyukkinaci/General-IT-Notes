@@ -747,6 +747,15 @@ Disallow: /gp/aw/cr/
 
 ![](./images/068.png)
 
+24) User login, user logout, disconnect and online status fanout diagrams respectively for Presence service.
+
+![](./images/069.png)
+
+![](./images/070.png)
+
+![](./images/071.png)
+
+![](./images/072.png)
 
 
 
