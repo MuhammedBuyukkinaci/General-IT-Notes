@@ -757,9 +757,37 @@ Disallow: /gp/aw/cr/
 
 ![](./images/072.png)
 
+# Design A Search Autocomplete System
+
+1) A search autocomplete system is an important feature of many products.
+
+2) One ASCII character holds 1 byte in memory. An average search query is consisting of 20 words, which is equal to 20 bytes. For a query consisting of 20 characters, 20 different requests will be sent to the server.
+
+3) The application has 2 components:
+
+- Data gathering service:"It gathers user input queries and aggregates them in real-time"
+
+![](./images/073.png)
+
+- Query Service: It returns 5 responses after taking requests.
+
+![](./images/074.png)
+
+## Trie
+
+4) Trie data structure is a tree-like data structure. It is designed for string retrieval operations. It has following parameters:
+
+- p: length of a prefix
+
+- n: total number of nodes in a trie
+
+- c: number of children of a given node
+
+5) The algorithm is slow. Thus, 2 optimizations are introduced.
+
+- Limit the max length of a prefix -> lowering the time complexity to O(1)
+
+- Cache top search queries at each node -> lowering the time complexity to O(1)
 
 
-
-
-
-
+![](./images/075.png)
