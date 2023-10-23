@@ -791,3 +791,52 @@ Disallow: /gp/aw/cr/
 
 
 ![](./images/075.png)
+
+## Data gathering service
+
+6) Updating trie on each new query isn't practical. Instead, trie should be updated daily or weekly(recommended). Twitter is a real time app and it updates its autocomplete system hourly or less. Below is a diagram depicting how to update trie.
+
+![](./images/076.png)
+
+7) Some explanations of components of data gathering service
+
+- Analytics Logs: Raw data.
+
+- Aggregators: A service transforming raw data into an aggregated form.
+
+- Aggregated data: A table of 2 columns, 1 column is query and 1 column is showing count.
+
+- Workers: A set of servers building up the trie data sructure
+
+- Trie Cache: A distributed cache system. It takes a snapshot of TrieDB.
+
+- TrieDB: Persistent storage. Preferrably a NoSQL solution.
+
+8) Persistent data can be stored in a TrieDB in two ways.
+
+- Document store: A document store solution like MongoDB fits well for serialized data.
+
+- Key-value store: Each prefix corresponding to key of a hash table and data on each node corresponding to value of a hash table.
+
+![](./images/077.png)
+
+9) The new design of query service. If query isn't in the cache, it is replenished back to the cache. Hereby, subsequent requests are going to provided by cache.
+
+![](./images/078.png)
+
+10) "For web applications, browsers usually send AJAX requests to fetch autocomplete results. The main benefit of AJAX is that sending/receiving a request/response does not refresh the whole web page".
+
+11) Delete layer is located between trie cache and API servers. It is necessary to delete undesired autcomplete suggestions.
+
+![](./images/079.png)
+
+12) Scaling the storage is a problem in an autocomplete system. Let's assume we have 26 servers corresponding to 26 character. Each server is assigned to each character. Queries starting with a will be directed to server#1 and so on. In this scenario, data will be unevenly distributed because queries starting with a is much more than queries starting with x. Thus, there should be a sharding map manager to mitigate this phenomenon. For instance, this sharding manager might assign queries starting with a to server 1 and assign queries starting with x-y-z-t to server 26.
+
+![](./images/080.png)
+
+13) For multilanguage set up of an autocomplete system, unicodes should be used to create a trierather than regular characters. For different countries, different tries should be built.
+
+
+
+
+
