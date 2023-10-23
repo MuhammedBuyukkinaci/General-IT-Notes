@@ -836,7 +836,15 @@ Disallow: /gp/aw/cr/
 
 13) For multilanguage set up of an autocomplete system, unicodes should be used to create a trierather than regular characters. For different countries, different tries should be built.
 
+# Design YouTube
 
+1) GB cost of CDN for traffic is 0.02 dollar in US.
+
+2) Blob storage and CDN are 2 important services of cloud computing to design Youtube. Netflix uses AWS's cloud services and Facebook uses Akamai's cloud services.
+
+3) A high-level design of Youtube
+
+![](./images/081.png)
 
 
 
