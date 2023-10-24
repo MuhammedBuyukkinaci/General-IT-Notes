@@ -842,9 +842,20 @@ Disallow: /gp/aw/cr/
 
 2) Blob storage and CDN are 2 important services of cloud computing to design Youtube. Netflix uses AWS's cloud services and Facebook uses Akamai's cloud services.
 
-3) A high-level design of Youtube
+3) Blob Storage Service such as AWS S3 is required to store source videos.
+
+4) A high-level design of Youtube
 
 ![](./images/081.png)
 
+5) Video transcoding can also be named as video encoding. It is the process of transfoming a video format to other formats(MPEG, HLV).
+
+6) A low-level design of Video Uploading
+
+![](./images/082.png)
+
+7) While a client is uploading a video, he also enters video metadata such as description and title. The following diagram shows how this process happens.
+
+![](./images/083.png)
 
 
