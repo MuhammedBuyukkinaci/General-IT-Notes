@@ -858,4 +858,61 @@ Disallow: /gp/aw/cr/
 
 ![](./images/083.png)
 
+8) Different streaming protocols support different video encodings and playback players. Some popular streaming protocols are listed below:
+
+- MPEG-DASH
+
+- Apple HLS
+
+- Microsoft Smooth Streaming
+
+- Adobe HTTP Dynamic Streaming
+
+9) For a streaming service, it can be said that videos are streamed from CDN directly. The edge server closest to client will deliver the video.
+
+10) When a video is recorded, the device assigns a certain format to the video file. If it is desired to run the video on other devices, the video must be converted to relevant bitrates and formats.
+
+11) Many types of encoding algorithms are out there. However, most of them contain 2 parts:
+
+- Container: It is like a basket that contains video file, audio file and metadata.
+
+- Codes: These are compression and decompression algorithms.
+
+12) Transcoding a video is computationally expensive. It has different usages. User A want its video to have a thumbnail and watermark. User B wants its video to have a cutting-edge video quality. Thus, it is required to introduce some abstraction. Facebook achives this via DAG's(Directed Acyclic Graphs). An example DAG is below:
+
+![](./images/084.png)
+
+13) A diagram of video encodings
+
+![](./images/085.png)
+
+14) Video transcoding architecture
+
+![](./images/086.png)
+
+15) Some improvements
+
+- Speed Optimization, Parallel Video Uploading: Video is chunked in client side and then uploaded.
+
+- Speed Optimization, Nearest Data Center: A user in USA uploading the video to a data center in USA rather than in Europe.
+
+- Speed Optimization, Parallelism: Integrating message queues into a video's flow from original storage to CDN in order to have a loosely coupled system 
+
+![](./images/087.png)
+
+- Safety optimization, pre-signed upload URL: Only authorized users can upload videos
+
+- Safety optimization, protecting the videos: "To protect copyrighted videos, we can adopt one of the following three safety options"
+
+    - Digital rights management (DRM) systems:
+
+    - AES encryption:
+
+    - Visual watermarking:
+
+16) Serving most popular contents from CDN and others from high-capacity video servers
+
+![](./images/088.png)
+
+17) We didn't discuss live streaming but it has a ligher latency requirement.
 
