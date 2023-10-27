@@ -916,3 +916,70 @@ Disallow: /gp/aw/cr/
 
 17) We didn't discuss live streaming but it has a ligher latency requirement.
 
+# Design Google Drive
+
+1) Starting simply and putting everything in a single server. The high-level design is composed of the followings:
+
+    - A web server responsible for downloading and uploading files
+    - A database to store metadata of users and files
+    - A storage system to store uploaded files
+
+2) 3 Endpoints required 
+
+    - An endpoint to upload a file. Supporting regular upload and resumable upload.
+    - An endpoint to download a file
+    - An endpoint to list previos revisions.
+
+3) AWS S3 can be used as storage service.
+
+4) The design after some improvements like load balancer, multiplication of web servers, database sharding
+
+![](./images/089.png)
+
+5) Sync conflict is an issue when multiple users want to edit the same file.
+
+![](./images/090.png)
+
+6) The detailed design
+
+![](./images/091.png)
+
+7) "Block servers upload blocks to cloud storage. Block storage, referred to as block-level storage, is a technology to store data files on cloud-based environments. A file can be split into several blocks, each with a unique hash value, stored in our metadata database. Each block is treated as an independent object and stored in our storage system (S3). To reconstruct a file, blocks are joined in a particular order. As for the block size, we use Dropbox as a reference: it sets the maximal size of a block to 4MB"
+
+8) How block servers work when a file is uploaded.
+
+![](./images/092.png)
+
+9) Delta syncranization means that only modified blocks are uploaded when a file is modified.
+
+![](./images/093.png)
+
+10) A relational database maintains ACID(Atomicity, Consistency, Isolation, Durability). NoSQL databases don't support ACID properties.
+
+11) Database tables and their relationships in a simplified way
+
+![](./images/094.png)
+
+12) Upload flow
+
+![](./images/095.png)
+
+13) Download flow
+
+![](./images/096.png)
+
+14) Notification service is used for informing other clients in order to reduce conflicts. Long polling is preferred over web socket because the relationship isn't bidirectional. Dropbox uses long polling. Notification service is used to keep clients up-to-date.
+
+15) In order to handle such a big project, eliminating redundant data is crucial. Redundant data means 2 blocks are identical if their hash values are the same.
+
+16) It is possible to upload from client to storage by removing block servers. This is faster but not recommended. It requires chunking, compression and encryption on client side, which requires too much effort and is error-prone.
+
+
+
+
+
+
+
+
+
+
