@@ -974,7 +974,75 @@ Disallow: /gp/aw/cr/
 
 16) It is possible to upload from client to storage by removing block servers. This is faster but not recommended. It requires chunking, compression and encryption on client side, which requires too much effort and is error-prone.
 
+# Proximity Service
 
+1) There are 3 functionalities of the service:
+
+    - Returning all businesses based on user's location and radius
+    - Business owners can update their data(business owner is a restaurant on YELP)
+    - Customers can view additional data of businesses
+
+2) When working with location data, we should give importance to laws such as GDPR of Europe or KVKK of Turkey.
+
+3) [Google places API](https://developers.google.com/maps/documentation/places/web-service/search) is where we can find useful API implementations.
+
+4) MySQL is #1 solution among RDBMS's for a system requiring lots of read operations over write operations.
+
+5) High level design
+
+![](./images/097.png)
+
+6) Business service isn't real time. If a business is added to the app, it is added in the night. In addition, GET requests are sent to the business service by customers to view additional information about businesses.
+
+## Algorithms to fetch nearby businesses
+
+7) Geospatial databases used by companies
+
+- Geohash in Redis
+
+- Postgres with PostGIS extension
+
+8) Database indexing improves search speed in one dimension. Thus, it is required to map 2 dimensional data into 1 dimension via hashing.
+
+9) Geospatial Indexing Approaches
+
+![](./images/098.png)
+
+10) In Different types of geospatial indexes, "the high-level idea is to divide the map into smaller areas and build indexes for fast search".
+
+11) Evenly divided grid is a simple solution to create equal-sized grids. However, the challenge is that the distribution of businesses isn't event.
+
+### Geohash
+
+12) Another alternative is geohash. It works by reducing 2 dimensional latitute and longitude data into strings of letters and digits. It works recursively by diving the world into smaller and smaller grids until it reaches the limit of griding.
+
+![](./images/099.png)
+
+13) "1001 10110 01001 10000 11011 11010" is the geohash of Google Headquarter. If it is converted to base32 representation, "9q9hvu" is obtained.
+
+14) Geohash lengths and radiuses. 4 or 5 or 6 are generally enough.
+
+![](./images/100.png)
+
+15) Some drawbacks of Geohash are related to boundary issues. 2 points which are too close to each other can fall into different grids. In addition, 2 points that aren't far away from each other can have no overlapping on geohashes.
+
+16) If return list isn't accessing to its limit, we should fill via removing elements from search strings. 9q8zn will be searched over db instead of 9q8zn3. If there aren't enough business when 9q8zn is searched too, the search will be converted to 9q8z.
+
+### Quadtree
+
+17) Quadtree is another population. It works in memory. For 200 million businesses, it takes 2 GB of RAM to store the information.
+
+![](./images/101.png)
+
+18) When 100 is the limit of businesses in a node and there are N businesses, the time complexity is N/100*log(N/100). It takes a few minutes to build the whole quadtree.
+
+### Google S2
+
+19) Google S2 is another in-memory solution. It uses Hilbert Curve in order to map 2-dimensional data into 1 dimensional data. 2 points close to each other in 2 dimensions are close to each other in 1 dimension based on the transformation of Hilbert Curve. It is used in Google and Tinder.
+
+![](./images/102.png)
+
+20) "S2 is great for geofencing because it can cover arbitrary areas with varying levels"
 
 
 
