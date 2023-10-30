@@ -1076,5 +1076,17 @@ Not suggested:
 
 ![](./images/105.png)
 
+# Nearby Friends
+
+1) It is a feature of Facebook and Snapchat. It shows logged-in users where his friends are on the map if location info is allowed to be used.
+
+2) The main difference between Nearby Friends service and Proximity Service is that user is moving in nearby friends service whereas businesses are fixed in proximity service.
+
+
+
+
+
+
+
 
 
