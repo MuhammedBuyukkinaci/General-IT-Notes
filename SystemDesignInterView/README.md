@@ -1014,7 +1014,7 @@ Disallow: /gp/aw/cr/
 
 ### Geohash
 
-12) Another alternative is geohash. It works by reducing 2 dimensional latitute and longitude data into strings of letters and digits. It works recursively by diving the world into smaller and smaller grids until it reaches the limit of griding.
+12) Another alternative is geohash. It works by reducing 2 dimensional latitute and longitude data into strings of letters and digits. It works recursively by diving the world into smaller and smaller grids until it reaches the limit of griding. Bing map, mongodb, redis and lyft are using this approach.
 
 ![](./images/099.png)
 
@@ -1030,24 +1030,51 @@ Disallow: /gp/aw/cr/
 
 ### Quadtree
 
-17) Quadtree is another population. It works in memory. For 200 million businesses, it takes 2 GB of RAM to store the information.
+17) Quadtree is another population. It works in memory. For 200 million businesses, it takes 2 GB of RAM to store the information. It can dynamically adjust grid size as shown in Denver Example.
 
 ![](./images/101.png)
 
+![](./images/104.png)
+
 18) When 100 is the limit of businesses in a node and there are N businesses, the time complexity is N/100*log(N/100). It takes a few minutes to build the whole quadtree.
+
+19) Updating the tree is hard to implement when a buniess is deleted.
+
+20) It supports fetching k-nearest points. It is especially useful when we are looking for a gas station.
 
 ### Google S2
 
-19) Google S2 is another in-memory solution. It uses Hilbert Curve in order to map 2-dimensional data into 1 dimensional data. 2 points close to each other in 2 dimensions are close to each other in 1 dimension based on the transformation of Hilbert Curve. It is used in Google and Tinder.
+21) Google S2 is another in-memory solution. It uses Hilbert Curve in order to map 2-dimensional data into 1 dimensional data. 2 points close to each other in 2 dimensions are close to each other in 1 dimension based on the transformation of Hilbert Curve. It is used in Google and Tinder.
 
 ![](./images/102.png)
 
-20) "S2 is great for geofencing because it can cover arbitrary areas with varying levels"
+22) "S2 is great for geofencing because it can cover arbitrary areas with varying levels".
 
+![](./images/103.png)
 
+23) Geohash is easy to implement compared to Quadtree and S2.
 
+24) The former is a suggested design in order to store geospatial data over the latter one.
 
+Suggested:
 
+| geohash | business_id |
+|-----|------|
+| x3t6yu | 111 |
+| x3t6yu | 112 |
+| x3t6yv | 113 |
+| x3t6yv | 114 |
+
+Not suggested:
+
+| geohash | business_id |
+|-----|------|
+| x3t6yu | [111,112] |
+| x3t6yv | [113,114] |
+
+25) Final Design diagram of Location Based Service(LBS)
+
+![](./images/105.png)
 
 
 
