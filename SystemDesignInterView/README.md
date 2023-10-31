@@ -174,7 +174,7 @@ cache.get('myKey')
 
 ![](./images/018.png)
 
-10) Redis is a popular option for rate limiting as an in-memory store.
+10) Redis is a popular option for rate limiting as an in-memory store. Redis has TTL(Time To Live) property.
 
 11) Lyft open sourced its rate limiting library as [here](https://github.com/envoyproxy/ratelimit). It works as a configuration file.
 
@@ -1081,6 +1081,43 @@ Not suggested:
 1) It is a feature of Facebook and Snapchat. It shows logged-in users where his friends are on the map if location info is allowed to be used.
 
 2) The main difference between Nearby Friends service and Proximity Service is that user is moving in nearby friends service whereas businesses are fixed in proximity service.
+
+3) The high level design
+
+![](./images/106.png)
+
+4) The load balancer is directing traditional API requests like login, sign up, profile page to API servers. It directs requests related to nearby features to  Web socket servers. API servers are stateless but web socket servers are stateful.
+
+5) Redis pub/sub is a lightweight message bus. Channels on pub/sub is cheap to create. It is similar to Apache Kafka or RabbitMQ but not the same. Channel in Redis pub/sub is similar to topics of Apache Kafka analogically.
+
+![](./images/107.png)
+
+6) A diagram showing one user's dispatching his location to his friends users.
+
+![](./images/108.png)
+
+7) API Design of Web Socker Servers
+
+- Periodic location update: Client sending location(latitude, longitude) and timestamp to web socket servers.
+
+- Client receives location updates: Friend location data and timestamp are received by a client.
+
+- WebSocket initialization: Client sending location and time stamp and retrieving location data of his friends
+
+- Subscribe to a new friend: WebSocket server sends friend ID and Friend’s latest latitude, longitude, and timestamp are returned.
+
+- Unsubscribe a friend: WebSocket server sends friend ID and no response.
+
+9) Redis is used as cache. Latest locations of users are stored only. Redis's TTL feature is coming in handy when a user turns out to be offline. The design of cache is as follows.
+
+![](./images/109.png)
+
+10) Location history will be kept in database for other aims like ML based recommendation engine. Location History isn't directly related to Nearby Features.
+
+11) Removing a node from web socket servers should be carried out carefully. Autoscaling of a web socket server is under the responsibility of load balancer.
+
+12) On Redis pub/sub, a user subscribes to all friends, irrespective of online and offline. The offline friends will consume less memory because redis pub/sub is lightweight. In addition, offline friends don't consume I/O and CPU resources.
+
 
 
 
