@@ -1112,18 +1112,47 @@ Not suggested:
 
 ![](./images/109.png)
 
-10) Location history will be kept in database for other aims like ML based recommendation engine. Location History isn't directly related to Nearby Features.
+10) Location history will be kept in database for other aims like ML based recommendation engines. Location History isn't directly related to Nearby Features. Cassandra would be a good-fit for heavy write operations like storing location history.
+
+![](./images/110.png)
 
 11) Removing a node from web socket servers should be carried out carefully. Autoscaling of a web socket server is under the responsibility of load balancer.
 
 12) On Redis pub/sub, a user subscribes to all friends, irrespective of online and offline. The offline friends will consume less memory because redis pub/sub is lightweight. In addition, offline friends don't consume I/O and CPU resources.
 
+13) An RDBMS can be the best fit for User Database. It also should be sharded by user id.
 
+14) Location cache, which is Redis, also should be sharded with respect to user id. The main bottleneck is Redis Cluster is CPU, not RAM. This cluster is a stateful cluster. "With stateful clusters, scaling up or down has some operational overhead and risks".
 
+15) A unique channel is assigned to each user. When a user is online, he connects to the channels of his friends, whether they are online or not.
 
+16) etcd and Zookeeper are 2 most famous service discovery libraries.
 
+17) How a message is transmitted among Redis pub/sub.
 
+![](./images/111.png)
 
+18) How scaling happens in a stateful redis cluster
+
+- "Determine the new ring size, and if scaling up, provision enough new servers."
+
+- "Update the keys of the hash ring with the new content."
+
+- "Monitor your dashboard. There should be some spike in CPU usage in the WebSocket cluster."
+
+19) When a user adds/removes a friend, pub/sub is also notified.
+
+20) When the app introdues a new feature that means that random people around are suggested. The method is similar, pub/sub's are geohashes instead of user id's.
+
+![](./images/112.png)
+
+![](./images/113.png)
+
+21) Erlang ecosystem can be an alternative to redis pub/sub. On the other hand, hiring Erlang developers is so hard.
+
+22) An outline of Nearby Feature
+
+![](./images/114.png)
 
 
 
