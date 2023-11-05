@@ -1154,5 +1154,23 @@ Not suggested:
 
 ![](./images/114.png)
 
+# Google Maps
+
+1) Geocoding is the process of converting a location to its equivalent latitude and longitude.
+
+2) Instead of rendering the entire map as one large custom image, it is splitted into many tiles(döşeme). The user is downloading only relevant images instead of the entire map.
+
+3) "Most routing algorithms are variations of Dijkstra’s or A* pathfinding algorithms". These routing algorithms run on graphs, which are made up of nodes and edges. The performance of pathfinding algorithm is highly dependent on the size of the graph. Loading the entire world into a graph is going to consume a lot of memory, which is inefficient. Thus, the world should be splitted into many different graphs. Geohash is used in order to split the world into many areas. After splitting, nodes are regarded as intersections and edges as roads.
+
+![](./images/115.png)
+
+4) Routing tiles of varying sizes
+
+![](./images/116.png)
+
+
+
+
+
 
 
