@@ -1168,9 +1168,21 @@ Not suggested:
 
 ![](./images/116.png)
 
+5) We are desiging the app for mobile. Thus, data usage and memory consumption are 2 important features.
 
+6) Most significant data for storage
 
+- Map of the world: 50 PB data for images. With zoom out, it is around 67 pb.
 
+- Metadata: Metadata for each map
+
+- Road Info: Arterial roads, highways
+
+7) 2 types of requests
+
+- Navigation requests: Sent by clients to initiate a navigation.
+
+- Location update requests: Batched and then sent to the server every 15 seconds.
 
 
 
