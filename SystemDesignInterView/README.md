@@ -1184,5 +1184,80 @@ Not suggested:
 
 - Location update requests: Batched and then sent to the server every 15 seconds.
 
+8) High level design of Google Maps
+
+![](./images/117.png)
+
+9) Location service is described below. Location history is buffered in the client and sent in batch to the server at a much ower frequency. Even location data is batched in client side, it is a huge amount of data. Thus, a database which is optimized for heavy-write and also scalable like Cassandra should be preferred. In addition to saving location data on Cassandra, it would better be saved on Kafka for further streaming. The protocol used by client to send location data to server is HTTP with keep-alive option.
+
+![](./images/118.png)
+
+10) Navigation service is triggering a GET request with origin and destination parameters. The server responds with how many minutes it takes, which road should be chosen etc.
+
+11) Map rendering can be done dynamically, which means tiles are obtained on the fly. However, this approach requires lots of computation for each request and can't use the advantage of caching. Thus, a second apprach should be employed, which is to serve a pre-generated set of map tiles at each zoom level. Each tile has a geohash. These tiles are static and therefore easy to be cached on CDN. POP means point of presence. Besides caching on CDN, tiles are generally cached on client side because the routes a user takes are the same mostly.
+
+![](./images/119.png)
+
+12) For a user whose speed is around 30km/h, the hourly data taken from google maps is around 75 mb.
+
+13) Deploying geohashing in client-side might be hard to maintain because it might be required to modify hashing algorithm. Thus, there should be an intermediary service which is going to take latitude and longitude and zoom level and return geohash. The map tile service is shown below.
+
+![](./images/120.png)
+
+14) There are 4 types of data to be considered
+
+- Routing tiles: The initial road dataset is raw. It is transformed into routing tiles by a service named routing tile processing service. The output of routing tile service is routing tiles. Most graph data is adjacency lists depicted below. These adjacency lists should be stored in S3 and routing service will consume it aggresively and cache it.
+
+![](./images/121.png)
+
+- User Location Data: Should be stored in Cassandra.
+
+![](./images/122.png)
+
+- Geocoding Database: Storing places and their corresponding latitude/longitude pair. Could be cachable on Redis because it is a read-heavy operation.
+
+- Precomputed images of the world map: Precomputed tile stored on CDN backed by S3.
+
+15) Location service, detailed design. Location info fed into Kafka for being processed by Traffic DB and other services.
+
+![](./images/123.png)
+
+16) Google maps uses 21 different zoom levels and stores tiles for each zoom level.
+
+![](./images/124.png)
+
+17) Thanks to webGL, vector information is sent over the network rather than images. The client draws the paths.
+
+18) Navigation service
+
+![](./images/125.png)
+
+- Geocoding service: Responsible for converting text address(X avenue, Y street etc) to latitude, longitude pair.
+
+- Route planner service: Computing a suggested route optimized for travel time.
+
+    - Shortest-path service: Receiving latitude/longitude pairs of origin & destination and returning top-k pairs without considering traffic.
+
+        - The computation is only dependent on the structure of the roads.
+        - Received lat-long pairs converted to geohashes
+        - The algorithm starts from the origin tile, traverses the graph, and hydrates the neighboring tiles until a set of solutions found.
+
+    ![](./images/126.png)
+
+    - Ranker service: After obtaining ETA, this service filtering toll roads or freeways or any other criteria. Then, returning possible routes from the fastest to the slowest.
+
+    - ETA Service: Calculating estimated travel time for each possible route obtained above thanks to Machine Learning.
+
+        - Updater services: Extracting traffic conditions from the streams of location updates snet by active users.
+
+    - Adaptive ETA: Keeping track of all active users, updating them on ETA continuously.
+
+19) Payload of mobile push notification has a limit of 4 kilobytes.
+
+20) Route conditions can change frequently. Thus, server may need to push data to mobile clients. SSE(Server-sent events) and WebSocket are 2 ways to send data from server to client. What both are doing is almost the same. However, the book chose WebSocket.
+
+21) Summary of Google Maps
+
+![](./images/127.png)
 
 
