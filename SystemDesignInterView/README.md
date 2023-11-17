@@ -1260,4 +1260,67 @@ Not suggested:
 
 ![](./images/127.png)
 
+# Distributed Message Queue
+
+1) Most Popular Message Queues
+
+![](./images/128.png)
+
+2) In reality, Apache Kafka and Pulsar aren't message queues and are event streaming platforms.
+
+3) Message queues can also have the following features
+
+- Long data retention
+
+- Repeated consumption of messages
+
+- First in first out
+
+4) A traditional MQ doesn't have the followings
+
+- No guarantee on FIFO
+
+- Not retaining of consumed message
+
+- No repeatedly consuming
+
+5) Traditional MQ's don't have as strong a retention requirement as event streaming platforms. Traditional MQ's like RabbitMQ keep data in RAM and their on-disc overflow capacity are much smaller than event streaming platforms.
+
+6) High Level design of message queue
+
+![](./images/129.png)
+
+7) Most common messaging models are as follows
+
+- Point-to-point: Consumed once and by only one consumer. No data retention.
+
+![](./images/130.png)
+
+- Publish-subscribe: Topics are the categories used to organize messages. Each topic has a unique name. A message is sent to a topic and received by the consumers subscribing to this topic.
+
+![](./images/131.png)
+
+8) Each topic can be partitioned into many partitions. **Partition** is a small subset of the messages for a topic. The servers hosting partitions are calle **broker**s. Each topic partition operates in the form of a queue with FIFO mechanism. "This means we can keep the order of messages inside a partition". The position of a message in the partition is called an offset.
+
+![](./images/132.png)
+
+9) A consumer group is a set of consumers.
+
+![](./images/133.png)
+
+10) High level design of a MQ
+
+![](./images/134.png)
+
+11) The coordination service is responsible for the followings.
+
+- Service Discovery: which brokers are alive
+
+- Leader election: Choosing one master broker. Etcd and zookeeper are commonly used to elect a controller.
+
+
+
+
+
+
 
