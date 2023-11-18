@@ -1318,9 +1318,99 @@ Not suggested:
 
 - Leader election: Choosing one master broker. Etcd and zookeeper are commonly used to elect a controller.
 
+12) MQ's are exposed to read-heavy and write-heavy operations. Therefore, RDBMS and NoSQL solutions don't work well. Instead of both solutions, Write-ahead log(WAL) should be used. WAL is just a plain file where new entries are appended to an append-only log file. It is recommended to persiste messages as WAL log files on disk. New messages are appended to only active segment. If active segment becomes full, a new segment is created and turns out to be active. The former active segment becomes read-only. Old non-active segments are truncated if they exceed retention or capacity limit.
 
+![](./images/135.png)
 
+![](./images/136.png)
 
+13) "Also, a modern operating system caches disk data in main memory very aggressively, so much so that it would happily use all available free memory to cache disk data. The WAL takes advantage of the heavy OS disk caching".
 
+14) An example data used in MQ's. There should be an agreement between producer and consumer on which data to use. 
 
+- The **key** of the message is used to determine the partition of the message. Hash(key) % number_of_partitions is used in assigning which partition to go.
+
+- value is the payload of the message.
+
+- offset is the position of the message in the partition. A message is the combination of **topic**, **partition** and **offset**.
+
+- CRC means Cyclic redundancy check and it ensures the integrity of data.
+
+![](./images/137.png)
+
+15) We need to batch messages in producer and consumer. This means that messages will be grouped before sending from the producer to MQ and before sending from MQ to the consumer. This reduces the count of I/O operations. The drawback of batching is the latency. It might hurt latency in case of where latency is the number one priority. This is because a message needs to batched in order to move on producer-MQ-consumer line. The more the batching size, the more the latency.
+
+16) Producer flow is visualized below. Each partition has replicas.  When a message is taken from the producer, the leader replica of the partition takes the message and then the message is sent to follower replicas. This is because of fault tolerance. When sufficient replicas synchronize the messages, the leader replica saves the message on disk. The message saved on disk is ready to be consumed by consumers. "The routing layer is wrapped into the producer and a buffer component is added to the producer".
+
+![](./images/138.png)
+
+17) Consumer specifies its offset in a partition and receives back a chunk of events beginning from that position.
+
+![](./images/139.png)
+
+18) There are 2 design models in consumer
+
+- Push model: Not used frequently. A message is pushed to the consumer.
+
+- Pull model: Used frequently. A message is pulled from MQ. More suitable for batch processing. The con of pull model is that the consumer keeps pulling data from MQ, which is wating resources.
+
+![](./images/140.png)
+
+19) In a distributed system, there might be new issues like a new consumer, an existing consumer's crash, network issues etc. Therefore, the consumers should be rebalanced. The coordinator is responsible for this. The coordinator is a broker responsible for communicating with consumers to achieve consumer rebalancing.
+
+![](./images/141.png)
+
+20) In the message queue broker, the state storage stores the mapping between partitions & consumers and the last consumed offsets of consumer groups for each partition.
+
+![](./images/142.png)
+
+21) Zookeeper is a good choice for storing metadata. "Apache ZooKeeper is a distributed coordination service that provides a set of primitives for building distributed systems. It is designed to help manage and coordinate distributed applications by providing a centralized and reliable repository for configuration information, naming, synchronization, and group services. ZooKeeper is used in various distributed systems, including but not limited to Apache Hadoop, Apache Kafka, Apache HBase, and many other distributed databases and systems. It plays a fundamental role in maintaining consistency and coordination across multiple nodes in these distributed environments. Its robust and reliable nature makes it a popular choice for building distributed applications that require coordination and consensus".
+
+22) All configurations, state storeages, metadata storage, coordination service are moved to Zookeeper. The brokers are only responsible for maintaining message hereupon.
+
+![](./images/143.png)
+
+23) When a leader replica takes the message from producer, it replicates it over replicas. When replication is completed, the leader replica returns an acknowledgement to the producer. Each partition has many replicas. How each partition is replicated is depicted below. Green ones are leader replicas.
+
+![](./images/144.png)
+
+24) [Design Data-Intensive Applications](https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications) is a suggedted book on replications.
+
+25) ISR means in-sync replicas. In the following image, replica-1 is leader replica. replica-2 and replica-3 are follower replicas that caught leader replica. replica-4 didn't catch up the leader replica(replica-1). we can define a configuration like replica.lag.max.messages=4, which means that follower replicas can be regarded as in-sync if they are behind the leader replica by no more than 3 messages. ACK=all means all ISR need to take messages. ACK=1 means only 1 replica needs to take the message. ACK=0 means no acknowledgement required.
+
+![](./images/145.png)
+
+26) The same design is also applicable for consumer side. Consumers connect to a leader replica to consume messages.
+
+27) Consumer groups are isolated from each other. Thus, it is easy to add or remove a consumer group.
+
+28) What happens when a broker is down.
+
+![](./images/146.png)
+
+29) It is a good practive not to have all replicas of a partition of a topic in the same broker.
+
+30) Partitions can also be added or removed.
+
+31) Data delivery semantics can be carried out in different ways.
+
+- At most once: Delivered message once. No more delivery. Message might lose. Used for monitoring metrics.
+
+- At least once: No lose of message but multiple deliveries might happen. Used when data duplication isn't an issue.
+
+- Exactly once: The most difficult one to implement. Used in financial services.
+
+32) Message can be filtered on brokers with tags.
+
+![](./images/147.png)
+
+33) Delayed messages are different than instant messages. They can be used in orders of e-commerce.
+
+![](./images/148.png)
+
+34) Some popular protocols used in MQ's are AMQP(Advanced Message Queuing Protocol) and Kafka Protocol.
+
+35) Summary of the chapter is below.
+
+![](./images/149.png)
 
