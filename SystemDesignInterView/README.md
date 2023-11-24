@@ -1414,3 +1414,105 @@ Not suggested:
 
 ![](./images/149.png)
 
+# Metrics Monitoring and Alerting System
+
+1) Popular monitoring tools
+
+![](./images/150.png)
+
+2) ELK Stack(Elasticsearch, Logstash, Kibana) is a popular stack for collecting and monitoring logs.
+
+3) Let's assume that the system is composed of 1000 server polls. Each poll is composed of 100 servers. 100 metrics per machine is collected. Raw data is stored for 7 days, 1-minute resolution for 30 days, 1-hour resolution for 1 year.
+
+4) Five components of the system
+
+![](./images/151.png)
+
+5) Metric data is usually recorded as time series. The example below is showing us the average cpu load on the server named i631.
+
+![](./images/152.png)
+
+![](./images/153.png)
+
+6) The data is stored like **CPU.load host=webserver01,region=us-west 1613707265 83**. This is called line protocol. It is a common input format for many softwares like Prometheus and OpenTSDB.
+
+![](./images/154.png)
+
+7) Data access pattern can be visualized like below. The system is write-heavy.
+
+![](./images/155.png)
+
+8) For data storage, RDBMS and NoSQL don't work well. Metrics data are time series in nature. InfluxDB and Prometheus are 2 most used time series data bases. An InfluxDB with 8 cores and 32 gbs of ram can handle more than 250000 writes per second.
+
+9) High level design
+
+![](./images/156.png)
+
+10) Metric colectors are gathering data from metric sources. 2 different ways to collect data
+
+- Pull Model: It is hard to maintain such a system due to complexity without service discovery. Service discovery stores configurations and these configurations are passed to metric collectors. In addition, Endpoints should be assigned to metric sources. One metric collector isn't enough. Therefore, there should be a pool. However, having a pool might lead to duplicate records of metrics. In order to overcome duplicate records issue, a consistent hash ring should be used to assign metric collectors to metric sources.
+
+![](./images/157.png)
+
+![](./images/158.png)
+
+![](./images/159.png)
+
+- Push model: A collection agent is installed on every server being monitored. "A collection agent is a piece of long-running software that collects metrics from the services running on the server and pushes those metrics periodically to the metrics collector. The collection agent may also aggregate metrics (especially a simple counter) locally, before sending them to metric collectors". Metrics collectors should be auto-scalable behing a LB.
+
+![](./images/160.png)
+
+![](./images/161.png)
+
+11) Prometheus is an example of Pull model. Amazon CloudWatch and Graphite are examples of Push model. There is no clear way to prefer one over another.
+
+12) A queueing component like Kafka should be introduced between metric collector and time series tb in case of time series DB unavailability. The consumer can be Apache Flink, Apache Storme or Apache Spark to process data and save it on time series DB.
+
+![](./images/162.png)
+
+13) Kafka queue introduced above can be partitioned for better performance. However, having a queueing component like Kafka might be challenging. Facebook's in-memory time series database Gorilla can be used as a time series database without using Kafka.
+
+14) Where to aggregate data
+
+- Collection agent: Aggregating is done at metric source before sending data to metric collector
+
+- Ingestion pipeline: Aggregation is done at consumer before writing to DB
+
+- Query side: Aggregation is done when a query is run. Slow but keeping whole data.
+
+15) There can be a query service. This query service decouples time series DB from clients(Alert service and Visualization Service). In order to run query service more efficiently, cache servers could be added.
+
+![](./images/163.png)
+
+16) Having a query service might not be necessary because most visualization services and alert services have plugins in order to connect to popular time series DB's.
+
+17) According to a research, 85% of queries were run against data of the past 26 hours.
+
+18) Whenever storing data, some points to consider are below.
+
+- Data encoding and compression: Instead of absolute timestamp values(32 bits), use a base timestamp value and the time difference(10 seconds represented as 4 bits).
+
+![](./images/164.png)
+
+- Downsampling: For the last 7 days, raw data is stored. For the last 30 days, downsample to 1-minute resolution. For the last 365 days, downsample to 1-hourly resolution.
+
+- Cold Storage: Use it in order to store inactive data.
+
+19) Prefer using 3rd party alert and visualization services instead of building our own ones.
+
+20) An alerting tool visualized as below. Alert store is a Key-Value store like Cassandra.
+
+![](./images/165.png)
+
+21) Grafana should be used as a visualization tool. It integrates well with most time series DB's.
+
+22) Chapter summary
+
+![](./images/166.png)
+
+
+
+
+
+
+
