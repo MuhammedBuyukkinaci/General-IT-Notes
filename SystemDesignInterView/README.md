@@ -1510,6 +1510,118 @@ Not suggested:
 
 ![](./images/166.png)
 
+# Ad Click Event Aggregation
+
+1) Real time bidding(RTB) is visualized.
+
+![](./images/167.png)
+
+2) Ad click event aggregation plays a key role in measuring the effectivene of online advertisement. Some metrics are CTR(Click-through ratio) and CVR(Conversion rate).
+
+3) The add data is in the following format.
+
+ad_id, click_timestamp, user_id, ip, and country
+| ad_id | click_timestamp | user_id | ip | country |
+| ----- | --------------- | ------  | -- | ------- |
+| 1 | 25 November 2023 19:15:00 | 1111 | 5.45.56.78 | Turkey |
+
+4) Raw data and aggregated data should be stored. Data should be aggregated in order to lower the volume. Raw data serves as backup data.
+
+![](./images/168.png)
+
+![](./images/169.png)
+
+5) Collecting clicks from users is a write-heavy operation, which means cassandra is useful. Raw data and aggregated data both can be stored in Cassandra.
+
+6) High level design
+
+![](./images/170.png)
+
+7) The aggregation service is using MapReduce Framework to aggregate ad-click events.
+
+![](./images/171.png)
+
+8) Map operation of Map Reduce. Using Map Node instead of Kafka is advantegous because We can process data on Map node and have full control over data rather than Kafka.
+
+![](./images/172.png)
+
+9) Reduce operation of Map Reduce. Aggregate node is part of Reduce.
+
+![](./images/173.png)
+
+10) Lambda architecture, having 2 processing paths simoltaneously. 2 codebases are needed to be maintained.
+
+![](./images/174.png)
+
+11) Kappa architecture, combining batch processing and streaming processing. Our design follows Kappa architecture.
+
+![](./images/175.png)
+
+12) Recalculation service is introduced in case of bugs in the code. It is a batched job.
+
+![](./images/176.png)
+
+13) Event time means when a click happens. Processing time means when processing happens in servers. Both has pros and cons as below. In terms of accuracy, using event time is more reasonable.
+
+![](./images/177.png)
+
+14) Some events can be delayed due to network issue, system overload etc. If we don't cover them, accuracy of the system disappears. Watermark technique is introduced in order to solve the problem of delayed events. The extending time period is adjustable. If it is too big, it becomes lates. If it is too small, the accuracy of system may degrade.
+
+![](./images/178.png)
+
+15) There are 4 types of window functions.
+
+- Tumbling window(Fixed window)
+
+![](./images/179.png)
+
+- Hopping window
+
+- Sliding window
+
+![](./images/180.png)
+
+- Session window
+
+16) Exactly-one delivery semantic should be used.
+
+17) One of the main challenges is data duplication. Data should be deduped by configuring the design via someoperations like integrating HDFS.
+
+![](./images/181.png)
+
+18) Our app has the 3 components: Message queues, Aggregators and Databases. The design is decoupled efficiently, thus it is easy to scale each one up.
+
+19) When scaling up the consumer, try to do it during off-peak hours to minimize the impact.
+
+![](./images/182.png)
+
+20) **ad_id** should be used as hashing key in order to store events of the same **ad_id** in the same partition.
+
+21) Cassandra natively stores horizontal scaling in a similar way to consistent hashing.
+
+22) Hotspot means a service or a shard receiving more data than others. Big companies have much more clicks than others, therefore the aggregator services processing the ads of big companies can be considered as hotspot.
+
+23) Below are some metrics to take care.
+
+- Latency:
+
+- Message queue size:
+
+- CPU, disk, JVM
+
+24) "Reconciliation means comparing different sets of data in order to ensure data integrity".
+
+![](./images/183.png)
+
+25) An alternative design with Hive, ElasticSearch and OLAP database like ClickHouse and Druid.
+
+![](./images/184.png)
+
+26) Chapter Summary
+
+![](./images/185.png)
+
+
 
 
 
