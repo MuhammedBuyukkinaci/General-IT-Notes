@@ -1621,6 +1621,127 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/185.png)
 
+# Hotel Reservation System
+
+1) Hotel reservation system is similar to airbnb, flight reservation platform and movie ticket booking platform.
+
+2) In this design, we are dealing with hotel reservation. There is a search service in a complete hotel website but we aren't interested in that part.
+
+3) Hotel Related APIs
+
+![](./images/186.png)
+
+4) Room Related APIs
+
+![](./images/187.png)
+
+5) Reservation related APIs
+
+![](./images/188.png)
+
+7) Request parameters of making a new reservation is below. reservationID is used as the idempotency key to prevent double booking. "An idempotency key is a concept commonly used in distributed systems and web APIs to ensure that an operation can be safely retried without causing unintended side effects. The term "idempotent" refers to an operation that produces the same result regardless of how many times it is executed. In the context of APIs and distributed systems, an idempotency key helps maintain this property. In summary, idempotency keys are a mechanism to ensure that repeated requests do not have additional effects, making it safer for clients to retry operations in distributed systems".
+
+```json
+{
+  "startDate":"2021-04-28",
+  "endDate":"2021-04-30",
+  "hotelID":"245",
+  "roomID":"U12354673389",
+  "reservationID":"13422445"
+}
+```
+
+8) Database schema of Hotel Reservation System. An RDBMS should be chosen because the system is read-heacy and requires consistency, which is easily provided by ACID properties of RDBMS.
+
+![](./images/189.png)
+
+9) Reservation status in reservation table
+
+![](./images/190.png)
+
+10) High level design
+
+![](./images/191.png)
+
+11) In production systems, the services communicate with each other. They use a modern and performant remote procedure call(RPC) like gRPC.
+
+12) "Overall, gRPC provides a modern and efficient way for applications to communicate with each other across different programming languages and platforms, making it a popular choice for building scalable and performant distributed systems."
+
+13) Room type inventory table screenshot
+
+![](./images/192.png)
+
+14) Concurrency-related problems might happen. 
+
+- Firstly, The problem is that a user might want to make a reservation twice consecutively. The problem can be resolved by an idempotent key visualized in the first image.
+
+![](./images/193.png)
+
+- Secondly, 2 users might want to make a reservation for the remaining 1 room. There are 3 ways to solve this.
+
+    - Pessimistic locking
+    - Optimistic locking
+    - Database constraints
+
+15) Pessimistic locking is visualized below. It is easy to implement. If a transaction is locked for too long, other transactions might not access the DB. 
+
+![](./images/194.png)
+
+15) Optimistic locking is visualized below. A column named version is added to the table. When a user tries to make a reservation, it increases version by 1. Optimistic locking implements no locking on DB. It is faster than pessimistic locking. Let's assume that 2 users trying to reserve the same room type in the same hotel read the last state of DB. The first user achieved to reserve. The attempt of the second user will fail because the second user isn't able to update db due to stale data of its memory. The second user has to retry for the same operation. When data contention is low, optimistic locking is a good solution. It is also a good solution for a hotel reservation system because data retention & QPS is low.
+
+![](./images/195.png)
+
+16) Database constraints is visualized below. It is similar to optimistic locking. A constraint is added to DB. When a constraint is violated, the transaction is rolled back. It works well when data contention is low.
+
+![](./images/196.png)
+
+17) Instead of an hotel chain, we might be asked to redesign the system for a travel website such as expedia or trivago. In this scenario, it is required for us to shard database with respect to hotel_id.
+
+![](./images/197.png)
+
+18) Redis has time-to-live mechanism to expire old data automatically. It also has the mechanism of Least Recently Used(LRU) cache eviction policy to make optimal use of memory.
+
+18) When the design gets larger, it would rather be a good solution to add a cache layer on top of DB.
+
+![](./images/198.png)
+
+- Reservation service supports the followings:
+
+    - "Query the number of available rooms for a given hotel ID, room type, and date range"
+
+    - "Reserve a room by executing total_reserved + 1"
+
+    - "Update inventory when a user cancels a reservation"
+
+- Inventory cache: key is hotelId_roomTypeId_date and value is the number of available rooms. It is necessary to prepopulate inventory data to the cache. READ operations are provided from here.
+
+- Inventory DB: Storing inventory data as source of truth.
+
+19) When DB is updated, it is required to update the cache too. In order to update Redis cache, there are 2 ways.
+
+- The first way is to implement the logic in application code, which means updating the cache programatically in the application code.
+
+- Another way is CDC, which is Change Data Capture. When a change happens in a data source, it is reflected on the other data source. One of the most famous CDC's is Debezium. Debezium can reflect the change in the DB to the cache. Debezium is using a source connector to do this. It can also reflect the change in the DB to Kafka or from Kafka to another source.
+
+20) In terms of concurrency, monolithic approach is easy to handle.
+
+![](./images/199.png)
+
+21) If we follow pure microservice architecture, it is required for each service to have a separate DB. However, this brings new challenges in terms of concurrency. To solve this problem, there are 2 ways.
+
+- Two-phase commit (2PC): 2PC is a database blocking protocol in order to ensure atomic transaction commit across multiple nodes. Either all nodes succeed or all nodes fail. It is not performant.
+
+- Saga: "Saga. A saga is a sequence of local transactions. Each transaction updates and publishes a message to trigger the next transaction step. If a step fails, the saga executes compensating transactions to undo the changes that were made by preceding transactions. 2PC works as a single commit to perform ACID transactions while Saga consists of multiple steps and relies on eventual consistency"
+
+22) Chapter summary
+
+![](./images/200.png)
+
+
+
+
+
+
 
 
 
