@@ -1737,6 +1737,83 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/200.png)
 
+# Distributed Email Service
+
+1) SMTP, POP, IMAP are native protocols that end users use to connect to mail servers.
+
+2) SMTP(Simple Mail Transfer Platform) is the standard protocol to **send** emails from one mail server to another mail server.
+
+3) POP(Post Office Protocol) and IMAP(Internet Mail Access Protocol) are most important protocols to **receive** and **download** emails.
+
+4) POP is used to receive and download emails. When emails are downloaded, they are deleted from mail server. This means that email is only accessible for one device. It requires mail clients to download the entire email. It mighe be time-consuming when there is a large attachment.
+
+5) "IMAP is also a standard mail protocol for receiving emails for a local email client". When an email is read, the user connects to a remote mail server and data is transferred to the client. IMAP downloads an email when you click. In addition to this, emails aren't deleted from mail servers, which means they are accessible by multiple devices. IMAP is widely used by individual accounts.
+
+6) HTTPS is not a mail protocol but it can be used to access the mailbox particularly for web based email.
+
+7) When a user on a mail server wants to send an email to a gmail address, it finds the most prioritized mail server of the recipient by triggering `nslookup`, `set q=mx` and `gmail.com`. Then grepping the most prioritized mail server via the lowest number. Then, the sender sends the email to this mail server.
+
+![](./images/201.png)
+
+8) An attachment is converted to base64 and then sent.
+
+9) The visualization of how an email sent from client A to client B on a tradional mail server. Traditional mail servers were designed to work with a single server only.
+
+- SMTP/POP/IMAP APIs for native mobile clients.
+
+- SMTP communications between sender and receiver mail servers.
+
+- RESTful API over HTTP for full-featured and interactive web-based email applications.
+
+![](./images/202.png)
+
+10) Maildir is a popular way to store emails. It can be used in on-premise mail servers when the number of users is small. When the email volume is big, I/O becomes a bottleneck.
+
+![](./images/203.png)
+
+11) Some endpoints ona distributed mail server
+
+- POST /v1/messages: Sending an email to recipients, cc's and bcc's
+
+- GET /v1/folders: Listing folders on a mailbox like trash, spam, important etc.
+
+- GET /v1/folders/{:folder_id}/messages: Listing emails in a folder
+
+- GET /v1/messages/{:message_id}: Displaying an email with the details of title, content, is_read flag etc.
+
+12) The high level design of a distributed mail server
+
+- Webmail: Browser
+
+- Web servers: Public-facing request/response services like login, signup, user profile, sending an email, listing folders, listing emails in a folder, loading a single email etc.
+
+- Real-time servers: Stateful servers responsible for providing latest updates in real-time via persistent connections(web socket). The drawback of websocket is browser imcompatility. Long-polling can also be used as a fallback when websocket is problematic.
+
+![](./images/204.png)
+
+- Metadata database: Storing mail subject, from users, to users etc.
+
+- Attachment store: S3 is chosen. Maximum attachment size is 25 MB.
+
+- Distributed cache: Storing the recent emails. Redis can be used.
+
+- Search store: It is a distributed document store. "It uses a data structure called inverted index that supports very fast full-text searches".
+
+![](./images/204.png)
+
+13) Cassandra supports storing blob data type up to 2 gb theoretically but 1 mb in reality but it isn't recommended to be used in the above scenario as attachment store instead of S3.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
