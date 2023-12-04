@@ -734,6 +734,10 @@ else:
 
 ```
 
+57) FastAPI's **lifespan** can be used to load ML models into memory. Click [here](https://fastapi.tiangolo.com/advanced/events/) for more info.
+
+58) When creating an app object via `app = FastAPI()`, we can specify the path of documentation via something like `app = FastAPI(swagger_path = "/")`.
+
 # Big O Notes
 
 1) It lists my notes from [this video](https://www.youtube.com/watch?v=Mo4vesaut8g&ab_channel=freeCodeCamp.org)

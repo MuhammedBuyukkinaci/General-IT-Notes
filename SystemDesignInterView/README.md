@@ -1803,14 +1803,37 @@ ad_id, click_timestamp, user_id, ip, and country
 
 13) Cassandra supports storing blob data type up to 2 gb theoretically but 1 mb in reality but it isn't recommended to be used in the above scenario as attachment store instead of S3.
 
+14) Email sending flow
 
+![](./images/205.png)
 
+15) Some considerations on email sending flow
 
+- If a user sends the email to himself, it doesn't move to step 4. Its lifecycle ends in step 3 and the user gets the email.
 
+- Step 3 is also responsible for basic validation like email size by pre-defined rules.
 
+- If the attachment of the email is too big, it is stored in the object storage and its reference is transferred over the queue.
 
+- Distributed queue improves the design by decoupling the components of mail servers and smtp workers.
 
+- Some messages can be stuck in the queue. This can be the result of non-existing receivers of insufficient smtp workers.
 
+16) Email receiving flow
+
+![](./images/206.png)
+
+17) Some details on email receiving flow
+
+- SMTP servers decide what to do based on email acceptance policy.
+
+- Incoming email queue decouples SMTP Servers and Mail Processing workers.
+
+- Mail processing cover filtering out spam emails, stopping viruses,
+
+- If the receiver is online, the email is following step 7 and step 8.
+
+- If the user is offline, the email is stored in storage layer. When he turns out to be online, the email is fetched from storage layer and shown to the user.
 
 
 
