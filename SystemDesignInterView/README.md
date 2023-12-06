@@ -1817,7 +1817,7 @@ ad_id, click_timestamp, user_id, ip, and country
 
 - Distributed queue improves the design by decoupling the components of mail servers and smtp workers.
 
-- Some messages can be stuck in the queue. This can be the result of non-existing receivers of insufficient smtp workers.
+- Some messages can be stuck in the queue. This can be the result of non-existing receivers or insufficient smtp workers.
 
 16) Email receiving flow
 
@@ -1834,6 +1834,83 @@ ad_id, click_timestamp, user_id, ip, and country
 - If the receiver is online, the email is following step 7 and step 8.
 
 - If the user is offline, the email is stored in storage layer. When he turns out to be online, the email is fetched from storage layer and shown to the user.
+
+18) An email is read once and an average email having HTML components is around 100 kb.
+
+19) It isn't crystal clear to choose the right database/storage. All ones(RDBMS, Object Storage, NoSQL databases) have pros and cons. Important points are below:
+
+- Strong data consistency
+- Aiming to reduce disk I/O
+- High availablity and fault-tolerant
+
+20) One-sentence definitions of primary, partition and clustering key.
+
+- Primary key: Responsible for uniqueness of records in a table. Example is user_id.
+
+- Partition key: Responsible for how data is distributed across multiple nodes.
+
+- Clustering key: How data is sorted in a partition. The data is physically organized on disk based on the values of the clustering key.
+
+21) Database index might be too costly when UPDATE/DELETE/INSERT operations are heavy. It is required to update the index when a change is made. Columns used in WHERE clauses, JOIN conditions, and ORDER BY clauses are common candidates for indexing.
+
+22) A NoSQL database normally only supports queries on partition and cluster keys. In order to query a table with a non-clustering and non-partition key, we should denormalize it, which means create multiple tables from main table. An example can be is_read status on a NoSQL table. is_read is neither a partition key nor a clustering key. However, we want to query the table by is_read. To be able to query, we should create 2 different tables such as read_table and non_read_table. When an email is read, it is deleted from unread table and inserted into read table. The con of denormalization is that it complicates application code. The pro is that it improves query response time.
+
+22) Some tables as data layer.
+
+![](./images/207.png)
+
+![](./images/208.png)
+
+![](./images/209.png)
+
+![](./images/210.png)
+
+23) A email thread is like twitter flood. It is implemented by [JWZ algorithm](https://www.jwz.org/doc/threading.html). The data model of thread is below.
+
+![](./images/211.png)
+
+24) A distributed email system takes care of consistency more than availability.
+
+25) According to Statista, 50% of all emails are spam. A new email server will be recognized as spam by corporate email server. In order for email system not to be recognized as spam, there are a few ways.
+
+- Dedicated IPs: Have dedicated ips for sending emails
+
+- Classify emails: Send different categories from different servers. If marketing emails and important emails are sent from the email server, all of them can be regarded as spam.
+
+- Ban spammers quickly
+
+- Feedback Processing: "It’s very important to set up feedback loops with ISPs so we can keep the complaint rate low and ban spam accounts quickly"
+
+    - Hard bounce. This means an email is rejected by an ISP because the recipient’s email address is invalid.
+
+    - Soft bounce. A soft bounce indicates an email failed to deliver due to temporary conditions, such as ISPs being too busy.
+
+    - Complaint. This means a recipient clicks the “report spam” button.
+
+![](./images/212.png)
+
+26) When an email is received, sent or deleted, it is required to perform reindexing. Search on email is write-heavy. Search on email is different than search on google.
+
+![](./images/213.png)
+
+27) There are 2 ways to support search on email.
+
+- Elasticsearch: Reindexing is done by offline jobs. Kafka is used in the design to decouple services that trigger reindexing.
+
+![](./images/214.png)
+
+- Custom search solution(native search embedded in the datastore): Large-scale email providers generally develop their own custom search engines. The bottleneck for such a large system is I/O. "Since the process of building the index is write-heavy, a good strategy might be to use Log-Structured Merge-Tree (LSM) [27] to structure the index data on disk"
+
+![](./images/215.png)
+
+28) The differences between elasticsearch and custom search solution 
+
+![](./images/216.png)
+
+29) Summary of distributed email service
+
+![](./images/217.png)
+
 
 
 
