@@ -1911,16 +1911,29 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/217.png)
 
+# S3-like Object Storage
 
+1) Storage systems have 3 categories
 
+- Block Storage: It is invented in 1960's. HDD's and SSD's attached to servers physically are all considered as block storage. Block storage presents raw blocks to the server as a volume. These raw blocks can be used in file system. The server can give the control of those raw blocks to specific applications like databases or caches.
 
+- File Storage: "File storage is built on top of block storage. It provides a higher-level abstraction to make it easier to handle files and directories. Data is stored as files under a hierarchical directory structure. File storage is the most common general-purpose storage solution. File storage could be made accessible by a large number of servers using common file-level network protocols like SMB/CIFS and NFS. The servers accessing file storage do not need to deal with the complexity of managing the blocks, formatting volume, etc. The simplicity of file storage makes it a great solution for sharing a large number of files and folders within an organization."
 
+- Object Storage: Its technology is new. Object storage favors durability, vast scale and low cost. "Object storage stores all data as objects in a flat structure". There is no hierarchy for directory structure. Data in objects storage is accessible via REST API. It is slower than File Storage and Block Storage. AWS S3, Google Object Storage, Azure Blob Storage are examples of Object Storage.
 
+![](./images/219.png)
 
+2) Table comparison
 
+![](./images/218.png)
 
+3) An object in object storage has the following 2 parts.
 
+- Payload: The data itself.
 
+- Metadata: Key-value pairs characterizing an object.
+
+4) Versioning in an object storage service is valid in bucket level. If versioning is enabled, the former versions of a file can be easily accessible.
 
 
 
