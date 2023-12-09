@@ -1935,6 +1935,42 @@ ad_id, click_timestamp, user_id, ip, and country
 
 4) Versioning in an object storage service is valid in bucket level. If versioning is enabled, the former versions of a file can be easily accessible.
 
+5) In oject storage, we can't increment an object. An example is that we have a csv of 100 lines. We can't append a new line to this csv file. We should either delete the former version and upload the latter version or replace it with a new version of the file.
+
+6) 95% of operations over an object storage is READ according to a research done by Linkedin.
+
+7) URI means Uniform Resource Identifier. URL means Uniform Resource Locator. URN means Uniform Resource Name. URI has 2 types as URL and URN. A URI is a string of characters that uniquely identifies a particular resource. It can be further categorized into two types: URLs and URNs. 
+
+- URL: A URL is a specific type of URI that provides the means to access and retrieve a resource over the internet. It includes the protocol to be used, the domain name or IP address, and the path to the resource. Example URL: **https://www.example.com/index.html**.
+
+- A URN is a type of URI that serves as a persistent and location-independent identifier for a resource. It does not specify how to access the resource.  Example URN: **urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66**.
+
+8) Unix File System and Object Storage work similarly.
+
+![](./images/220.png)
+
+9) Separating metadata and object is faciliating the design.
+
+![](./images/221.png)
+
+10) High Level Design. Data store is carrying out its operations based on UUID.
+
+![](./images/222.png)
+
+11) Object uploading flow
+
+![](./images/223.png)
+
+12) The format of metadata store. It stores file name, file's UUID and file's bucket ID.
+
+![](./images/224.png)
+
+12) Downloading an object flow
+
+![](./images/225.png)
+
+
+
 
 
 
