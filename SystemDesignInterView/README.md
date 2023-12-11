@@ -1969,6 +1969,34 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/225.png)
 
+13) High level design of datastore. 
+
+![](./images/226.png)
+
+14) Datastore has 3 components.
+
+- Data routing service: Responsible for querying placement service to get the knowledge of best data node.
+
+- Placement service: Determining which data nodes should be chosen to store an object. "It maintains a virtual cluster map, which provides the physical topology of the cluster". The placement service monitors data nodes through heartbeats. This service is so critical. Paxos and Raft are 2 consensus protocols to design a cluster of placement service. It is suggested that a placement service is composed of 5 or 7 nodes.
+
+![](./images/227.png)
+
+- Data node: Storing the actual object by replicating through multiple data nodes.
+
+15) How data is persisted
+
+![](./images/228.png)
+
+16) Different options for replicating data. Each primary node replicates data among 2 secondary nodes.
+
+![](./images/229.png)
+
+17) How data is organized via a big file. Storing many small files separately doesn't perform well. This big file is generally a few GB's of data. When it is filed, it is converted from read write file to read only file.
+
+![](./images/230.png)
+
+
+
 
 
 
