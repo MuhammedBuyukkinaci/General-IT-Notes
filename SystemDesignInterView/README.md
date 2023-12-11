@@ -1995,6 +1995,77 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/230.png)
 
+18) If small files are concatenated into a big file, the offsets of files should be kept in a table. The table will persist the information of the uuid of the requested object, the big file which is composed of many small files, the start of the offset and object size.
+
+![](./images/231.png)
+
+19) RocksDB is a file based key value store. RocksDB is based on SSTable. It is faster for writes but slower for reads. However, our design is read-heavy. Thus, it would be more reasonable to use an RDBMS.
+
+20) SQLite is a file-based relational database.
+
+21) The error rate of a spinning hard drive is %0.81. When we have one primary and 2 secondary replications, 99.9999 is ensured.
+
+22) In order to provide better durability, different availability zones should be deployed.
+
+![](./images/232.png)
+
+23) Erasure coding is another way to provide better durability in cases of failures. It is an alternative to multiple-copy replication. It is about splitting data into chunks and creating parities from these chunks. When a failure occurs, the broken data is saved thanks to remaining chunks and parities.
+
+![](./images/233.png)
+
+24) Replication vs Erasure Coding
+
+![](./images/234.png)
+
+25) Replication is widely used in latency-sensitive applications. Whereas, erasure coding is mostly adopted when minimizing the storage cost is the focus.
+
+26) Checksum algorithms are used to check the correctness of data in erasure coding. MD5, SHA1, HMAC are some popular checksum algorithms. A good checksum algorithm ouputs different value even for a small change in the input.
+
+![](./images/235.png)
+
+27) Database tables for metadata store. Database should be sharded with respect to bucket_name and object_name.
+
+![](./images/236.png)
+
+28) `aws s3` command has 3 uses generally.
+
+- Listing all buckets
+
+- Listing all objects in the same level of a bucket
+
+- Listing all objects having a pattern(starting with abc for example) in the same level of a bucket.
+
+29) When the metadata table is sharded, it’s difficult to implement the listing function because we don’t know which shards contain the data
+
+30) Thanks to versioning, the object storage keeps all previous versions of a file.
+
+![](./images/237.png)
+
+31) Versioned metadata in metadata database. The bigger the timeuuid, the more recent the object.
+
+![](./images/238.png)
+
+32) When a versioned object wants to be deleted, the object is assigned a delete marker. A GET request to fetch this deleted version will return a 404 error.
+
+![](./images/239.png)
+
+33) When a big file(GB's) wants to be uploaded to S3, multipart download comes in handy. It splits data into parts for downloading. When a part becomes problematic, other parts remain unaffected. When all parts are uploaded, they are assembled in the application code of storage service.
+
+![](./images/240.png)
+
+34) "The garbage collector does not remove objects from the data store, right away. Deleted objects will be periodically cleaned up with a compaction mechanism". Garbage collector might be necessary in cases of
+
+- Lazy object deletion: An object being labelled as deleted but not deleted in reality
+
+- Orphan data: Half uploaded data
+
+- Corrupted data: Data whose checksum fails
+
+![](./images/241.png)
+
+35) Chapter summary
+
+![](./images/242.png)
 
 
 
