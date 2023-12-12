@@ -2067,6 +2067,29 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/242.png)
 
+# Real-time Gaming Leaderboard
+
+1) A leaderboard example
+
+![](./images/243.png)
+
+2) Our goal is to display the top 10 high-scoring players and show a user's specific rank. In addition to this, show above 4 and below 4 players of anchor player.
+
+3) High level design of Gaming Leaderboard
+
+![](./images/244.png)
+
+4) RDBMS isn't suitable when the number of users is too high.
+
+5) Sorted set is a data type similar to set. "The members of a set must be unique, but scores may repeat. The score is used to rank the sorted set in ascending or descending order". A sorted set is implemented by two data structures: a hash table and a skip list. "The hash table maps users to scores and the skip list maps scores to users. In sorted sets, users are sorted by scores". A sorted set, in the context of data structures, is a collection where each element has an associated numerical score or rank that determines the order of the elements. It is used in Redis and NoSQL Databases. Sorted sets are useful in scenarios where you need to maintain an ordered collection of elements, and the order is determined by some associated metric or value. They find applications in leaderboard systems, ranking systems, and scenarios where sorting elements based on a score is important.
+
+![](./images/245.png)
+
+6) If we are going to use Redis instead of RDBMS,  ZADD, ZINCRBY, ZRANGE/ZREVRANGE, ZRANK/ZREVRANK keywords of Redis are going to be used to insert a new user to leaderboard, update a user's score and retrieve neighbor positions of an anchor user.
+
+
+
+
 
 
 
