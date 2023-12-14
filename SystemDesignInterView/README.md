@@ -2087,6 +2087,27 @@ ad_id, click_timestamp, user_id, ip, and country
 
 6) If we are going to use Redis instead of RDBMS,  ZADD, ZINCRBY, ZRANGE/ZREVRANGE, ZRANK/ZREVRANK keywords of Redis are going to be used to insert a new user to leaderboard, update a user's score and retrieve neighbor positions of an anchor user.
 
+7) Amazon API Gateway is providing us with defining HTTP endpoints. These endpoints will be linked to AWS Lambda. When a request is sent to Amazon API Gateway, it will be directed to the backend service. Backend service can be serverless or on-premise API Server or cloud-based API Server.
+
+8) New design for the scenario in which a user gets a point
+
+![](./images/246.png)
+
+9) New deisgn for the scenario in which the leaderboard is fetched.
+
+![](./images/247.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
