@@ -2097,13 +2097,21 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/247.png)
 
+# Payment System
 
+1) Stripe, Paypal and Braintree are commonly used payment methods. These are third party payment processors.
 
+2) Due to compliance and regulations, we shouldn't store credit card information in our databases.
 
+3) Simplified version
 
+![](./images/248.png)
 
+4) A single payment may be composed of multiple payment orders.
 
+5) Pay-in flow
 
+![](./images/249.png)
 
 
 
