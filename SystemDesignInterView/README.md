@@ -2113,8 +2113,43 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/249.png)
 
+6) What kind of data to be sent to the payment system. The first one is payment event.
 
+![](./images/250.png)
 
+![](./images/251.png)
+
+7) Keeping amount information in string format is essential. If double is chosen instead of string, it might lead to confusions.
+
+8) Data model for payment event and payment order respectively
+
+![](./images/252.png)
+
+![](./images/253.png)
+
+9) payment_order_status is a type of Enum. payment_order_status is **NOT_STARTED** initially. When a request is sent to the payment executor, it turnst out to be **EXECUTING**. Based on the result of payment executor, it either becomes **SUCCESS** or **FAILED**.
+
+10) Double-entry ledger system is commonly used in payment systems. It guarantees that all debits and credits sum equally.
+
+11) Companies use hosted credit card pages provided by PSPs to avoid handling credit card information.
+
+![](./images/254.png)
+
+12) Pay-out flow is similar to pay-in flow. The difference is that pay-out provider uses a third-party payout provider to move money from e-commerce's web account to the seller's back account.
+
+13) UUID is also called nonce.
+
+14) There are 2 ways to integrate PSP.
+
+- Internally requesting PSP through API calls in the backend. Requiring more work to e-commerce website
+
+- PSP's hosted payment page. Mostly embraced due to data compliance regulations.
+
+![](./images/255.png)
+
+15) The design for Hosted Payment Page in e-commerce website.
+
+![](./images/256.png)
 
 
 
