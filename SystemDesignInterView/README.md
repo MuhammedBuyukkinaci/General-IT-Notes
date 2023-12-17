@@ -2191,11 +2191,91 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/261.png)
 
+# Digital Wallet
 
+1) Digital Wallet can be used in 2 places
 
+- Like hepsiburada's hepsipay. It is enabling us to spend on the website.
 
+- Transfer between digital wallets. Person A can send money to Person B dirctly on digital wallet.
 
+2) API Endpoint and request parameters
 
+![](./images/262.png)
+
+3) Amount should be string rather than double or float.
+
+4) Our predicted TPS(Transaction Per Second) is around 1 million. Thus, a single redis server isn't enough. There should be a redis cluster. The cluster will distribute users among the nodes evenly. The distribution will be based on a hashing mechanism. The configuration management will be handled by Zookeeper.
+
+5) A high-level design with Redis cluster. The drawback is atomicity. It means that when user A sends some amount of money to user B, the money will be reduced from user A first. After this, the money will be added to user B. There is an interval between these 2 events. There might happen a network issue or electricity cutoff in this interval. The money can be reduced for user A and can't be added for user B. This is a problem.
+
+![](./images/263.png)
+
+6) The below design replaces Redis with RDBMS. RDBMS's don't solve the above problem.
+
+![](./images/264.png)
+
+7) Two phase commit(2PC) is a way to ensure atomicity. It is a low level solution. It isn't performant.
+
+![](./images/265.png)
+
+![](./images/266.png)
+
+8) TC/C is an anternative to 2PC. TC/C means Try-Commit/Cancel. "It’s important to note that the two phases in 2PC are wrapped in the same transaction, but in TC/C each phase is a separate transaction.". TC/C is database-agnostic. It is a high-level solution because "undo" is implemented in business logic.
+
+![](./images/267.png)
+
+9) The comparison between 2PC and TC/C
+
+![](./images/268.png)
+
+10) We should integrate a phase status table in case of service restarts or network errors. This table will keep the status of first phase(try) and second phase(cancel/commit). The status of the first phase will be one of "not sent yet", "has been sent" and "response received". The status of the second phase will be either "confirm" or "cancel".
+
+![](./images/269.png)
+
+11) Saga is a distributed transaction solution. Saga states that all operations are ordered in a sequence. When an operation is finished, the next operation is triggered. When an operation fails, all operations before the failed operation are rolled back. If a distributed transaction has n operations, we need to prepare 2*n operations. n for normal case and n for the compensation transaction during rollback.
+
+![](./images/270.png)
+
+12) There are 2 ways to coordinate the operations.
+
+- Choreography: A fully decentralized solution. Each service does its job by subscribing to other services’ events. It is hard to manage.
+
+- Orchestration: "A single coordinator instructs all services to do their jobs in the correct order". It is mostly preferred in digital wallet systems.
+
+13) The comparison between TC/C and SAGA. Both are application level approaches. If latency isn't so important, SAGA should be chosen, Otherwise, TC/C.
+
+![](./images/271.png)
+
+14) Event sourcing is a technique developed in domain driven design. There are 4 important terms in event sourcing.
+
+- Command: The intended action outside from the world. It is transfer in money sending. In event sourcing, order is so important. Everything has an order. Commands are usually put into a FIFO queue.
+
+- Event: In the case of money sending, user A wants to transfer money to user B. If the intended amount is equal or lower than the current balance of user A, it is validated intention. This validated intention becomes an event, which is carried out. Commands may contain randomness but events are deterministic. One command may generate any number of event(0 or more).
+
+- State: "State is what will be changed when an event is applied". In the wallet system, state is the balances of all users.
+
+- State Machine: It is responsible for driving event sourcing process. Its first function is to validate commands and generate event. Secondly, it applies event to update state. State machine should be always deterministic.
+
+![](./images/272.png)
+
+![](./images/273.png)
+
+15) A detailed illustration of event sourcing
+
+![](./images/274.png)
+
+16) The advantage of event sourcing is reproducibility. We can reconstruct the balance of any user at any desired time. "All changes are saved first as immutable history"
+
+![](./images/275.png)
+
+17) Because of audit, event sourcing is the defacto standard for wallet system.
+
+18) Command Query Responsibility Segregation (CQRS) is a software architectural pattern that suggests separating the responsibility for handling commands (requests that modify the state of a system) from the responsibility for handling queries (requests that retrieve information from the system). It is often used in conjuction with Event Sourcing.
+
+![](./images/276.png)
+
+19) Instead of transmitting data over the network, we can implement file based solutions. File based command and event storage can be used instead of Apache Kafka, which is a remote solution. In addition to this, RDBMS can be replaced in factor of RocksDB, which is a local file based solution optimized for write-heavy operations. RocksDB will store the state instead of RDBMS.
 
 
 
