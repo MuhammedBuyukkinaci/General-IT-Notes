@@ -2277,8 +2277,32 @@ ad_id, click_timestamp, user_id, ip, and country
 
 19) Instead of transmitting data over the network, we can implement file based solutions. File based command and event storage can be used instead of Apache Kafka, which is a remote solution. In addition to this, RDBMS can be replaced in factor of RocksDB, which is a local file based solution optimized for write-heavy operations. RocksDB will store the state instead of RDBMS.
 
+![](./images/277.png)
 
+20) In addition to file based event storing, snapshots should be taken daily at 00:00 am for finance teams. Snapshots are going to be used for queries.
 
+![](./images/278.png)
 
+21) The updated design has the following types of data.
+
+- File-based command
+
+- File-based event
+
+- File-based state
+
+- State snapshot
+
+22) Event data is the only one that requires a high-reliability guarantee.
+
+23) [Raft](https://raft.github.io/) is a consensus algorithm to provide consensun in fault-tolerant distributed systems. "Consensus involves multiple servers agreeing on values". Raft should be used in order to provide reliability for event data.
+
+![](./images/279.png)
+
+![](./images/280.png)
+
+24) Chapter summary
+
+![](./images/281.png)
 
 
