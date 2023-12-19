@@ -2305,4 +2305,50 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/281.png)
 
+# Stock Exchange
+
+1) NYSE(New York Stock Exchange) is dealing with billions of requests per day.
+
+2) Different actions on rders
+
+- Place an order: Our focus
+
+- Cancel an order: Our focus
+
+- Replace an order
+
+3) Order types:
+
+- Limit order: Our focus
+
+- Market order
+
+- Conditional order
+
+4) Most clients trade with an exchange via brokers. Pension funds aim to have a stable income. Hedge funds specialize in market making and earn income via commission rebates.
+
+5) There are different types of market data.
+
+- L1 Data: The best bid price, The best ask price and quantities
+
+![](./images/282.png)
+
+- L2 Data: More price levels
+
+![](./images/283.png)
+
+- L3 Data: Price levels and queued quantity
+
+![](./images/284.png)
+
+6) "FIX protocol, which stands for Financial Information eXchange protocol, was created in 1991. It is a vendor-neutral communications protocol for exchanging securities transaction information"
+
+7) High level design. M represents Market Flow, R represents Reporter Flow.
+
+![](./images/285.png)
+
+
+
+
+
 
