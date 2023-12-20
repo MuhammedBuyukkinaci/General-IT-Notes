@@ -2347,8 +2347,36 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/285.png)
 
+8) Matching engine is responsible for maintaining the order book for each symbol. An order book is full of a list of buys and a list of sells. Matching engine is deterministic, which means that the matching engine should be able to produce the same result as an output when the sequence of orders are processed again and again.
 
+9) Sequencer is responsible for making matching engine deterministic. The sequencer assigns a unique id to each incoming order. It also assigns unique id to each executed order pairs. It works like a message queue. 
 
+![](./images/286.png)
 
+10) Order manager receives orders on one end and receives executions on the order.
+
+11) Client gateway is receiving orders placed by clients and routes them to the order manager. Client gateway is responsible for the followings:
+
+- Authentication
+
+- Validation
+
+- Rate Limiting
+
+- Normalization
+
+- FIXT Support
+
+12) Different client gateway connections. "Colocation (colo) engine the trading engine software running on some servers rented by the broker in the exchange’s data center".
+
+![](./images/287.png)
+
+13) "Market data publisher(MDP) receives executions (fills) from the matching engine builds the order books and candlestick charts from the stream of executions".
+
+![](./images/288.png)
+
+14) Reporter is an essential part of an exchange. It provides trading history, tax reporting, compliance reporting, settlements.
+
+![](./images/289.png)
 
 
