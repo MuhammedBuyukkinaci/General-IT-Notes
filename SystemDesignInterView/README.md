@@ -2379,4 +2379,46 @@ ad_id, click_timestamp, user_id, ip, and country
 
 ![](./images/289.png)
 
+15) Different API's
+
+- POST /v1/order: Requiring authentication. To send orders. The side of order(buy or sell), the amount of order, which symbol, order type, the price of order to be payloaded.
+
+- GET /execution?symbol={:symbol}&orderId={:orderId}&startTime={:startTime}&endTime={:endTime}: Requiring authentication. Returning list of arrays of executions. One order might be accessed via multiple executions.
+
+- GET /marketdata/orderBook/L2?symbol={:symbol}&depth={:depth}: Returning L2 order book information for a symbol with designated depth. Returning arrays of bids and asks.
+
+- GET /marketdata/candles?symbol={:symbol}&resolution={:resolution}&startTime={:startTime}&endTime={:endTime}: Candlestick chart data (see candlestick chart in data models section) for a symbol given a time range and resolution.
+
+16) Product, order and execution relationship
+
+![](./images/290.png)
+
+17) How a limit order is executed
+
+![](./images/291.png)
+
+18) Place, Match and Cancel an order illustrations
+
+![](./images/292.png)
+
+19) Some exchanges run everything on a large gigantic server. When all components are located on the same server, they can communicate via mmap as an event store.
+
+20) A good measure for stability is 99 percentile of latency.
+
+21) An application loop, also known as a main loop or game loop, is a fundamental concept in software development, particularly in the context of graphical user interfaces (GUIs) and interactive applications like games. The main loop is responsible for repeatedly executing the core logic of the program and updating the display or responding to user input. This structure is common in many interactive applications, ranging from video games to graphical user interfaces, where real-time responsiveness is crucial.
+
+22) "Each application loop is single-threaded, and the thread is pinned to a fixed CPU core". Thanks to pinning to a single cpu core, the context isn't switched and no locks are implemented. The tradeoff of CPU pinning is that it makes application code complicated.
+
+![](./images/293.png)
+
+23) mmap and mmap2 are allowing a process to map a file or a part of a file into memory. "mmap(2) provides a mechanism for high-performance sharing of memory between processes. The performance advantage is compounded when the backing file is in /dev/sh. /dev/shm is a memory-backed file system. When mmap(2) is done over a file in /dev/shm, the access to the shared memory does not result in any disk access at all". The advantage of mmap2 is to reduce disk access.
+
+24) mmap event store used as a message bus. This is like pub/sub model in Kafka.
+
+![](./images/294.png)
+
+25) I stopped reading the book because it became complicated for me.
+
+
+
 
