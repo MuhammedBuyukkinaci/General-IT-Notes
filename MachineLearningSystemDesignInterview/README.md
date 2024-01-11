@@ -117,3 +117,53 @@
 - Clustering-based ANN: Creating clusters and searching similar images among the cluster
 
 14) There are 2 common libraries to implement ANN. One of them is [faiss](https://github.com/facebookresearch/faiss) of Facebook and the other one is [scann](https://github.com/google-research/google-research/tree/master/scann) of Google.
+
+# Google Street View Blurring System
+
+1) The purpose is to blur license plates and human faces.
+
+2) The input will be an image that may contain zero or multiple objects in itself. The output will contain objects and their locations. The problem should be framed as object detection problem.
+
+![](./images/016.png)
+
+3) Generally, an object detection(OD) system has 2 responsibilities.
+
+- Detecting an object's location: Regression
+
+- Determining the class of object: Multiclass classification
+
+4) There are 3 typearchitecturess of OD system.
+
+- One Stage Networks
+
+- Two Stage Networks
+
+- Transformer based architectures: DETR is an example.
+
+5) There are 2 components in two stage networks. The first network is Region Proposal Network and the second network is classifier. Examples of two stage networks are RCNN, Fast R-CNN, Faster R-CNN. Two stage networks run slower but more accurate compared to one stage networks.
+
+![](./images/017.png)
+
+6) In one stage networks, there is only one network. YOLO and SSD are examples of one stage networks. It is faster but less accurate compared to two stage networks.
+
+![](./images/018.png)
+
+7) A dataset of 1 million images isn't considered to be huge by modern standards.
+
+8) The annotated data is structured as follows.
+
+![](./images/019.png)
+
+9) Some augmentation techniques
+
+![](./images/020.png)
+
+10) There are 2 approaches to augment data. The first method is offline augmentation. Dataset is first augmented and then stored in storage. Finally, it is used in training. Whereas, the second method is online augmentation. Dataset is augmented in the phase of training. Both approaches have advantages and disadvantages. The pro of offline training is less time spent in training. The con of offline training is storage difficulties. The pro of online augmentation is no need for storage because everything is on the fly. The con of online augmentation is more time spent in training.
+
+![](./images/021.png)
+
+11) Some preprocessing operations are resizing, scaling and normalizing.
+
+
+
+
