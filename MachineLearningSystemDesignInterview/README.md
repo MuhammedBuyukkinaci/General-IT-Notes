@@ -164,6 +164,39 @@
 
 11) Some preprocessing operations are resizing, scaling and normalizing.
 
+12) How 2 stage object detection network works
+
+![](./images/022.png)
+
+13) MSE(Mean Squared Error) should be use in regression task and Cross Entropy loss should be used in classification task. The final loss should be the sum of regression and classification losses.
+
+14) How Intersection Over Union(IoU) is calculated
+
+![](./images/023.png)
+
+15) The performance of the model can be checked via Precision, Average Precision and Mean Average Precision. Precision is dependent on the selected threshold. The less the threshold, the more the precision. In order to remove the effect of threshold, Average Precision is invented. It is calculating the precision against different thresholds using integral for one class(human face). Average Precision can be calculated via a discrete summation over a predefined list of thresholds instead of using integral. Mean Average Precision is the mean of average precisions for different classes.
+
+    - Precision: 
+    ![](./images/024.png)
+    - Average Precision using integral
+    ![](./images/025.png)
+    - Discretized Average Precision
+    ![](./images/026.png)
+    - Mean Average Precision
+    ![](./images/027.png)
+
+16) A very common problem in object detection is the overlapping boundary boxes. It is necessary to lower the number of overlapping boundary boxes. NMS(Non Maximum Suppression) is a technique to decrease the number of overlapping boundary boxes. "NMS is a post-processing algorithm designed to select the most appropriate bounding boxes. It keeps highly confident bounding boxes and removes overlapping bounding boxes". NMS is a commonly asked algorithm in interviews.
+
+![](./images/028.png)
+
+17) The overall design is below.
+
+![](./images/029.png)
+
+18) Preprocessing and blurring services are 2 decoupled because preprocessing is a CPU-bound operation and blurring is a GPU-bound operation. It is easier to scale them when they are separated. Blurring service is responsible for making predictions, applying NMS, blurring predicted areas and storing the blurred images in object storage.
+
+
+
 
 
 
