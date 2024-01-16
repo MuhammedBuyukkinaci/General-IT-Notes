@@ -195,8 +195,109 @@
 
 18) Preprocessing and blurring services are 2 decoupled because preprocessing is a CPU-bound operation and blurring is a GPU-bound operation. It is easier to scale them when they are separated. Blurring service is responsible for making predictions, applying NMS, blurring predicted areas and storing the blurred images in object storage.
 
+# YouTube Video Search
 
+1) The problem can be framed as a ranking problem. The input(video with its metadata like description and title) will be fed into **visual search** and **text search** components separately. Then, the results will be combined.
 
+![](./images/030.png)
 
+2) How visual search works. The similarity score between video embedding and text embedding is calculated using dot product. Then, most similar vides are shown for a query.
+
+![](./images/031.png)
+
+3) How text search works. Videos which have the most similar titles, descriptions and tags are shown for a query.
+
+![](./images/032.png)
+
+4) Inverted index is a popular technique for creating text based document search. Elastic search is an example of Inverted Index. It doesn't use ML. Elastic search is a scalable search engine and document store. For more information as to Elastic Search, click here[https://www.tutorialspoint.com/elasticsearch/elasticsearch_query_dsl.htm].
+
+5) How to represent a text with a numerical vector
+
+![](./images/033.png)
+
+6) 3 steps of converting a text to a numerical vector
+
+- Normalization
+
+    - Lowercasing
+    - Removing punctuations
+    - Trimming whitespaces
+    - Removing accents: Noël → Noel
+    - Lemmatization
+
+- Tokenization
+
+    - Word tokenization: ["I", "have", "a", "car"]
+    - Subword tokenization: n grams
+    - Character tokenization
+
+- Tokens to ID's:
+
+    - Lookup table:
+
+    ![](./images/034.png)
+
+    - Hashing:
+
+    ![](./images/035.png)
+
+6) Converting tokens to ID's are done via Lookup table or Hashing. The comparison is below
+
+![](./images/036.png)
+
+7) How to process a video
+
+![](./images/037.png)
+
+8) Video decoding is the operation of transforming a video into multiple frames. The total number of frames is by the multiplication of FPS(Frame Per Second) and Duration of Video. If FPS is 25 and the duration of video is 20, there are 500(25*20) frames in the video.
+
+9) There are 2 categories to process text. 
+
+- Statistical Models:
+    - Bag Of Words
+    - TF-IDF
+- ML Based Models:
+    - Embedding: Simple and efficient solution to map high-cardinal data into dense vectors
+    ![](./images/038.png)
+    - Word2Vec:
+    ![](./images/039.png)
+    - Transformers: ıts advantage is capturing context
+    ![](./images/040.png)
+
+10) Video encoding can be done in 2 ways:
+
+- Video Level Model: Expensive, slow in serving
+
+![](./images/041.png)
+
+- Frame Level Model: Faster, should be used when temporality isn't crucial. Frame level models aren't good at capturing understanding actions and motions. ViT(Vision transformer) is a frame level model which can be chosen.
+
+![](./images/042.png)
+
+11) Contrastive Learning can be used in training. Our annotated dataset is depicted below. The training pipeline is taking video as one input, taking many queries of 1 corresponding positive label and n-1 negative(irrelevant) labels as text input, computing similarities, scaling on softmax and outputing a probability of each text input for the input video.
+
+![](./images/043.png)
+
+![](./images/044.png)
+
+12) Mean Reciprocal Rank can be a good offline metric.
+
+![](./images/045.png)
+
+13) Some online metrics
+
+- CTR: Click Through Rate
+
+- Video Completion Rate
+
+- Total watch time of search results
+
+14) Simplified Deisgn for indexing video pipeline, prediction pipeline and indexing text pipeline.
+
+![](./images/046.png)
+
+15) Fusing layer is taking videos(visual search and text search) from the previous step and reranking according to relevance score(like time).
+
+16) Reranking service is applying business-level logic and policies at the end.
 
 
