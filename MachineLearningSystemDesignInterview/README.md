@@ -292,12 +292,65 @@
 
 - Total watch time of search results
 
-14) Simplified Deisgn for indexing video pipeline, prediction pipeline and indexing text pipeline.
+14) Simplified Design for indexing video pipeline, prediction pipeline and indexing text pipeline.
 
 ![](./images/046.png)
 
 15) Fusing layer is taking videos(visual search and text search) from the previous step and reranking according to relevance score(like time).
 
 16) Reranking service is applying business-level logic and policies at the end.
+
+# Harmful Content Detection
+
+1) Posts that contain violence, nudity, self-harm and hate speech are recognized as harmful content.
+
+2) Fusion is a concept that is related to combining different inputs of different modalities. There are 2 types of fusions.
+
+    - Late Fusion: Separating each model independently for each modality first. Secondly, the outputs of each model for each modality are fused. Not capturing the relationship for a meme that has a text and image.
+    
+    ![](./images/047.png)
+
+    - Early Fusion: Combining the vectors for each modality first. Then, the combined vector is fed into a single neural network. This approach captures more potentially than late fusion. This approach is harder to train. In the absence of training data, early fusion method fails.
+
+    ![](./images/048.png)
+
+3) Choosing the right ML strategy is hard. We have 4 options.
+
+- Simple Binary Classifier: Easy to train, but it lacks of explanation why a content is harmful.
+
+![](./images/049.png)
+
+- One binary classifier for each harmful class: Hard to maintain and train.
+
+![](./images/050.png)
+
+- Multilabel classifier: Single model is its advantage. But using the same vector for each class isn't appropriate because the inputs may require different transformations.
+
+![](./images/051.png)
+
+- Multi task classifier: Learning together to some extent, then each class has its own classification head. This approach is a single model solution and allowing different harmful criteria to get specialized in their classification heads.
+
+![](./images/052.png)
+
+4) Framing the problem as a Machine Learning problem using multi task classifier. The advantages of multi task classifier are its simplicity to train(one ML model), redundant operations for each harmful class are removed thanks to transformed features and the learning of a harmful class may contribute to the learning of other harmful class.
+
+![](./images/053.png)
+
+5) The following data available
+
+- User Data:
+
+![](./images/054.png)
+
+- Post Data:
+
+![](./images/055.png)
+
+- User-Post Interation Data:
+
+![](./images/056.png)
+
+
+
 
 
