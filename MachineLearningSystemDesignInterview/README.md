@@ -332,7 +332,7 @@
 
 ![](./images/052.png)
 
-4) Framing the problem as a Machine Learning problem using multi task classifier. The advantages of multi task classifier are its simplicity to train(one ML model), redundant operations for each harmful class are removed thanks to transformed features and the learning of a harmful class may contribute to the learning of other harmful class.
+4) Framing the problem as a Machine Learning problem using multi task classifier. The advantages of multi task classifier are its simplicity to train(one ML model), redundant operations for each harmful class are removed thanks to transformed features and the learning of a harmful class may contribute to the learning of other harmful class. In multi task training, each task is assigned a loss function based on its ML category.
 
 ![](./images/053.png)
 
@@ -349,6 +349,75 @@
 - User-Post Interation Data:
 
 ![](./images/056.png)
+
+6) BERT is trained in English only. Therefore, DistilmBERT can be used. DistilmBERT is an efficient variant of BERT to produce embeddings. If a sentence in language #1 is close to another sentence in language #2, their embeddings are so similar.
+
+7) [CLIP's visual encoder](https://openai.com/research/clip) and [SimCLR](https://arxiv.org/pdf/2002.05709.pdf) are 2 alternatives to convert an image into a feature vector.
+
+8) [VideoMoCo](https://arxiv.org/pdf/2103.05905.pdf) is a video model transforming a video into a feature vector.
+
+9) The following types of data can be used.
+
+- Textual content
+- Image or video
+- User reactions to the post
+- Author
+- Contextual information
+
+10) User reactions such as the number of likes, the number of shares, the number of comments and the number of reports can be fed into the model.
+
+11) User comments should be transformed into a feature vector and the aggregated via averaging.
+
+12) The summary of how textual data, image data, video data, reaction data and comments data can be concatenated
+
+![](./images/057.png)
+
+13) Some features on authors can be extracted.
+
+- Violation based features:
+    - Number of violations in the past
+    - Total user reports: How many times other users reported the author of the post.
+    - Profane words rate
+- Demographics based features:
+    - Age
+    - Gender
+    - Location(City and country): It is sparse when one-hot encoded. To solve this problem, use embeddings.
+- Account Information
+    - The age of account
+    - The number of followers and followings
+
+14) Contextual information represents information which is not related to the post and the author of the post.
+    - Time of day
+    - Device: Mobile or Desktop or Tablet
+
+15) Summary of Feature Engineering
+
+![](./images/058.png)
+
+16) It would be a good practice to employ natural labeling on training phase and human labeling on validation phase. Natural labeling is less costly but less accurate. Human labeling is more costly and more accurate. Natural labeling can be programmed based on user reports. The reason why to select human labeling in validation is to be sure about the performance of the ML model trained on naturally labeled data.
+
+![](./images/059.png)
+
+17) How to compute loss. Each task can have its specific loss functions and their sum can be the total loss.
+
+![](./images/060.png)
+
+18) A common challenge in training multimodel ML models is overfitting. One modality(image etc) may prevail over the others. In order to solve this problem, [gradient blending](https://arxiv.org/pdf/1905.12681.pdf) or focal loss can be used.
+
+19) Precision and Recall can be insufficient to evaluate the performance. Therefore, AUROC(Area Under Receiver Operating Characteristic) and AUPRC(Area Under Precision Recall Curve) can be used as offline metrics. To learn the difference between both, take a look at [here](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
+
+20) Some online metrics should also be used to evaluate the performance of the model.
+
+21) How to serve in a real-time system
+
+![](./images/061.png)
+
+22) If a post is predicted as harmful with low confidence, it should be manually reviewed. After the manual review, a human assigns a label to the post. Then, this manually labeled post should be stored in the storage and can be useful for further trainings.
+
+
+
+
+
 
 
 
