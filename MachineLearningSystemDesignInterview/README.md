@@ -414,6 +414,28 @@
 
 22) If a post is predicted as harmful with low confidence, it should be manually reviewed. After the manual review, a human assigns a label to the post. Then, this manually labeled post should be stored in the storage and can be useful for further trainings.
 
+# Video Recommendation System
+
+1) A customized homepage is going to be fed via ML.
+
+![](./images/062.png)
+
+2) There might be multiple ML objectives.
+
+    - Maximizing number of clicks: Recommending clickbait videos more. Worsening customer experience.
+    - Maximizing number of completed videos: Bias to recommending short videos
+    - Maximizing total watch time: Biased to the videos watched more
+    - Maximizing the number of relevant videos: Based on business rules such as whether a user clicks like button or a user watches at least 50 percent of video, a relevance can be defined. We can construct a dataset and train a model to predict a relevance score.
+
+3) Common types of recommendation systems
+
+
+
+
+
+
+
+
 
 
 
