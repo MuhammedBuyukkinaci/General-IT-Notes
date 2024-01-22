@@ -429,6 +429,34 @@
 
 3) Common types of recommendation systems
 
+![](./images/063.png)
+
+4) Youtube is using a CF based model as the first stage to generate candidates. Then it uses content based RS as the second stage to recommend videos.
+
+5) Most companies use hybrid RS. There are 2 types of Hybrid RS's. Parallel or Sequential. Sequential Hybrid RS's are used more. The following design will be based on Sequential Hybrid RS.
+
+![](./images/064.png)
+
+6) Available data
+
+- Video
+
+![](./images/065.png)
+
+- User
+
+![](./images/066.png)
+
+- User-Video Interaction
+
+![](./images/067.png)
+
+7) 4 types of different data
+
+- Video ID: Converted to dense vectors thanks to embedding layer
+- Duration
+- Language
+- Titles and tags: Titles are converted to feature vectors thanks to a context-aware word embedding model such as BERT. Tags are converted to feature vectors thanks to a lightweight pretrained model such as CBOW.
 
 
 
