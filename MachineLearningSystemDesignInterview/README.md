@@ -453,15 +453,55 @@
 
 7) 4 types of different data
 
-- Video ID: Converted to dense vectors thanks to embedding layer
-- Duration
-- Language
-- Titles and tags: Titles are converted to feature vectors thanks to a context-aware word embedding model such as BERT. Tags are converted to feature vectors thanks to a lightweight pretrained model such as CBOW.
+- Video features:
 
+    - Video ID: Converted to dense vectors thanks to embedding layer
+    - Duration
+    - Language
+    - Titles and tags: Titles are converted to feature vectors thanks to a context-aware word embedding model such as BERT. Tags are converted to feature vectors thanks to a lightweight pretrained model such as CBOW.
 
+![](./images/068.png)
 
+- User demographics
 
+![](./images/069.png)
 
+- Contextual Information
+
+![](./images/070.png)
+
+- User historical interactions
+
+    - Search History: Mapping each search query into an embedding vector. A user's search history is a variable-sized list of textual queries. To create a fixed size feature vector, average the query embeddings.
+    - Liked videos: Video ID's are mapped into an embedding vector using embedding layer. Similar to search history, they are averaged.
+    - Watched videos: Similar to liked videos
+    - Impressions: Similar to liked videos
+
+![](./images/071.png)
+
+8) What we are optimizing is relevancy. Therefore, both implicit and explicit feedbacks are so important for Matrice Factorization methods.
+
+![](./images/072.png)
+
+9) The loss function will include the loss computer for observed and unobserved pairs.
+
+![](./images/073.png)
+
+10) There are 2 MF optimization techniques. WALS converges faster and it is parallelizable.
+
+- Stochastic Gradient Descent: Used to minimize losses
+- Weighted Alternating Least Squares (WALS): Specific to matrix factorization
+    - Fix one embedding matrix (U), and optimize the other embedding (V)
+    - Fix the other embedding matrix (V), and optimize the embedding matrix (U)
+    - Repeat.
+
+11) RS returns predictions based o relevancy score.
+
+![](./images/074.png)
+
+12) MF optimizes user-video matrices and obtains video embeddings and user embeddings.
+
+13) MF is built on top of user-video interactions. Thus, it doesn't take other features such as age, time, video and user features into consideration.
 
 
 
