@@ -738,6 +738,43 @@ else:
 
 58) When creating an app object via `app = FastAPI()`, we can specify the path of documentation via something like `app = FastAPI(swagger_path = "/")`.
 
+59) "/" directory can be used for healthcheck in FastAPI.
+
+```python
+app = FastAPI()
+
+@app.get("/")
+def my_function():
+    return "some string"
+
+```
+
+60) FastAPI can be used with SQLAlchemy. Data in database is different than a pydantic object. Thus, they should be defined separately.
+
+61) `from fastapi.client import TestClient` can be used to test fastapi endpoints.
+
+```python
+
+from fastapi.testclient import TestClient
+
+# Import some apps
+app = FastAPI()
+
+client = TestClient(app)
+
+```
+
+62) FastAPI's dependency injection is faciliating testing. `from fastapi.params import Depends` can be used. DB connection should be given as a parameter to an endpoint.
+
+![](./fastapi_images/002.png)
+
+63) For testing, instead of launging a test db or db file in filesystem, a test db can be located in local memory via editing database url to connect to memory.
+
+64) It would be a better practice to separate db connection parts and api parts of fastapi endpoints. Not separating them and testing them together should be called as integration test instead of unit test.
+
+
+
+
 # Big O Notes
 
 1) It lists my notes from [this video](https://www.youtube.com/watch?v=Mo4vesaut8g&ab_channel=freeCodeCamp.org)
