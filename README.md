@@ -773,7 +773,9 @@ client = TestClient(app)
 
 64) It would be a better practice to separate db connection parts and api parts of fastapi endpoints. Not separating them and testing them together should be called as integration test instead of unit test.
 
+65) Endpoint name should be separated by `-`. An example is **/get-item/** instead of **/get_item/** or **getItem**.
 
+66) One of the reasons why to separate frontend and backend services is security. When both of them are in the same codebase, it may be open to vulnarabilities.
 
 
 # Big O Notes
@@ -1001,4 +1003,5 @@ pip install -r requirements.txt
 
 13) [fluentd](https://github.com/fluent/fluentd) is an open source log collector. It collects data from various sources and wrtes them to different destinations such as RDBMS, NoSQL technologies, Hadoop, S3.
 
+14) [Electron](https://www.electronjs.org/) is a way to build desktop apps.
 
