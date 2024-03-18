@@ -777,6 +777,35 @@ client = TestClient(app)
 
 66) One of the reasons why to separate frontend and backend services is security. When both of them are in the same codebase, it may be open to vulnarabilities.
 
+67) Router is a group of endpoints. It helps us organize the code. One app can have multiple attached routers, which are groups of multiple endpoints. Each endpoint under a router can have the same prefix defined in APIRouter.
+
+```python
+from fastapi import FastAPI, APIRouter
+
+# Create an instance of the FastAPI application
+app = FastAPI()
+
+# Create an instance of the APIRouter
+router = APIRouter()
+
+# Define a route within the router
+@router.get("/items/")
+async def read_items():
+    return {"message": "Read all items"}
+
+# Mount the router to the main FastAPI application
+app.include_router(router)
+```
+
+68) It is a good practice to move operations out of endpoint function. This eliminates calling an endpoint from another endpoint. Both endpoints can call a function.
+
+69) Automation in FastAPI can be thought as the series of operations when something is triggered. For instance, when a price is updated in an e-commerce website by a seller through an endpoint, we might want to trigger other operations like campaign or delivery.
+
+70) It is a good practice to deploy a simple root endpoint to be sure about whether everyting is running properly or not.
+
+71) FastAPI doesn't have direct builtin support for rate limiting. Slowapi is a library that offers rate limiting well. The decorator of rate limiter should be under the decorator of the endpoint. Both of the decorators should be located above a function.
+
+
 
 # Big O Notes
 
