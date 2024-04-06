@@ -805,6 +805,10 @@ app.include_router(router)
 
 71) FastAPI doesn't have direct builtin support for rate limiting. Slowapi is a library that offers rate limiting well. The decorator of rate limiter should be under the decorator of the endpoint. Both of the decorators should be located above a function.
 
+72) `from fastapi import Field` can be used in order to add examples, description and frozen flag to a field of a pydantic.
+
+73) Field validation and model validation are different. `from fastapi import field_validator` and `from fastapi import model_validator` should be used as decorators. Field validation means whether a field is being validated abased on some criteria. Model validation means all fields are suitiable for a pydantic model. For example, we have a User model and it has a password field. When a user object is created with a string value, it passes model validation but might violate field validation because it might include the name of the user, which is explicitly programmed for field validation. 
+
 
 
 # Big O Notes

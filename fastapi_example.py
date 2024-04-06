@@ -350,3 +350,33 @@ def get_dependency_injection(commons: dict = Depends(common_parameters)):
     return commons
 
 
+from pydantic import EmailStr, Field, SecretStr, ValidationError, field_validator,model_validator
+from typing import Any
+
+class Student(BaseModel):
+    num: int = Field(examples=[1,2],
+                     description='Indicating the number of a student',
+                     frozen=True)
+    # Frozen means whether it is allowed to be modified or not
+    # If frozen is set to True, it can be changed. If frozen is set
+    # to False, it can't be set.
+    email: EmailStr = Field(examples=['muhammed@gmail.com'],
+                                      description='Indicating email',
+                                      frozen=False])
+    # exclude = True means when the object is serialized, password field is excluded
+    password: SecretStr = Field(examples=['123456'],exclude=True)
+
+def validation(inp: Any):
+    try:
+        student = Student.model_validate(inp)
+        print(student)
+    except ValidationError as e:
+        print("student in not valid")
+        for error in e.errors():
+            print(error)
+
+
+
+
+
+
