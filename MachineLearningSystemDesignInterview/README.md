@@ -503,6 +503,120 @@
 
 13) MF is built on top of user-video interactions. Thus, it doesn't take other features such as age, time, video and user features into consideration.
 
+14) Matrix Factorization Inference
+
+![](./images/075.png)
+
+15) Pros and cons of MF
+
+- Pros:
+    - Training Speed: Only 2 embedding spaces(user and video) learned, thus fast.
+    - Serving Speed: The learned embeddings are the same. We can reuse them.
+- Cons:
+    - No content data used.
+    - Handling new users aka cold start problem.
+
+16) The two tower neural network is an alternative to Matrix Factorization.
+
+![](./images/076.png)
+
+17) How to construct the dataset. Labels are assigned according to explicit likes(1) or dislikes(0) or whether half of the video is watched(1) etc.
+
+![](./images/077.png)
+
+18) Only a small fraction of videos attract a person's attention. Therefore, negative samples should outweight positive samples. This introduces the problem of imbalanced datasets.
+
+19) The problem is a binary classification problem. It is trained via cross entropy loss.
+
+![](./images/078.png)
+
+20) At inference of two tower networks, embeddings are used to find the most relevant videos of a given user. This is a classic nearest neighbor problem.
+
+![](./images/079.png)
+
+21) Matrix Factorization vs Two Tower Networks
+
+![](./images/080.png)
+
+22) Some offline metrics to evaluate
+
+- Precision@K
+
+- mAP
+
+- Diversity: When 10 items are recommended, there are 45 pairs(combination(10,2)). For each pair, calculate similarity between 2 items. Average the similarity of 45 pairs. If it is low, it is a good indication of diverse recommendations. Diversity shouldn't be the number 1 metric.
+
+23) Some online metrics to keep an eye
+
+- CTR: Click Through Rate, its drawback is that clickbait videos might be misleading.
+
+![](./images/081.png)
+
+- The number of completed videos:
+
+- Total Watch Time:
+
+- Explicit User Feedback: The total number of explicitly liked or disliked videos
+
+24) Prediction pipeline at serving. 2 ML models used consecutively. The first one will generate candidates via a lightweight ML model, the second one will score and rank them via a heavier model.
+
+![](./images/082.png)
+
+25) The prediction pipeline has the following 3 components.
+
+- Candidate generation
+
+- Scoring
+
+- Reranking
+
+26) Candidate Generation
+
+- The goal of Candidate generation is to narrow down the videos from billions to thousands.
+
+- We prioritize efficiency over accuracy at this phase and we don't care false positives.
+
+- To keep candidate generation fast, we choose a model which doesn't rely on video features. In adddition to this, the model should handle new users. **Two tower neural networks** are pretty useful in this phase.
+
+- A user's embedding is computed. Then, a nearest neigbor service is run to retrieve the most similar videos. The retrieved videos are ranked based on similarity in the embedding space and returned as the output.
+
+![](./images/083.png)
+
+27) In practice, companies tend to run many parallel candidate generation services based on trending, popular and relevant videos. Using many candidate generation services improve the performance.
+
+![](./images/084.png)
+
+28) Scoring component is also known as ranking. Scoring is prioritizing accuracy over efficiency. Video features are taken into account. Two tower neural networks are also used in this phase with video features. Scoring component is taking user and candidate videos as input, scores each video and outputs a ranked list of videos.
+
+![](./images/085.png)
+
+29) Reranking is another component to rerank the output videos of scoring components. It does reranking according to below criteria.
+
+    - Region-restricted videos
+    - Video freshness
+    - Videos spreading misinformation
+    - Duplicate or near-duplicate videos
+    - Fairness and bias
+
+30) Challenges of a video recommendation system
+
+- Serving speed: The reason to use a two step solution is to be fast.
+
+- Precision: A lightweight model used to generate candidates, a heavier model used to create the output list
+
+- Diversity: Having different candidate generation services in parallel can bring diversity to our recommendations
+
+- Cold start problem:
+    - For new users, features like gender, age, location can be utilized.
+    - For new videos, new videos are presented to random users to collect interaction data
+
+31) Some more resources:
+
+- [Youtube RS Paper](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf) and [Blog Post](https://blog.youtube/inside-youtube/on-youtubes-recommendation-system/)
+- [Instagram RS](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)
+- [Seasonality in RS](https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6)
+
+
 
 
 
