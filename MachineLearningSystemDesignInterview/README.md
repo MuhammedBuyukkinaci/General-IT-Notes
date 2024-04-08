@@ -616,7 +616,33 @@
 - [Instagram RS](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)
 - [Seasonality in RS](https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6)
 
+# Event Recommendation System
 
+1) The design will be similar to [eventbrite](https://www.eventbrite.com/). Eventbrite is an event management and ticketing marketplace. The aim is to display a list of personalized events to users.
+
+2) Different approaches to recommendation systems. Showing popular items is an aeample of rule based systems. CB Filtering and CF are examples of embedding based solutions.
+
+![](./images/086.png)
+
+3) A book on [Learning to Rank(LTR)](https://livebook.manning.com/book/practical-recommender-systems/chapter-13/15). "LTR is a class of algorithmic techniques that apply supervised machine learning to solve ranking problems. The ranking problem can be formally defined as: "having a query and a list of items, what is the optimal ordering of the items from most relevant to least relevant to the query?""
+
+4) Pointwise LTR. Each item is predicted independently. The final ranking is achieved by sorting the predicted relevancy scores.
+
+![](./images/087.png)
+
+5) Pairwise LTR. Taking 2 items and finding which one is more relevant. Some popular algoritms are [RankNet](https://icml.cc/2015/wp-content/uploads/2015/06/icml_ranking.pd), [LambdaRank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/lambdarank.pdf) and [LambdaMart](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf)
+
+![](./images/088.png)
+
+6) Listwise LTR. Some popular listwise LTR algorithms are [SoftRank](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/SoftRankWsdm08Submitted.pdf), [Listnet](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf) and [AdaRank](https://dl.acm.org/doi/10.1145/1277741.1277809).
+
+![](./images/089.png)
+
+8) In general, listwise LTR and pairwise LTR perform better than pointwise LTR. But they are difficult to implement and train.
+
+9) The selected approach of LTR is pointwise as below.
+
+![](./images/090.png)
 
 
 
