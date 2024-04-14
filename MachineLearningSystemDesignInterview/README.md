@@ -644,6 +644,103 @@
 
 ![](./images/090.png)
 
+10) Available data in the system can be visualized like below:
+
+- Users
+
+![](./images/091.png)
+
+- Events
+
+![](./images/092.png)
+
+- Friendship
+
+![](./images/093.png)
+
+- Interactions
+
+![](./images/094.png)
+
+11) Event based recommendations are essentially different than movie recommendation or book recommendation. When an event is created, it will occur after a few days or weeks. When an event occurs, it shouldn't be recommended to other users because it pasted away. This is because of the fact that events are short-lived. Moreover, interaction data is limited. Due to these, event based recommendations suffer from cold start problem of new items(events).
+
+12) Due to the hard nature of event based recommendations, more effeorts should be put on feature engineering. We can generate different features such as below
+
+- Location related features
+
+- Time-related features
+
+- Social-related features
+
+- User-related features
+
+- Event related features
+
+13) Below is an example of location related features. Some of the features are elaborated.
+
+- Walk score: The measure of how hard to walk to the location of the event.
+
+- Walk score similarity: For a specific user, the difference between the walk score of an event and the average walk score of events that the user joined before.
+
+- Distance: The distance between the user's location and the event's location. Then, bucketize it.
+
+- Distance similarity: The difference between Distance depicted above and the average distance of a specific user in previous events
+
+![](./images/095.png)
+
+14) Below is an example of time related features.
+
+- Remaining time means the time between current time and the event time. Then, bucketize it.
+
+- Estimated travel time: The time required to go to the location of an event from the location of a user.
+
+- Similarity features are obtained as similar to walk score similarity and distance similarity of location based features
+
+![](./images/096.png)
+
+15) Social related features
+
+- How many people are attending this event?
+
+    - Number of users registered for this event
+    - The ratio of the total number of registered users to the number of impressions
+    - Registered user similarity: The difference between the number of registered users for the event in question and previously registered events
+
+- Features related to attendance by friends
+
+    - Number of the user's friends who registered for this event
+    - The ratio of the number of registered friends to the total number of friends
+    - Registered friend similarity: Difference between the number of registered friends for the event in question and previously registered events
+
+- Is the user invited to this event by others?
+
+    - The number of friends who invited this user to the event
+
+    - The number of fellow users who invited this person to the event
+
+- Is the event's host a friend of the user?
+
+- How often has the user attended previous events created by this host?
+
+16) User related features
+
+- Gender
+
+- Age
+
+17) Event related features
+
+- Price: Bucketize it.
+
+- Price Similarity: The difference between the price of an event and the average price of events attended by a specific user.
+
+- How similar is this event's description to previously registered descriptions? This feature might be noisy.
+
+18) An example of social, user and event related features
+
+19) What we did to create features is to generate embeddings of users and events.
+
+
 
 
 
