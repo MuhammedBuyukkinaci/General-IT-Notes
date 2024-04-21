@@ -736,7 +736,9 @@
 
 - How similar is this event's description to previously registered descriptions? This feature might be noisy.
 
-18) An example of social, user and event related features
+18) An example of social, user and event related features.
+
+![](./images/097.png)
 
 19) What we did to create features is to generate embeddings of users and events.
 
