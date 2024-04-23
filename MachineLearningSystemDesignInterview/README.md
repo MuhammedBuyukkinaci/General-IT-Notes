@@ -742,13 +742,167 @@
 
 19) What we did to create features is to generate embeddings of users and events.
 
+20) Some more topics to be discussed:
+
+- Batch vs Streaming Features: Batch features cover less frequently changing features such as gender and age. Streaming features are dynamic features that change more frequently such as the time difference between prediction time and event time.
+
+- Feature computation efficiency: Instead of computing distances between 2 points(location of the event and location of the user) explicitly, give them as input separately and expect the model to infer this information behind the scenes. Computing a distance on the fly might be time consuming
+
+- Using a decay factor: Think of it like an exponential smoothing. Assign more weights to latest interactions.
+
+- Representation Learning: Represent the features of event as an embedding, represent the features of a user as an embedding.
+
+21) [A small video on Logistic Regression](https://www.youtube.com/watch?v=yIYKR4sgzI8&ab_channel=StatQuestwithJoshStarmer)
+
+22) Continual learning, also known as lifelong learning or incremental learning, is a machine learning paradigm where a model learns continuously over time from a stream of data, adapting to new information while retaining previously acquired knowledge. Unlike traditional batch learning approaches where models are trained on fixed datasets and then deployed without further updates, continual learning models are designed to continually update their knowledge as new data becomes available.
+
+23) NN's are more preferrable over Gradient Boosting Algorithms. Continual learning is possible in NN's.
+
+24) Input pair is composed of user embedding and event embedding. Output is whether a user registered for an event or not. If registered, label is 1. Otherwise, label is 0.
+
+![](./images/098.png)
+
+25) To solve class imbalance problem, choose one of the followings
+
+- Use focal loss or class balanced loss
+
+- Undersample the majority class
+
+26) MRR means Mean Reciprocal Rank. It is a metric used in information retrieval. It focuses on the first relevant item in the list, which is suitable for systems that look for only one relevant item. In an event recommendation system, many events might be relevant to a user. Thus, MRR can't be the best metric. An MRR example.
+
+```python
+
+def reciprocal_rank(rank_list):
+    """Calculate the reciprocal rank for a given ranked list of items."""
+    for i, item in enumerate(rank_list, 1):
+        if item == 1:  # Assuming relevant items are labeled as 1
+            return 1.0 / i
+    return 0.0  # If no relevant item is found in the list
 
 
+def mean_reciprocal_rank(rankings):
+    """Calculate the Mean Reciprocal Rank (MRR) for a list of query rankings."""
+    total_rr = 0.0
+    for rank_list in rankings:
+        rr = reciprocal_rank(rank_list)
+        print(rr)
+        total_rr += rr
+    return total_rr / len(rankings)
 
 
+# Example rankings for three queries (binary relevance: 1 for relevant, 0 for irrelevant)
+rankings = [
+    [0, 0, 1, 0, 1],  # Query 1: Relevant items at positions 3 and 5
+    [0, 1, 0, 0, 0],  # Query 2: Relevant item at position 2
+    [0, 0, 0, 0, 0],  # Query 3: No relevant items
+]
+
+# 0.333333333333
+# 0.5
+# 0.0
+# ('Mean Reciprocal Rank (MRR):', 0.277777777778)
+
+# Calculate MRR for the example rankings
+mrr = mean_reciprocal_rank(rankings)
+```
+
+27) mAP is another metric to be used in IR. mAP works only when relevancy scores are binary. In our case, relevancy score is binary, corresponding to whether a user is registered or not. Therefore, mAP is an offline metric that we look for.
+
+```python
+def average_precision(relevant_items):
+    """Calculate the Average Precision (AP) for a single query."""
+    precision_sum = 0.0
+    num_relevant = 0.0
+    temp_dict = {}
+    for i, item in enumerate(relevant_items, 1):
+        if item == 1:  # Assuming relevant items are labeled as 1
+            num_relevant += 1
+            temp_dict[str(i)] = num_relevant / i
+    if num_relevant == 0:
+        return 0.0
+    return sum(temp_dict.values())/num_relevant
+
+def mean_average_precision(relevance_list):
+    """Calculate the Mean Average Precision (mAP) for a list of query relevance lists."""
+    total_ap = 0.0
+    for relevant_items in relevance_list:
+        ap = average_precision(relevant_items)
+        print(ap)
+        total_ap += ap
+    return total_ap / len(relevance_list)
 
 
+# Example relevance lists for three queries (binary relevance: 1 for relevant, 0 for irrelevant)
+relevance_lists = [
+    [1, 0, 0, 1, 0],  # Query 1: Relevant items at positions 1 and 4
+    [0, 1, 1, 0, 0],  # Query 2: Relevant items at positions 2 and 3
+    [0, 0, 1, 0, 0],  # Query 3: Relevant item at position 3
+]
 
+# Calculate mAP for the example relevance lists
+mAP = mean_average_precision(relevance_lists)
+print("Mean Average Precision (mAP):", mAP)
+
+# 0.75
+# 0.583333333333
+# 0.333333333333
+# ('Mean Average Precision (mAP):', 0.555555555556)
+
+
+```
+
+28) nDCG works when relevancy scores aren't binary. Thus, it isn't our metric in event recommendation.
+
+29) Below are some online metrics to consider:
+
+- Click-through rate (CTR)
+- Conversion rate
+- Bookmark rate
+- Revenue lift
+
+30) Our design composes of 2 pipelines, online learning pipeline and prediction pipeline.
+
+![](./images/099.png)
+
+31) Online learning pipeline is responsible for continously training new models by incorporating new data, evaluating the trained models and deploying them.
+
+32) Event filtering service of prediction pipeline. It is responsible for subsetting the search space based on event locations, event type(concert) etc.
+
+![](./images/100.png)
+
+33) Ranking service workflow. It takes the anchor user and candidate events and outputs a prediction score and ranks them according to prediction scores.
+
+![](./images/101.png)
+
+34) References of the chapter
+
+- Learning to rank methods. https://livebook.manning.com/book/practical-recommender-systems/chapter-13/53.
+- RankNet paper. https://icml.cc/2015/wp-content/uploads/2015/06/icml_ranking.pd f.
+- LambdaRank paper. https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/lambdarank.pdf.
+- LambdaMART paper. https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf.
+- SoftRank paper. https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/SoftRankWsdm08Submitted.pdf.
+- ListNet paper. https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2007-40.pdf.
+- AdaRank paper. https://dl.acm.org/doi/10.1145/1277741.1277809.
+- Batch processing vs stream processing. https://www.confluent.io/learn/batch-vs-real-time-data-processing/#:~:text=Batch%20processing%20is%20when%20the,data%20flows%20through%20a%20system.
+- Leveraging location data in ML systems. https://towardsdatascience.com/leveraging-geolocation-data-for-machine-learning-essential-techniques-192ce3a969bc#:~:text=Location%20data%20is%20an%20important,based%20on%20your%20customer%20data.
+- Logistic regression. https://www.youtube.com/watch?v=yIYKR4sgzI8.
+- Decision tree. https://careerfoundry.com/en/blog/data-analytics/what-is-a-decision-tree/.
+- Random forests. https://en.wikipedia.org/wiki/Random_forest.
+- Bias/variance trade-off. http://www.cs.cornell.edu/courses/cs578/2005fa/CS578.bagging.boosting.lecture.pdf.
+- AdaBoost. https://en.wikipedia.org/wiki/AdaBoost.
+- XGBoost. https://xgboost.readthedocs.io/en/stable/.
+- Gradient boosting. https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/.
+- XGBoost in Kaggle competitions. https://www.kaggle.com/getting-started/145362.
+GBDT. https://blog.paperspace.com/gradient-boosting-for-classification/.
+- An introduction to GBDT. https://www.machinelearningplus.com/machine-learning/an-introduction-to-gradient-boosting-decision-trees/.
+- Introduction to neural networks. https://www.youtube.com/watch?v=0twSSFZN9Mc.
+- Bias issues and solutions in recommendation systems. https://www.youtube.com/watch?v=pPq9iyGIZZ8.
+- Feature crossing to encode non-linearity. https://developers.google.com/machine-learning/crash-course/feature-crosses/encoding-nonlinearity.
+- Freshness and diversity in recommendation systems. https://developers.google.com/machine-learning/recommendation/dnn/re-ranking.
+- Privacy and security in ML. https://www.microsoft.com/en-us/research/blog/privacy-preserving-machine-learning-maintaining-confidentiality-and-preserving-trust/.
+- Two-sides marketplace unique challenges. https://www.uber.com/blog/uber-eats-recommending-marketplace/.
+- Data leakage. https://machinelearningmastery.com/data-leakage-machine-learning/.
+- Online training frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
 
 
 
