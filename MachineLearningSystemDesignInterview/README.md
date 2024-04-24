@@ -893,7 +893,7 @@ print("Mean Average Precision (mAP):", mAP)
 - XGBoost. https://xgboost.readthedocs.io/en/stable/.
 - Gradient boosting. https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/.
 - XGBoost in Kaggle competitions. https://www.kaggle.com/getting-started/145362.
-GBDT. https://blog.paperspace.com/gradient-boosting-for-classification/.
+- GBDT. https://blog.paperspace.com/gradient-boosting-for-classification/.
 - An introduction to GBDT. https://www.machinelearningplus.com/machine-learning/an-introduction-to-gradient-boosting-decision-trees/.
 - Introduction to neural networks. https://www.youtube.com/watch?v=0twSSFZN9Mc.
 - Bias issues and solutions in recommendation systems. https://www.youtube.com/watch?v=pPq9iyGIZZ8.
@@ -903,6 +903,69 @@ GBDT. https://blog.paperspace.com/gradient-boosting-for-classification/.
 - Two-sides marketplace unique challenges. https://www.uber.com/blog/uber-eats-recommending-marketplace/.
 - Data leakage. https://machinelearningmastery.com/data-leakage-machine-learning/.
 - Online training frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
+
+# Ad Click Prediction on Social Platforms
+
+1) "Online advertising allows advertisers to bid and place their advertisements (ads) on a platform for measurable responses such as impressions, clicks, and conversions. Displaying relevant ads to users is a fundamental for many online platforms such as Google, Facebook, and Instagram."
+
+![](./images/102.png)
+
+2) THe training dataset is constucted via user and ad data. If an ad is clicked, it is labeled as positive. There might be some strategies to label negatives such as viewing an ad for a certain time but not clicking, labeling all impressions before a click as negatives, labeling a hide/block reaction as negative etc. 
+
+3) Continual learning is a necessity. Event a 5 minute delay might worsen the performance.
+
+4) A high level design
+
+![](./images/103.png)
+
+5) A pointwise Learning To Rank approach
+
+![](./images/104.png)
+
+6) Available data are listed below
+
+- Ads:
+
+![](./images/105.png)
+
+- Users:
+
+![](./images/106.png)
+
+- Interaction data covering click, conversion and impression:
+
+![](./images/107.png)
+
+7) Some features to be engineered from ad data
+
+- ID's: Advertise ID, Campaign ID, Ad ID and Ad Group Id to represented as embedding layer separately.
+
+- Image/Video: A feature vector to be generated via a pretrained model.
+
+- Ad category and subcategory such as Arts & Entertainment, Autos & Vehicles, Beauty & Fitness.
+
+- Impressions and click numbers:
+
+    - Total Impression/Click on Ad
+    - Total Impression/Click on ads supplied by an advertiser
+    - Total impressions of the campaign
+
+![](./images/108.png)
+
+8) User features
+
+- Demographics: Age, gender, city, county
+
+- Contextual information: Time of day, device
+
+- Interaction-related features: Clicked ads, user's historical engagement statistics
+
+    - Clicked ads mean previosly clicked ads
+    - Historical engagement statistics means the more a user clicked in the past, the more a user clicks in the future.
+
+![](./images/109.png)
+
+9) High cardinality may lead to thousands or millions of features mostly filled with zeroes.
 
 
 
