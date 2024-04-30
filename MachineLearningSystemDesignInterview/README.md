@@ -912,7 +912,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 2) THe training dataset is constucted via user and ad data. If an ad is clicked, it is labeled as positive. There might be some strategies to label negatives such as viewing an ad for a certain time but not clicking, labeling all impressions before a click as negatives, labeling a hide/block reaction as negative etc. 
 
-3) Continual learning is a necessity. Event a 5 minute delay might worsen the performance.
+3) Continual learning is a necessity. Even a 5 minute delay might worsen the performance.
 
 4) A high level design
 
@@ -940,7 +940,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 - ID's: Advertise ID, Campaign ID, Ad ID and Ad Group Id to represented as embedding layer separately.
 
-- Image/Video: A feature vector to be generated via a pretrained model.
+- Image/Video: A feature vector to be generated via a pretrained model. SimCLR can be used.
 
 - Ad category and subcategory such as Arts & Entertainment, Autos & Vehicles, Beauty & Fitness.
 
@@ -967,5 +967,96 @@ print("Mean Average Precision (mAP):", mAP)
 
 9) High cardinality may lead to thousands or millions of features mostly filled with zeroes.
 
+10) Different options can be used to solve the problem like below:
 
+- Logistic regression
+- Feature crossing + logistic regression
+- Gradient boosted decision trees
+- Gradient boosted decision trees + logistic regression
+- Neural networks
+- Deep & Cross networks
+- Factorization Machines
+- Deep Factorization Machines
+
+11) In ad prediction system, features interact with each other a lot. Hence, LR doesn't capture this and other complex relationships.
+
+12) Feature Crossing can be useful in addition to original features.
+
+![](./images/110.png)
+
+13) Gradient Boosting isn't appropriate for continual learning.
+
+14) In addition to feature selection, gradient boosting can be used for the purpose of feature extraction as shown below. Feature extraction approach is making continual learning possible. However, it is slower to extract relevant features for continual learning because fine-tuning GBDT models on new data takes time, which slows down continual learning overall.
+
+![](./images/111.png)
+
+15) A two tower neural network can be a posbbile solution but it doesn't capture feature interactions due to limited data access. 
+
+![](./images/112.png)
+
+16) Deep & Cross Network (DCN) can be used as an alternative but it isn't an ideal solution.
+
+- Deep network: Learns complex and generalizable features using a Deep Neural Network (DNN) architecture.
+
+- Cross network: Automatically captures feature interactions and learns good feature crosses.
+
+![](./images/116.png)
+
+17) Factorization machines is an extension to logistic regression. In addition to regular weights of logistic regression, the pairwise interactions are also integrated. However, it doesn't capture high order features unlike a neural network.
+
+![](./images/113.png)
+
+![](./images/114.png)
+
+18) Deep Factorization Machines (DeepFM) is a better solution than factorization machines.
+
+![](./images/115.png)
+
+19) Deep & Cross Network and DeepFM are widely used in the industry.
+
+20) The labeling strategy is as follows. When an ad is shown to a user(impression), if the user clicks less than t seconds, it is regarded as positive. Otherwise, it is negative.
+
+![](./images/117.png)
+
+21) Cross entropy loss is the loss function to track.
+
+22) The below is listing online metrics:
+
+    - CTR
+    - Conversion rate
+    - Revenue lift
+    - Hide rate
+
+23) Serving is composed of 3 pipelines:
+
+- Data Preparation pipeline:
+
+- Continual Learning pipeline:
+
+- Prediction pipeline:
+
+![](./images/118.png)
+
+24) Continual learning is enabling us to continuously replace the existent model with a new one if the new one outperforms the former one.
+
+26) A candidate generation service is used. Advertisers determine target criteria via such as age, gender and country etc. Then, the subsetted ads will be fed into ranking service. Ultimately, reranking service is used to output the final list based on heuristics and business logic such as removing similar ads from the output list for more diversity among ads.
+
+27) References:
+
+- Addressing delayed feedback. https://arxiv.org/pdf/1907.06558.pdf.
+- AdTech basics. https://advertising.amazon.com/library/guides/what-is-adtech.
+- SimCLR paper. https://arxiv.org/pdf/2002.05709.pdf.
+- Feature crossing. https://developers.google.com/machine-learning/crash-course/feature-crosses/video-lecture.
+- Feature extraction with GBDT. https://towardsdatascience.com/feature-generation-with-gradient-boosted-decision-trees-21d4946d6ab5.
+- DCN paper. https://arxiv.org/pdf/1708.05123.pdf.
+- DCN V2 paper. https://arxiv.org/pdf/2008.13535.pdf.
+- Microsoft’s deep crossing network paper. https://www.kdd.org/kdd2016/papers/files/adf0975-shanA.pdf.
+- Factorization Machines. https://www.jefkine.com/recsys/2017/03/27/factorization-machines/.
+- Deep Factorization Machines. https://d2l.ai/chapter_recommender-systems/deepfm.html.
+- Kaggle’s winning solution in ad click prediction. https://www.youtube.com/watch?v=4Go5crRVyuU.
+- Data leakage in ML systems. https://machinelearningmastery.com/data-leakage-machine-learning/.
+- Time-based dataset splitting. https://www.linkedin.com/pulse/time-based-splitting-determining-train-test-data-come-manraj-chalokia/?trk=public_profile_article_view.
+- Model calibration. https://machinelearningmastery.com/calibrated-classification-model-in-scikit-learn/.
+- Field-aware Factorization Machines. https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf.
+- Catastrophic forgetting problem in continual learning. https://www.cs.uic.edu/~liub/lifelong-learning/continual-learning.pdf.
 
