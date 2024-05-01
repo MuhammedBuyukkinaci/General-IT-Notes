@@ -1060,3 +1060,92 @@ print("Mean Average Precision (mAP):", mAP)
 - Field-aware Factorization Machines. https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf.
 - Catastrophic forgetting problem in continual learning. https://www.cs.uic.edu/~liub/lifelong-learning/continual-learning.pdf.
 
+# Similar Listings on Vacation Rental Platforms
+
+1) The aim is to find similar listings to an anchor listing. There will be a similar listing carousel on a listing detail page. The project will work in the same way for anonymous users and registered users. No personalization is in use.
+
+![](./images/119.png)
+
+2) Similar listings in the embedding space
+
+![](./images/120.png)
+
+3) Available data:
+
+- User data
+
+![](./images/121.png)
+
+- Listing Data
+
+![](./images/122.png)
+
+- User-Listing Interaction Data
+
+![](./images/123.png)
+
+4) A search session is composed of clicked listings and a final booked listing. It is visualized below.
+
+![](./images/124.png)
+
+    - Intput-Outpur pairs
+
+    ![](./images/125.png)
+
+5) An embedding layer is learn the vector representations of listings. The vectors are intialized randomly and updated thanks to training. No content data is utilized. The model is trained daily.
+
+![](./images/126.png)
+
+6) How to create positive and negative labels. Positives are generated from co-click data. Negatives are randomly chosen listings for an anchor listing.
+
+![](./images/127.png)
+
+7) How to compute loss
+
+![](./images/128.png)
+
+8) Loss computations differ among positives and negatives.
+
+![](./images/129.png)
+
+9) In addition to co-clicked labeling positive pairs, we should also an anchor listing and a booked listing as a positive pair to direct the training to learning booking.
+
+![](./images/130.png)
+
+10) In addition to integrating booked listings to the training, hard negatives should be integrated to the labeled data. Hard negatives mean negative(dissimilar) pairs whose region and some other characteristics are the same. The new loss function is displayed below.
+
+![](./images/131.png)
+
+11) Average rank of eventually booked listing can be used as offline evaluation metric. Let's assume there are 7 clicks in a session and the last one is a booking. We took the first click as anchor listing. Compute the similarities between the anchor listing and the following 6 listings. Rank the similarity scores in a descending order and take a look at the position of eventually booked listing. The more our ML model assigns a high rank to eventually booked listing, the more it means that our ML model captures booking relationship. Average the rank of eventually booked listing in validation data as a metric.
+
+![](./images/132.png)
+
+12) Some online metrics to use
+
+- Click-through rate (CTR)
+- Session book rate
+
+13) At serving, we have 3 pipelines.
+
+- Training pipeline: Responsible for training with new data. Its output is an ML model.
+
+- Indexing pipeline: Responsible for creating the embeddings of listings. When a new ML model is created, existent embeddings are recreated with this ML model.
+
+- Prediction pipeline:
+    - Embedding Fetcher Service: Grabbing the learned embedding of a visited listing.
+    - Nearest neighbor service: Dividing the embedding space into clusters and easen the searching.(IMHO, it should be a part of indexing pipeline to precompute the similar listings of an andhor listing, which is a batch operation instead of an online operation )
+    - Reranking service: Responsible for adding business logics such as dropping listings whose cities aren't the same as the city of anchor listing, price upper limit etc.
+
+14) References:
+
+- Instagram’s Explore recommender system. https://ai.facebook.com/blog/powered-by-ai-instagrams-explore-recommender-system.
+- Listing embeddings in search ranking. https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e.
+- Word2vec. https://en.wikipedia.org/wiki/Word2vec.
+- Negative sampling technique. https://www.baeldung.com/cs/nlps-word2vec-negative-sampling.
+- Positional bias. https://eugeneyan.com/writing/position-bias/.
+- Random walk. https://en.wikipedia.org/wiki/Random_walk.
+- Random walk with restarts. https://www.youtube.com/watch?v=HbzQzUaJ_9I.
+- Seasonality in recommendation systems. https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6.
+
+
+![](./images/132.png)
