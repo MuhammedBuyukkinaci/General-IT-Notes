@@ -1136,6 +1136,8 @@ print("Mean Average Precision (mAP):", mAP)
     - Nearest neighbor service: Dividing the embedding space into clusters and easen the searching.(IMHO, it should be a part of indexing pipeline to precompute the similar listings of an andhor listing, which is a batch operation instead of an online operation )
     - Reranking service: Responsible for adding business logics such as dropping listings whose cities aren't the same as the city of anchor listing, price upper limit etc.
 
+![](./images/133.png)
+
 14) References:
 
 - Instagram’s Explore recommender system. https://ai.facebook.com/blog/powered-by-ai-instagrams-explore-recommender-system.
@@ -1148,4 +1150,32 @@ print("Mean Average Precision (mAP):", mAP)
 - Seasonality in recommendation systems. https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6.
 
 
-![](./images/132.png)
+# Personalized News Feed
+
+1) It can be recognized as Facebook timeline or Twitter's *Special for you* feature. It will show the unseen posts and posts with unseen comments.
+
+![](./images/134.png)
+
+2) Framing the problem as ML problem can be challenging. There 3 things that can be optimized.
+
+- Implicit feedbacks: Click and Dwell time
+- Explicit feedbacks: Like, Share
+- Maximize a weighted score based on both explicit and implicit feedbacks. Click, dwell time, like, share, hide, block etc.
+
+3) A combined weighted score can have different weights for different reactions. One example is below:
+
+![](./images/135.png)
+
+4) The advantage of combined weighted score is that it enables business owners to modify the objective easily.
+
+5) Input output diagram
+
+![](./images/136.png)
+
+6) Pointwise Learning To Rank approach is simple but effective solution. We employ several binary classifiers to obtain a score of explicit and implicit feedbacks. Then, obtain a weighted final score based the outputs of several binary classifiers
+
+![](./images/137.png)
+
+7) How to compute engagement scores from several binary classifiers by weighting.
+
+![](./images/138.png)
