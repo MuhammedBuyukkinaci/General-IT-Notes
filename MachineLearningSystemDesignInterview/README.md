@@ -1179,3 +1179,126 @@ print("Mean Average Precision (mAP):", mAP)
 7) How to compute engagement scores from several binary classifiers by weighting.
 
 ![](./images/138.png)
+
+8) Available data is here
+
+- Users
+
+![](./images/139.png)
+
+- Posts
+
+![](./images/140.png)
+
+- User post interactions
+
+![](./images/141.png)
+
+- Friendship
+
+![](./images/142.png)
+
+9) Feature engineering can be carried out among
+
+- Post
+
+- User
+
+- User-Post Affinities
+
+10) Some features that can be extracted from a **Post**
+
+- Textual content: Text to be converted into a numerical representation thanks to a pretrained context aware network like BERT:
+- Images or videos: Converting an image or a video to a numerical representation via a pretrained model such as ResNet and [CLIP](https://openai.com/index/clip)
+- Reactions: The number of likes, shares, replies, etc., of a post. People tend to engage with popular contents.
+- Hashtags: Convert hashtag to a numerical representation via a pretrained model such as Word2Vec or TFIDF model. Transformer models aren't necessary in this scenario because context isn't important. In addition, transformer models are hard to deal with compared to Word2Vec and TFIDF.
+- Post's age: Bucketize it and then apply one hot encoding
+
+![](./images/143.png)
+
+11) Some features that can be extracted from a **User**
+
+- Demographics: Age, gender, country
+- Contextual information: Device, time of the day
+- User-post historical interactions: All posts liked by a user are represented as a list of ID's. User's previous engagements carry important signals.
+- Being mentioned in the post: Whether mentioned in a post or not. Users tend to pay more attention to posts in which they are mentioned.
+
+![](./images/144.png)
+
+12) Below are som features that can be extracted from User-author affinities.
+
+- Like/click/comment/share rate: The percentage of the user's like reaction to the author of the post in previous posts.
+
+- Length of friendship: How manys days the user and the author have been friends
+
+- Close friends and family: A binary flag whether the author of the post is a close friend or relative.
+
+![](./images/145.png)
+
+13) For modeling, we have 2 options.
+
+- N independent networks. Hard to train. Hard to maintain. Hard to find labeled data for infrequent class such as hide or block.
+
+![](./images/146.png)
+
+- Multitask DNN. There are shared layers. One post may have multiple labels.
+
+![](./images/147.png)
+
+14) Explicit reactions to a post might be much less than implicit reactions. Therefore, we should integrate implicit labels to the multitask DNN. For this, we can employ skip and dwell time flags. Skip flag is a binary flag meaning whether a user spends 0.5 seconds on a post or not. Dwell time means how many seconds a user dedicates to a post.
+
+![](./images/148.png)
+
+15) To construct training data, we take user features, post features, affinity features as input and label the class according to our criteria.
+
+- Training data for like reaction. Click, share and comment are similar to like.
+
+![](./images/149.png)
+
+- Dwell time labeling
+
+![](./images/150.png)
+
+16) Loss function is the summation of classification head and regression heads. For classification tasks(click, share, comment etc), binary cross entropy loss can be used. For regression tasks(dwell time), one of MAE, MSE, Huber loss can be chosen.
+
+![](./images/151.png)
+
+17) ROC AUC should be chosend as offline metric.
+
+18) Online metrics to consider
+
+- Click-through rate (CTR)
+- Reaction rate
+- Total time spent
+- User satisfaction rate found in a user survey
+
+19) Serving is composed of 2 pipelines. Data pipeline and prediction pipeline. 
+
+- Data pipeline: Taking data from streams, computing batch features and store it on a feature store.
+- Prediction pipeline: It is composed of 3 services:
+    - Retrieval service: Taking unseen posts and posts with unseen comments and feeding them to ranking service
+    - Ranking service: Taking batch features, computing online features and makes predictions to candidate posts for a user
+    - Reranking service: Applying business logics and user filters. If a user expresses interest to a topic such as soccer, this service assigns more rank to posts related to soccer.
+
+![](./images/152.png)
+
+20) References
+
+- News Feed ranking in Facebook. https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/.
+- Twitter’s news feed system. https://blog.twitter.com/engineering/en_us/topics/insights/2017/using-deep-learning-at-scale-in-twitters-timelines.
+- LinkedIn’s News Feed system LinkedIn. https://engineering.linkedin.com/blog/2020/understanding-feed-dwell-time.
+- BERT paper. https://arxiv.org/pdf/1810.04805.pdf.
+- ResNet model. https://arxiv.org/pdf/1512.03385.pdf.
+- CLIP model. https://openai.com/blog/clip/.
+- Viterbi algorithm. https://en.wikipedia.org/wiki/Viterbi_algorithm.
+- TF-IDF. https://en.wikipedia.org/wiki/Tf%E2%80%93idf.
+- Word2vec. https://en.wikipedia.org/wiki/Word2vec.
+- Serving a billion personalized news feed. https://www.youtube.com/watch?v=Xpx5RYNTQvg.
+- Mean absolute error loss. https://en.wikipedia.org/wiki/Mean_absolute_error.
+- Means squared error loss. https://en.wikipedia.org/wiki/Mean_squared_error.
+- Huber loss. https://en.wikipedia.org/wiki/Huber_loss.
+- A news feed system design. https://liuzhenglaichn.gitbook.io/system-design/news-feed/design-a-news-feed-system.
+- Predict viral tweets. https://towardsdatascience.com/using-data-science-to-predict-viral-tweets-615b0acc2e1e.
+- Cold start problem in recommendation systems. https://en.wikipedia.org/wiki/Cold_start_(recommender_systems).
+- Positional bias. https://eugeneyan.com/writing/position-bias/.
+- Determine retraining frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
