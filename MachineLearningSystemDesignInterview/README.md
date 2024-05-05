@@ -1302,3 +1302,79 @@ print("Mean Average Precision (mAP):", mAP)
 - Cold start problem in recommendation systems. https://en.wikipedia.org/wiki/Cold_start_(recommender_systems).
 - Positional bias. https://eugeneyan.com/writing/position-bias/.
 - Determine retraining frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
+
+# People You May Know
+
+1) PYMK(People you may know) is feature similar to Facebook friends, Twitter accounts and Linkedin people etc.
+
+2) The feature designed below is similar to Linkedin's PYMK mostly.
+
+3) The goal of the design is to maximize connections among people.
+
+4) Input output diagram
+
+![](./images/153.png)
+
+5) Taking features of input 1 and input 2 and building a binary classification model doesn't capture the complexity of relationships.
+
+![](./images/154.png)
+
+5) It is reasonable to integrate connection data aka one-hop neighborhood. If we use a pointwise LTR approach without the knowledge of one-hop neighborhood data, we are discarding a meaningful informating. If one hop neighborhood data is taken into consideration, it deciphers a lot of information.
+
+![](./images/155.png)
+
+6) Integrating one hop neighborhood data creates graph as below. In a graph, there are edges(connections) and nodes(people).
+
+![](./images/156.png)
+
+7) On a graph, many types of predictions can be carried out:
+
+- Graph-level prediction: "For example, given a chemical compound as a graph, we predict whether the chemical compound is an enzyme or not."
+- Node-level prediction: "For example, given a social network graph, we predict if a specific user (node) is a spammer."
+- Edge-level prediction: "Predict if an edge is present between two nodes. For example, given a social network graph, we predict if two users are likely to connect."
+
+8) PMYK is a prediction of edge level because it is aimed to predict whether a person should be recommended to another one, which is a connection(edge).
+
+9) In addition to features extracted from users, information extracted from a graph is also an input of the machine learning model. Input is composed of User A, User B and the graph. Output is whether a relationship exists or not.
+
+![](./images/157.png)
+
+10) Available data
+
+- Users: Demographics data + below data
+
+![](./images/158.png)
+
+- Connections: Showing established connections between two people and its time
+
+![](./images/159.png)
+
+- Interactions: Different types of interactions similar to the below.
+
+![](./images/160.png)
+
+11) The features that can be extracted from user data
+
+- Demographics: age, gender, city, country
+
+- The number of connections, followers, followings and pending requests.
+
+- Account's age: How long the account exists. Recent accounts are less reliable.
+
+- The number of reactions: How many likes/shares a user receives over a period.
+
+12) The features that can be extracted from use-ruser affinities(the graph)
+
+- Education and work affinity:
+
+    - Schools in common: People tend to connect with people having the same schoold background
+    - Contemporaries at school: Overlapping years at schoold
+    - Same major: Whether two users have the same major degree like engineering or marketing or nor.
+    - Number of companies in common:
+    - Same industry: Whether two users work in the same industry or not
+
+- Social affinity:
+
+    - Profile visits: The number of times a user visited the other
+    - Number of connections in common, aka mutual connections: The most predictive feature
+    - Time discounted mutual connections: Describe in the below image
