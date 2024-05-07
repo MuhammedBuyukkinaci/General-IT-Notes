@@ -1378,3 +1378,88 @@ print("Mean Average Precision (mAP):", mAP)
     - Profile visits: The number of times a user visited the other
     - Number of connections in common, aka mutual connections: The most predictive feature
     - Time discounted mutual connections: Describe in the below image
+
+![](./images/161.png)
+
+13) Graph neural networks(GNN) are capable of handling graph data. Therefore, it is the choice. GNN' can perform graph level, node level and edge level predictions.
+
+14) Input graph can use information from nodes and edges both. Information such as gender, age can be stored in nodes. Attributes such as user user characteristics, number of common schools are stored in edges. Given input graph and associated features, GNN produces **node embeddings** for each node.
+
+![](./images/162.png)
+
+15) When node embeddings are obtained, they can be used to measure the similarity between 2 nodes via a dot product or cosine similarity.
+
+16) There are different algorithms such as GCN, GraphSAGE, GAT, GIT in the field of Graph Neural Networks.
+
+17) The stage of the graph at time t will be given to the model as input and the model is going to predict the graph at time t + 1.
+
+18) The dataset will be constructed in 3 steps.
+
+- Create a snapshot of the graph at time t
+
+![](./images/163.png)
+
+- Compute initial node features and edge features of the graph
+
+    - Initial node features
+
+    ![](./images/164.png)
+
+    - Initial edge features between existing connections.
+
+    ![](./images/165.png)
+
+- Create labels: The snapshot at time t and the snapshot at time t+1 will be used to create labeled data. Then, labels will be extracted according to the changes.
+
+![](./images/166.png)
+
+![](./images/167.png)
+
+19) An appropriate loss function should be chosen to train GNN.
+
+20) It is a binary classification problem depicting whether a connection will be existent or not. Thus, ROCAUC can be chosen to evaluate the performance of the model.
+
+21) mAP(Mean Average Precision) is good metric to evaluate the performance of recommendations because the target is binary.
+
+22) *The total number of connection requests accepted in the last X days* should be preferred over *The total number of connection requests sent in the last X days* as online metric because the former makes more sense. The latter doesn't capture how well a model performs.
+
+23) According to Meta, 92% of friendships comes from friends of friends.
+
+24) In order to increase the efficiency, 2 things should be employed.
+
+    - Utilizing FoF: Instead of finding similarities across the whole space, feed only friends of friends as candidates and choose the high scoring ones.
+    ![](./images/168.png)
+    - Batch prediction: If we choose an online prediction, the system might not respond to requests well. Thus, we should compute the candidates in batch prediction before serving via GET endpoints.
+    ![](./images/169.png)
+
+25) System design is composed of 2 pipelines.
+
+- PYMK generation pipeline
+- Prediction pipeline
+
+![](./images/170.png)
+
+26) More topics to consider
+
+- Pre-computing PYMK only for active users.
+- Using a lightweight ranker to reduce the number of generated candidates into a smaller set before the scoring service assigns them a score.
+- Using a re-ranking service to add diversity to the final PYMK list.
+- Personalized random walk [8] is another method often used to make recommendations. Since it's efficient, it is a helpful way to establish a baseline.
+- Bias issue. Frequent users tend to have greater representation in the training data than occasional users. The model can become biased towards some groups and against others due to uneven representation in the training data. For example, in the PYMK list, frequent users might be recommended to other users at a higher rate. Subsequently, these users can make even more connections, making them even more represented in the training data [9].
+- When a user ignores recommended connections repeatedly, the question arises of how to take them into account in future re-ranks. Ideally, ignored recommendations should have a lower ranking [9].
+- A user may not send a connection request immediately when we recommend it to them. It may take a few days or weeks. So, when should we label a recommended connection as negative? In general, how would we deal with delayed feedback in recommendation systems [10]?
+
+27) References
+
+- Clustering in ML. https://developers.google.com/machine-learning/clustering/overview.
+- PYMK on Facebook. https://youtu.be/Xpx5RYNTQvg?t=1823.
+- Graph convolutional neural networks. http://tkipf.github.io/graph-convolutional-networks/.
+- GraphSage paper. https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf.
+- Graph attention networks. https://arxiv.org/pdf/1710.10903.pdf.
+- Graph isomorphism network. https://arxiv.org/pdf/1810.00826.pdf.
+- Graph neural networks. https://distill.pub/2021/gnn-intro/.
+- Personalized random walk. https://www.youtube.com/watch?v=HbzQzUaJ_9I.
+- LinkedIn’s PYMK system. https://engineering.linkedin.com/blog/2021/optimizing-pymk-for-equity-in-network-creation.
+- Addressing delayed feedback. https://arxiv.org/pdf/1907.06558.pdf.
+
+
