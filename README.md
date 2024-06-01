@@ -1038,3 +1038,5 @@ pip install -r requirements.txt
 
 14) [Electron](https://www.electronjs.org/) is a way to build desktop apps.
 
+15) [Playwright](https://playwright.dev/docs/api/class-playwright) is a powerful and popular end-to-end testing framework developed by Microsoft. It is used for automating web applications across different browsers. Playwright provides developers with the tools to write scripts that can perform a variety of actions within a browser, such as navigating web pages, clicking buttons, entering text, and verifying elements on the page. 
+
