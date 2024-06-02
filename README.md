@@ -218,6 +218,8 @@ index index.html index.htm;
 
 32) The content of index.html and index.htm will be returned if no match situation occurs. *index* directive is used not to show a 404 not found error message to clients.
 
+33) [Caddy](https://caddyserver.com/) is an alternative to NGINX.
+
 # MLFlow
 
 [Link 1](https://www.youtube.com/watch?v=859OxXrt_TI&ab_channel=InfoQ)
@@ -1039,4 +1041,9 @@ pip install -r requirements.txt
 14) [Electron](https://www.electronjs.org/) is a way to build desktop apps.
 
 15) [Playwright](https://playwright.dev/docs/api/class-playwright) is a powerful and popular end-to-end testing framework developed by Microsoft. It is used for automating web applications across different browsers. Playwright provides developers with the tools to write scripts that can perform a variety of actions within a browser, such as navigating web pages, clicking buttons, entering text, and verifying elements on the page. 
+
+16) [Plausible](https://plausible.io/vs-google-analytics) is an open source Google Analytics alternative.
+
+
+
 
