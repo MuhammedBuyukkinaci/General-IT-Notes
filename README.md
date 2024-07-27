@@ -931,7 +931,13 @@ def space_complexity_with_o_n(x):
 
 2) In command mode, **h**, **j**, **k**, **l** is used to move cursor. **h** moves the cursor to the left, **l** moves to cursor to the right. **k** moves the cursor to the above, **j** moves the cursor to the below. 
 
-3) `G` is used to go down and `gg` is used to go down.
+3) File and Screen wise commands:
+- `gg` is used to go to the beginning of a file.
+- `G` is used to go to the end of a file.
+- `H` is used to go to the start of the screen.
+- `M` is used to go to the middle of the screen
+- `L` is used to go to the end of the screen.
+
 
 4) `}` is used to skip the next code block. `{` is used to skip the former code block.
 
