@@ -54,6 +54,56 @@
 
 12) The most common reason why an ML model fails is data distribution shift.
 
+13) References:
+- Data warehouse. https://cloud.google.com/learn/what-is-a-data-warehouse.
+- Structured vs. unstructured data. https://signal.onepointltd.com/post/102gjab/machine-learning-libraries-for-tabular-data-problems.
+- Bagging technique in ensemble learning. https://en.wikipedia.org/wiki/Bootstrap_aggregating.
+- Boosting technique in ensemble learning. https://aws.amazon.com/what-is/boosting/.
+- Stacking technique in ensemble learning. https://machinelearningmastery.com/stacking-ensemble-machine-learning-with-python/.
+- Interpretability in Machine Mearning. https://blog.ml.cmu.edu/2020/08/31/6-interpretability/.
+- Traditional machine learning algorithms. https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/.
+- Sampling strategies. https://www.scribbr.com/methodology/sampling-methods/.
+- Data splitting techniques. https://machinelearningmastery.com/train-test-split-for-evaluating-machine-learning-algorithms/.
+- Class-balanced loss. https://arxiv.org/pdf/1901.05555.pdf.
+- Focal loss paper. https://arxiv.org/pdf/1708.02002.pdf.
+- Focal loss. https://medium.com/swlh/focal-loss-an-efficient-way-of-handling-class-imbalance-4855ae1db4cb.
+- Data parallelism. https://www.telesens.co/2017/12/25/understanding-data-parallelism-in-machine-learning/.
+- Model parallelism. https://docs.aws.amazon.com/sagemaker/latest/dg/model-parallel-intro.html.
+- Cross entropy loss. https://en.wikipedia.org/wiki/Cross_entropy.
+- Mean squared error loss. https://en.wikipedia.org/wiki/Mean_squared_error.
+- Mean absolute error loss. https://en.wikipedia.org/wiki/Mean_absolute_error.
+- Huber loss. https://en.wikipedia.org/wiki/Huber_loss.
+- L1 and l2 regularization. https://www.analyticssteps.com/blogs/l2-and-l1-regularization-machine-learning.
+- Entropy regularization. https://paperswithcode.com/method/entropy-regularization.
+- K-fold cross validation. https://en.wikipedia.org/wiki/Cross-validation_(statistics).
+- Dropout paper. https://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf.
+- Overview of optimization algorithm. https://ruder.io/optimizing-gradient-descent/.
+- Stochastic gradient descent. https://en.wikipedia.org/wiki/Stochastic_gradient_descent.
+- AdaGrad optimization algorithm. https://optimization.cbe.cornell.edu/index.php?title=AdaGrad.
+- Momentum optimization algorithm. https://optimization.cbe.cornell.edu/index.php?title=Momentum.
+- RMSProp optimization algorithm. https://optimization.cbe.cornell.edu/index.php?title=RMSProp.
+- ELU activation function. https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#elu.
+- ReLU activation function. https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#relu.
+- Tanh activation function. https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#tanh.
+- Sigmoid activation function. https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html#softmax.
+- FID score. https://en.wikipedia.org/wiki/Fr%C3%A9chet_inception_distance.
+- Inception score. https://en.wikipedia.org/wiki/Inception_score.
+- BLEU metrics. https://en.wikipedia.org/wiki/BLEU.
+- METEOR metrics. https://en.wikipedia.org/wiki/METEOR.
+- ROUGE score. https://en.wikipedia.org/wiki/ROUGE_(metric).
+- CIDEr score. https://arxiv.org/pdf/1411.5726.pdf.
+- SPICE score. https://arxiv.org/pdf/1607.08822.pdf.
+- Quantization-aware training. https://pytorch.org/docs/stable/quantization.html.
+- Model compression survey. https://arxiv.org/pdf/1710.09282.pdf.
+- Shadow deployment. https://christophergs.com/machine%20learning/2019/03/30/deploying-machine-learning-applications-in-shadow-mode/.
+- A/B testing. https://en.wikipedia.org/wiki/A/B_testing.
+- Canary release. https://blog.getambassador.io/cloud-native-patterns-canary-release-1cb8f82d371a.
+- Interleaving experiment. https://netflixtechblog.com/interleaving-in-online-experiments-at-netflix-a04ee392ec55.
+- Multi-armed bandit. https://vwo.com/blog/multi-armed-bandit-algorithm/.
+- ML infrastructure. https://www.run.ai/guides/machine-learning-engineering/machine-learning-infrastructure.
+- Interpretability in ML. https://fullstackdeeplearning.com/spring2021/lecture-6/.
+- Chip Huyen. Designing Machine Learning Systems: An Iterative Process for Production-Ready Application. ” O’Reilly Media, Inc.”, 2022.
+
 # Visual Search System
 
 1) A visual search problem can be thought as a ranking problem.
@@ -117,6 +167,39 @@
 - Clustering-based ANN: Creating clusters and searching similar images among the cluster
 
 14) There are 2 common libraries to implement ANN. One of them is [faiss](https://github.com/facebookresearch/faiss) of Facebook and the other one is [scann](https://github.com/google-research/google-research/tree/master/scann) of Google.
+
+15) References:
+
+- Visual search at pinterest. https://arxiv.org/pdf/1505.07647.pdf.
+- Visual embeddings for search at Pinterest. https://medium.com/pinterest-engineering/unifying-visual-embeddings-for-visual-search-at-pinterest-74ea7ea103f0.
+- Representation learning. https://en.wikipedia.org/wiki/Feature_learning.
+- ResNet paper. https://arxiv.org/pdf/1512.03385.pdf.
+- Transformer paper. https://arxiv.org/pdf/1706.03762.pdf.
+- Vision Transformer paper. https://arxiv.org/pdf/2010.11929.pdf.
+- SimCLR paper. https://arxiv.org/pdf/2002.05709.pdf.
+- MoCo paper. https://openaccess.thecvf.com/content_CVPR_2020/papers/He_Momentum_Contrast_for_Unsupervised_Visual_Representation_Learning_CVPR_2020_paper.pdf.
+- Contrastive representation learning methods. https://lilianweng.github.io/posts/2019-11-10-self-supervised/.
+- Dot product. https://en.wikipedia.org/wiki/Dot_product.
+- Cosine similarity. https://en.wikipedia.org/wiki/Cosine_similarity.
+- Euclidean distance. https://en.wikipedia.org/wiki/Euclidean_distance.
+- Curse of dimensionality. https://en.wikipedia.org/wiki/Curse_of_dimensionality.
+- Curse of dimensionality issues in ML. https://www.mygreatlearning.com/blog/understanding-curse-of-dimensionality/.
+- Cross-entropy loss. https://en.wikipedia.org/wiki/Cross_entropy.
+- Vector quantization. http://ws.binghamton.edu/fowler/fowler%20personal%20page/EE523_files/Ch_10_1%20VQ%20Description%20(PPT).pdf.
+- Product quantization. https://towardsdatascience.com/product-quantization-for-similarity-search-2f1f67c5fddd.
+- R-Trees. https://en.wikipedia.org/wiki/R-tree.
+- KD-Tree. https://kanoki.org/2020/08/05/find-nearest-neighbor-using-kd-tree/.
+- Annoy. https://towardsdatascience.com/comprehensive-guide-to-approximate-nearest-neighbors-algorithms-8b94f057d6b6.
+- Locality-sensitive hashing. https://web.stanford.edu/class/cs246/slides/03-lsh.pdf.
+- Faiss library. https://github.com/facebookresearch/faiss/wiki.
+- ScaNN library. https://github.com/google-research/google-research/tree/master/scann.
+- Content moderation with ML. https://appen.com/blog/content-moderation/.
+- Bias in AI and recommendation systems. https://www.searchenginejournal.com/biases-search-recommender-systems/339319/#close.
+- Positional bias. https://eugeneyan.com/writing/position-bias/.
+- Smart crop. https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/Smart-Auto-Cropping-of-Images.
+- Better search with gnns. https://arxiv.org/pdf/2010.01666.pdf.
+- Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
+- Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
 # Google Street View Blurring System
 
@@ -194,6 +277,34 @@
 ![](./images/029.png)
 
 18) Preprocessing and blurring services are 2 decoupled because preprocessing is a CPU-bound operation and blurring is a GPU-bound operation. It is easier to scale them when they are separated. Blurring service is responsible for making predictions, applying NMS, blurring predicted areas and storing the blurred images in object storage.
+
+- Google Street View. https://www.google.com/streetview.
+- DETR. https://github.com/facebookresearch/detr.
+- RCNN family. https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3.
+- Fast R-CNN paper. https://arxiv.org/pdf/1504.08083.pdf.
+- Faster R-CNN paper. https://arxiv.org/pdf/1506.01497.pdf.
+- YOLO family. https://pyimagesearch.com/2022/04/04/introduction-to-the-yolo-family.
+- SSD. https://jonathan-hui.medium.com/ssd-object-detection-single-shot-multibo x-detector-for-real-time-processing-9bd8deac0e06.
+- Data augmentation techniques. https://www.kaggle.com/getting-started/190280.
+- CNN. https://en.wikipedia.org/wiki/Convolutional_neural_network.
+- Object detection details. https://dudeperf3ct.github.io/object/detection/2019/01/07/Mystery-of-Object-Detection.
+- Forward pass and backward pass. https://www.youtube.com/watch?v=qzPQ8cEsVK8.
+- MSE. https://en.wikipedia.org/wiki/Mean_squared_error.
+- Log loss. https://en.wikipedia.org/wiki/Cross_entropy.
+- Pascal VOC. http://host.robots.ox.ac.uk/pascal/VOC/voc2008/index.html.
+- COCO dataset evaluation. https://cocodataset.org/#detection-eval.
+- Object detection evaluation. https://github.com/rafaelpadilla/Object-Detection-Metrics.
+- NMS. https://en.wikipedia.org/wiki/NMS.
+- Pytorch implementation of NMS. https://learnopencv.com/non-maximum-suppression-theory-and-implementation-in-pytorch/.
+- Recent object detection models. https://viso.ai/deep-learning/object-detection/.
+- Distributed training in Tensorflow. https://www.tensorflow.org/guide/distributed_training.
+- Distributed training in Pytorch. https://pytorch.org/tutorials/beginner/dist_overview.html.
+- GDPR and ML. https://www.oreilly.com/radar/how-will-the-gdpr-impact-machine-learning.
+- Bias and fairness in face detection. http://sibgrapi.sid.inpe.br/col/sid.inpe.br/sibgrapi/2021/09.04.19.00/doc/103.pdf.
+- AI fairness. https://www.kaggle.com/code/alexisbcook/ai-fairness.
+- Continual learning. https://towardsdatascience.com/how-to-apply-continual-learning-to-your-machine-learning-models-4754adcd7f7f.
+- Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
+- Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
 # YouTube Video Search
 
@@ -299,6 +410,34 @@
 15) Fusing layer is taking videos(visual search and text search) from the previous step and reranking according to relevance score(like time).
 
 16) Reranking service is applying business-level logic and policies at the end.
+
+17) References:
+
+- Elasticsearch. https://www.tutorialspoint.com/elasticsearch/elasticsearch_query_dsl.htm.
+- Preprocessing text data. https://huggingface.co/docs/transformers/preprocessing.
+- NFKD normalization. https://unicode.org/reports/tr15/.
+- What is Tokenization summary. https://huggingface.co/docs/transformers/tokenizer_summary.
+- Hash collision. https://en.wikipedia.org/wiki/Hash_collision.
+- Deep learning for NLP. http://cs224d.stanford.edu/lecture_notes/notes1.pdf.
+- TF-IDF. https://en.wikipedia.org/wiki/Tf%E2%80%93idf.
+- Word2Vec models. https://www.tensorflow.org/tutorials/text/word2vec.
+- Continuous bag of words. https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-cbow.html.
+- Skip-gram model. http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/.
+- BERT model. https://arxiv.org/pdf/1810.04805.pdf.
+- GPT3 model. https://arxiv.org/pdf/2005.14165.pdf.
+- BLOOM model. https://bigscience.huggingface.co/blog/bloom.
+- Transformer implementation from scratch. https://peterbloem.nl/blog/transformers.
+- 3D convolutions. https://www.kaggle.com/code/shivamb/3d-convolutions-understanding-use-case/notebook.
+- Vision Transformer. https://arxiv.org/pdf/2010.11929.pdf.
+- Query understanding for search engines. https://www.linkedin.com/pulse/ai-query-understanding-daniel-tunkelang/.
+- Multimodal video representation learning. https://arxiv.org/pdf/2012.04124.pdf.
+- Multilingual language models. https://arxiv.org/pdf/2107.00676.pdf.
+- Near-duplicate video detection. https://arxiv.org/pdf/2005.07356.pdf.
+- Generalizable search relevance. https://livebook.manning.com/book/ai-powered-search/chapter-10/v-10/20.
+- Freshness in search and recommendation systems. https://developers.google.com/machine-learning/recommendation/dnn/re-ranking.
+- Semantic product search by Amazon. https://arxiv.org/pdf/1907.00937.pdf.
+- Ranking relevance in Yahoo search. https://www.kdd.org/kdd2016/papers/files/adf0361-yinA.pdf.
+- Semantic product search in E-Commerce. https://arxiv.org/pdf/2008.08180.pdf.
 
 # Harmful Content Detection
 
@@ -413,6 +552,37 @@
 ![](./images/061.png)
 
 22) If a post is predicted as harmful with low confidence, it should be manually reviewed. After the manual review, a human assigns a label to the post. Then, this manually labeled post should be stored in the storage and can be useful for further trainings.
+
+23) References:
+
+- Facebook’s inauthentic behavior. https://transparency.fb.com/policies/community-standards/inauthentic-behavior/.
+- LinkedIn’s professional community policies. https://www.linkedin.com/legal/professional-community-policies.
+- Twitter’s civic integrity policy. https://help.twitter.com/en/rules-and-policies/election-integrity-policy.
+- Facebook’s integrity survey. https://arxiv.org/pdf/2009.10311.pdf.
+- Pinterest’s violation detection system. https://medium.com/pinterest-engineering/how-pinterest-fights-misinformation-hate-speech-and-self-harm-content-with-machine-learning-1806b73b40ef.
+- Abusive detection at LinkedIn. https://engineering.linkedin.com/blog/2019/isolation-forest.
+- WPIE method. https://ai.facebook.com/blog/community-standards-report/.
+- BERT paper. https://arxiv.org/pdf/1810.04805.pdf.
+- Multilingual DistilBERT. https://huggingface.co/distilbert-base-multilingual-cased.
+- Multilingual language models. https://arxiv.org/pdf/2107.00676.pdf.
+- CLIP model. https://openai.com/blog/clip/.
+- SimCLR paper. https://arxiv.org/pdf/2002.05709.pdf.
+- VideoMoCo paper. https://arxiv.org/pdf/2103.05905.pdf.
+- Hyperparameter tuning. https://cloud.google.com/ai-platform/training/docs/hyperparameter-tuning-overview.
+- Overfitting. https://en.wikipedia.org/wiki/Overfitting.
+- Focal loss. https://amaarora.github.io/2020/06/29/FocalLoss.html.
+- Gradient blending in multimodal systems. https://arxiv.org/pdf/1905.12681.pdf.
+- ROC curve vs precision-recall curve. https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/.
+- Introduced bias by human labeling. https://labelyourdata.com/articles/bias-in-machine-learning.
+- Facebook’s approach to quickly tackling trending harmful content. https://ai.facebook.com/blog/harmful-content-can-evolve-quickly-our-new-ai-system-adapts-to-tackle-it/.
+- Facebook’s TIES approach. https://arxiv.org/pdf/2002.07917.pdf.
+- Temporal interaction embedding. https://www.facebook.com/atscaleevents/videos/730968530723238/.
+- Building and scaling human review system. https://www.facebook.com/atscaleevents/videos/1201751883328695/.
+- Abusive account detection framework. https://www.youtube.com/watch?v=YeX4MdU0JNk.
+- Borderline contents. https://transparency.fb.com/features/approach-to-ranking/content-distribution-guidelines/content-borderline-to-the-community-standards/.
+- Efficient harmful content detection. https://about.fb.com/news/2021/12/metas-new-ai-system-tackles-harmful-content/.
+- Linear Transformer paper. https://arxiv.org/pdf/2006.04768.pdf.
+- Efficient AI models to detect hate speech. https://ai.facebook.com/blog/how-facebook-uses-super-efficient-ai-models-to-detect-hate-speech/.
 
 # Video Recommendation System
 
@@ -615,6 +785,23 @@
 - [Youtube RS Paper](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf) and [Blog Post](https://blog.youtube/inside-youtube/on-youtubes-recommendation-system/)
 - [Instagram RS](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)
 - [Seasonality in RS](https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6)
+
+32) References:
+
+- YouTube recommendation system. https://blog.youtube/inside-youtube/on-youtubes-recommendation-system.
+- DNN for YouTube recommendation. https://static.googleusercontent.com/media/r esearch.google.com/en//pubs/archive/45530.pdf.
+- CBOW paper. https://arxiv.org/pdf/1301.3781.pdf.
+- BERT paper. https://arxiv.org/pdf/1810.04805.pdf.
+- Matrix factorization. https://developers.google.com/machine-learning/recommendation/collaborative/matrix.
+- Stochastic gradient descent. https://en.wikipedia.org/wiki/Stochastic_gradient_descent.
+- WALS optimization. https://fairyonice.github.io/Learn-about-collaborative-filtering-and-weighted-alternating-least-square-with-tensorflow.html.
+- Instagram multi-stage recommendation system. https://ai.facebook.com/blog/powered-by-ai-instagrams-explore-recommender-system/.
+- Exploration and exploitation trade-offs. https://en.wikipedia.org/wiki/Multi-armed_bandit.
+- Bias in AI and recommendation systems. https://www.searchenginejournal.com/biases-search-recommender-systems/339319/#close.
+- Ethical concerns in recommendation systems. https://link.springer.com/article/10.1007/s00146-020-00950-y.
+- Seasonality in recommendation systems. https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6.
+- A multitask ranking system. https://daiwk.github.io/assets/youtube-multitask.pdf.
+- Benefit from a negative feedback. https://arxiv.org/abs/1607.04228?context=cs.
 
 # Event Recommendation System
 
