@@ -1,6 +1,6 @@
 # Machine Learning System Design Interview
 
-# Introduction and Overview
+# 01) Introduction and Overview
 
 1) ML system design steps
 
@@ -104,7 +104,7 @@
 - Interpretability in ML. https://fullstackdeeplearning.com/spring2021/lecture-6/.
 - Chip Huyen. Designing Machine Learning Systems: An Iterative Process for Production-Ready Application. ” O’Reilly Media, Inc.”, 2022.
 
-# Visual Search System
+# 02) Visual Search System
 
 1) A visual search problem can be thought as a ranking problem.
 
@@ -201,7 +201,7 @@
 - Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
 - Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
-# Google Street View Blurring System
+# 03) Google Street View Blurring System
 
 1) The purpose is to blur license plates and human faces.
 
@@ -306,7 +306,7 @@
 - Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
 - Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
-# YouTube Video Search
+# 04) YouTube Video Search
 
 1) The problem can be framed as a ranking problem. The input(video with its metadata like description and title) will be fed into **visual search** and **text search** components separately. Then, the results will be combined.
 
@@ -439,7 +439,7 @@
 - Ranking relevance in Yahoo search. https://www.kdd.org/kdd2016/papers/files/adf0361-yinA.pdf.
 - Semantic product search in E-Commerce. https://arxiv.org/pdf/2008.08180.pdf.
 
-# Harmful Content Detection
+# 05) Harmful Content Detection
 
 1) Posts that contain violence, nudity, self-harm and hate speech are recognized as harmful content.
 
@@ -584,7 +584,7 @@
 - Linear Transformer paper. https://arxiv.org/pdf/2006.04768.pdf.
 - Efficient AI models to detect hate speech. https://ai.facebook.com/blog/how-facebook-uses-super-efficient-ai-models-to-detect-hate-speech/.
 
-# Video Recommendation System
+# 06) Video Recommendation System
 
 1) A customized homepage is going to be fed via ML.
 
@@ -803,7 +803,7 @@
 - A multitask ranking system. https://daiwk.github.io/assets/youtube-multitask.pdf.
 - Benefit from a negative feedback. https://arxiv.org/abs/1607.04228?context=cs.
 
-# Event Recommendation System
+# 07) Event Recommendation System
 
 1) The design will be similar to [eventbrite](https://www.eventbrite.com/). Eventbrite is an event management and ticketing marketplace. The aim is to display a list of personalized events to users.
 
@@ -1091,7 +1091,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Data leakage. https://machinelearningmastery.com/data-leakage-machine-learning/.
 - Online training frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
 
-# Ad Click Prediction on Social Platforms
+# 08) Ad Click Prediction on Social Platforms
 
 1) "Online advertising allows advertisers to bid and place their advertisements (ads) on a platform for measurable responses such as impressions, clicks, and conversions. Displaying relevant ads to users is a fundamental for many online platforms such as Google, Facebook, and Instagram."
 
@@ -1247,7 +1247,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Field-aware Factorization Machines. https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf.
 - Catastrophic forgetting problem in continual learning. https://www.cs.uic.edu/~liub/lifelong-learning/continual-learning.pdf.
 
-# Similar Listings on Vacation Rental Platforms
+# 09) Similar Listings on Vacation Rental Platforms
 
 1) The aim is to find similar listings to an anchor listing. There will be a similar listing carousel on a listing detail page. The project will work in the same way for anonymous users and registered users. No personalization is in use.
 
@@ -1337,7 +1337,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Seasonality in recommendation systems. https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6.
 
 
-# Personalized News Feed
+# 10) Personalized News Feed
 
 1) It can be recognized as Facebook timeline or Twitter's *Special for you* feature. It will show the unseen posts and posts with unseen comments.
 
@@ -1490,7 +1490,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Positional bias. https://eugeneyan.com/writing/position-bias/.
 - Determine retraining frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
 
-# People You May Know
+# 11) People You May Know
 
 1) PYMK(People you may know) is feature similar to Facebook friends, Twitter accounts and Linkedin people etc.
 
@@ -1648,5 +1648,20 @@ print("Mean Average Precision (mAP):", mAP)
 - Personalized random walk. https://www.youtube.com/watch?v=HbzQzUaJ_9I.
 - LinkedIn’s PYMK system. https://engineering.linkedin.com/blog/2021/optimizing-pymk-for-equity-in-network-creation.
 - Addressing delayed feedback. https://arxiv.org/pdf/1907.06558.pdf.
+
+# Notes
+
+# 01) Notes
+
+1) DWH is used in business intelligence and reporting. Data from different sources such as logs, production databases, datalakes are transformed and loaded into DWH. DWH can be on-premise or cloused-based. AWS's DWH solution is AWS Redshift. Google's DWH solution is BigQuery. Dashboards are built on top of DWH. Thus, DWH should support fast querying. The users of DWH is generally business people or BI analysts.
+
+2) AWS S3 or Hadoop can be thougt as data lakes. Data lakes include data in the format of structured, non structured or semi structured format. Data lake is generally containing raw data more such as logs, sensor data etc. The users of datalakes are data scientists and ML engineers.
+
+3) Apache Nifi is an ETL solution.
+
+4) Boosting models are vulnerable to outliers because each tree in the model is trying to correct the faults of its predecessor. Outliers can skew the results significantly.
+
+
+
 
 
