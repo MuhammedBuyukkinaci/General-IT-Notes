@@ -1661,7 +1661,23 @@ print("Mean Average Precision (mAP):", mAP)
 
 4) Boosting models are vulnerable to outliers because each tree in the model is trying to correct the faults of its predecessor. Outliers can skew the results significantly.
 
+5) Stacking is becoming handy when the correlation of different base ML models is low.
 
+6) It is a good practice to choose a simple model like Linear Regression or Logistic Regression for meta model.
+
+7) "European Union proposed that individuals affected by algorithmic decisions have a right to an explanation".
+
+8) LIME(Local Interpretable Model-agnostic Explanations) is an ML interpretability approach. It works for individual interpretation. It has a library as lime in python.
+
+    - Take a data point.
+    - Perturb input features to sample more fake data
+    - Feed fake data into the baseline model
+    - Create a simple model(linear regression) with perturbed features and original features.
+    - The weights of the simple model can be used in analyzing the prediction.
+
+9) SHAP's most used feature is TreeExplainer. Input features should be independent to each other in order to work SHAP better. 
+
+10) LIME and SHAP are post-hoc analysis.
 
 
 
