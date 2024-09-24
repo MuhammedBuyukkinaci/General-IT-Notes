@@ -1675,9 +1675,13 @@ print("Mean Average Precision (mAP):", mAP)
     - Create a simple model(linear regression) with perturbed features and original features.
     - The weights of the simple model can be used in analyzing the prediction.
 
-9) SHAP's most used feature is TreeExplainer. Input features should be independent to each other in order to work SHAP better. 
+9) SHAP's most used feature is TreeExplainer. Input features should be independent to each other in order to work SHAP better. SHAP can provide both local and global interpretation.
 
 10) LIME and SHAP are post-hoc analysis.
+
+11) **stratify** argument of `from sklearn.model_selection import train_test_split` is used in imbalanced classification.
+
+12) Focal loss is aiming to assign more weights to hard examples and less weights to easy examples. It is used in imbalanced problems.
 
 
 
