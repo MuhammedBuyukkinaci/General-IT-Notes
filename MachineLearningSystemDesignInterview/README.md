@@ -1683,5 +1683,17 @@ print("Mean Average Precision (mAP):", mAP)
 
 12) Focal loss is aiming to assign more weights to hard examples and less weights to easy examples. It is used in imbalanced problems.
 
+13) Data Parallelism
+
+![](./reference_images/001.png)
+
+14) In order to train a huge DL model, model parallelism should be employed. "For distributed training, we recommend that you use Amazon EC2 P3 and P4 instances that have NVIDIA V100 and A100 Tensor Core GPUs respectively".
+
+15) A model with 10 billion parameters require at least 200 GB memory.
+
+16) Huber loss is less sensitive to outliers rather than MSE.
+
+![](./reference_images/002.png)
+
 
 
