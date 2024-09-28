@@ -1707,7 +1707,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 20) Ridge regression is useful if multicollinearity problem exists. Generally, ridge regression outperforms lasso regression.
 
-
+21) Dropout increases training time to twice or three times.
 
 
 
