@@ -1695,5 +1695,19 @@ print("Mean Average Precision (mAP):", mAP)
 
 ![](./reference_images/002.png)
 
+17) In order to reduce overfitting, these actions might be taken:
+
+- Kmeans: Number of neighbors to be increased
+- NN: Using a simpler model
+- RF: Using a pruned model with less features
+
+18) Elastic net is a combination of Lasso and Ridge Regression. It combines the regularization of L1 and L2.
+
+19) Lasso regression is handy if the number of features is high. Lasso regression is also useful in reducing irrelevant features. Lasso regression is more expensive in terms of computation.
+
+20) Ridge regression is useful if multicollinearity problem exists. Generally, ridge regression outperforms lasso regression.
+
+
+
 
 
