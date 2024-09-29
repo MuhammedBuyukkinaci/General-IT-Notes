@@ -1709,5 +1709,40 @@ print("Mean Average Precision (mAP):", mAP)
 
 21) Dropout increases training time to twice or three times.
 
+22) "in practice the tanh non-linearity is always preferred to the sigmoid nonlinearit".
+
+23) Sigmoid activation function is leading a vanishing gradient problem. It also slows down the training.
+
+24) IS(Inception Score) is a metric to assess the performance of a generative image model.
+
+    - A generative image model is trained.
+    - Many images are sampled from this model.
+    - These generated images are fed into an image classifier such as Inceptionv3.
+    - The entropy of the output predictions are checked. If a class is more confidentally predicted(0.4 instead of 0.1), it is better. This also points out predictions being sharp and confident.
+    - The class distributions of predictions should be evenly distributed. If there are 1000 outputs in the classification head and we have 30000 images, each class should have 30 images approximately.
+
+25) FID(Fréchet inception distance) is an extension to IS(Inception Score). While IS only takes care of the distribution of generated images, FID compares the distribution of generated images with the set of original images. It is the current baseline metric for image generation tasks.
+
+26) Model compression techniques
+
+![](./reference_images/003.png)
+
+27) int8 is used in deep learning inference more. fp32 is generally used in deep learning training. Int8 is used in edge devices and real time applications. int8 consumes 8 bits. fp32 consumes 32 bits.
+
+28) Quantization is the process of converting a trained model with fp32 to a model with int8. It is made for faster inference with minimal accuracy loss.
+
+29) Pruning is different than Quantization. PyTorch has a module named **torch.nn.utils.prune**. There are different options to prune a model.
+
+30) Shadow deployment is different than feature toggling(feature flags).
+
+31) Deployment and release are 2 terms used interchangably. However, there is a slight difference. An app can be deployed but it may not have to accept traffic. This is deployment. If it accepts traffic, it becomes a release.
+
+![](./reference_images/004.png)
+
+32) If we are storing the predictions on a table, it s a good practice to add a flag of model version.
+
+33) Shadow deployment can be introduced on code level or infra level. Implementing it on code level is easier. There is a tool named Istio, which is built on top of K8s that easens shadown deployment on infra level. "At the most basic level, if you have a load balancer responsible for directing traffic to your applications, this can mean configuring this load balancer to fork incoming traffic to /v1 and /v2 endpoints of a prediction API". Infra level implementation requires more attention in critical systems such as payments, dispatches etc because shadow deployment might duplicate the records, which is undesired.
+
+![](./reference_images/005.png)
 
 
