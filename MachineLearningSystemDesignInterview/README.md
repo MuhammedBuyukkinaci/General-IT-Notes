@@ -1745,4 +1745,16 @@ print("Mean Average Precision (mAP):", mAP)
 
 ![](./reference_images/005.png)
 
+34) 4 types of deployments:
 
+- Blue-Green Deployment: Useful for full application rollouts with quick rollback options.
+- Canary Deployment: Great for gradual, controlled rollouts with real-time feedback.
+- Feature Flag: Offers fine control over feature rollouts, allowing for testing and gradual release.
+- Dark Launch: Ideal for testing backend systems or features without user exposure.
+
+35) Feature flags can be implemented in
+
+- Environment variables: Simple and common way
+- Configuration files: Yaml, json files
+- Remote Configuration: A third party call is made such as to LaunchDarkly
+- DB/API Flags: Granular control and faster updates
