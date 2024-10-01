@@ -1758,3 +1758,10 @@ print("Mean Average Precision (mAP):", mAP)
 - Configuration files: Yaml, json files
 - Remote Configuration: A third party call is made such as to LaunchDarkly
 - DB/API Flags: Granular control and faster updates
+
+36) Traditional A/B Testing and Interleaving. In order to prevent bias in interleaving, ranker A and ranker B are tossing a coing whose rankings will be at 1,3,5,7 and whose ones will be at 2,4,6,8. Netflix uses a two stage online experimentation stage. In the first stage, interleaving is used to prune down the possible algorithms. In the second stage, traditional A/B testing is implemented.
+
+![](./reference_images/006.png)
+
+37)
+
