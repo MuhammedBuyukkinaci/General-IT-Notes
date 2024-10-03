@@ -1683,11 +1683,11 @@ print("Mean Average Precision (mAP):", mAP)
 
 12) Focal loss is aiming to assign more weights to hard examples and less weights to easy examples. It is used in imbalanced problems.
 
-13) Data Parallelism
+13) Data parallelism is quite simple but powerful.
 
 ![](./reference_images/001.png)
 
-14) In order to train a huge DL model, model parallelism should be employed. "For distributed training, we recommend that you use Amazon EC2 P3 and P4 instances that have NVIDIA V100 and A100 Tensor Core GPUs respectively".
+14) In order to train a huge DL model, model parallelism should be employed. Model parallelism is much more complicated than data parallelism. "For distributed training, we recommend that you use Amazon EC2 P3 and P4 instances that have NVIDIA V100 and A100 Tensor Core GPUs respectively".
 
 15) A model with 10 billion parameters require at least 200 GB memory.
 
@@ -1762,5 +1762,23 @@ print("Mean Average Precision (mAP):", mAP)
 36) Traditional A/B Testing and Interleaving. In the first stage, interleaving is used to prune down the possible algorithms. In the second stage, traditional A/B testing is implemented. In order to prevent bias in interleaving, ranker A and ranker B are tossing a coing whose rankings will be at 1,3,5,7 and whose ones will be at 2,4,6,8. Netflix uses a two stage online experimentation stage. 
 ![](./reference_images/006.png)
 
-37)
+37) Multi armed bandit(MAB) is about exploitation and exploration, rewards. Multi armed bandit can be used in online ad optimization. Let's assume we run 3 different ads. If one outperforms better than others, we tend to use it to exploit. However, we also choose the other ones for exploration. If we exploit too much, we can miss exploration. If we explore too much, we miss rewards that comes from exploitation. Extreme greedy algorithm is a MAB algorithm.
+
+![](./reference_images/007.png)
+
+38) There are at least 1 trillion events created and sent to streaming services(Kafka) on Netflix per day. If the size of an average event is 1 KB, total event creating per day is 1000 TB = 1 Petabyte data created.
+
+39) Nvidia architectures from the old to the new: Kepler -> Pascal -> Volta -> Turing -> Ampere.
+
+40) [Keepsake](https://keepsake.ai/) is a plain solution compared to MlFlow. It isn't developed any more.
+
+41) [SigOpt](https://sigopt.org/) and [Ray](https://docs.ray.io/en/master/tune/index.html) are 2 hyperparameter optimization tools.
+
+42) Different MLOps tools and capabilities
+
+![](./reference_images/008.png)
+
+43) [FSDL](https://fullstackdeeplearning.com/course/2022/) is a good website to learn ML things.
+
+
 
