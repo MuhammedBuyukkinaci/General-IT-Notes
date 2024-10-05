@@ -154,9 +154,11 @@
 
 12) Reranking service is taking care of filtering unappropriate images, removing duplicates and near duplicate images, filtering out private images etc.
 
-13) Approximate nearest neighbor(ANN) should be implemented when data is huge. There are 3 types of ANN's.
+13) There are 2 approaches in nearest neighbor search. Exact Nearest Neighbor and Approximate Nearest Neighbor. Exact Nearest Neighbor is linear search. It is computing similarities and returning the closest candidates. However, it isn't practical for large systems when the number of images becomes billions.
 
-- Tree-based ANN:
+14) Approximate nearest neighbor(ANN) should be implemented when data is huge. There are 3 types of ANN's.
+
+- Tree-based ANN, Rtrees, Kdtrees and Annoy.
 
 ![](./images/014.png)
 
@@ -166,9 +168,9 @@
 
 - Clustering-based ANN: Creating clusters and searching similar images among the cluster
 
-14) There are 2 common libraries to implement ANN. One of them is [faiss](https://github.com/facebookresearch/faiss) of Facebook and the other one is [scann](https://github.com/google-research/google-research/tree/master/scann) of Google.
+15) There are 2 common libraries to implement ANN. One of them is [faiss](https://github.com/facebookresearch/faiss) of Facebook and the other one is [scann](https://github.com/google-research/google-research/tree/master/scann) of Google.
 
-15) References:
+16) References:
 
 - Visual search at pinterest. https://arxiv.org/pdf/1505.07647.pdf.
 - Visual embeddings for search at Pinterest. https://medium.com/pinterest-engineering/unifying-visual-embeddings-for-visual-search-at-pinterest-74ea7ea103f0.
@@ -1779,6 +1781,10 @@ print("Mean Average Precision (mAP):", mAP)
 ![](./reference_images/008.png)
 
 43) [FSDL](https://fullstackdeeplearning.com/course/2022/) is a good website to learn ML things.
+
+44) [Slurm](https://slurm.schedmd.com/overview.html) is a workload manager. Slurm is best for resource management and job scheduling in cluster-based, multi-node, or HPC environments where jobs require specific compute resources and parallelism. An example usage is below:
+
+- A research team in a university’s physics department is conducting simulations to study the behavior of fluid dynamics in complex systems. The simulations require a significant amount of computational power, far beyond what can be handled by a standard workstation. They have access to a large cluster of servers (a supercomputer) managed by Slurm to perform these simulations.
 
 
 
