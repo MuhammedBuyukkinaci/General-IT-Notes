@@ -1786,5 +1786,18 @@ print("Mean Average Precision (mAP):", mAP)
 
 - A research team in a university’s physics department is conducting simulations to study the behavior of fluid dynamics in complex systems. The simulations require a significant amount of computational power, far beyond what can be handled by a standard workstation. They have access to a large cluster of servers (a supercomputer) managed by Slurm to perform these simulations.
 
+02) Notes
+
+1) At pinterest visual search in 2017, object detection is decoupled into 2 sonsecutive steps.
+    - The first step is a classification of categories(accesories, bags, shoes etc)
+    - The second step is a local object detector, which is acomputationally expensive operation.
+
+2) Hamming distance is measuring the number of substitutions to convert one string to another. It is used in strings and binary representations.The hamming distance of 011 and 100 is 3. 
+
+3) Deep(obtained from a layer of a CNN), local(salient colors) and global features are used as features of an image.
+
+4) After finding similar contents to an anchor image, the id's of these contents are stored on a NoSQL DB(Hbase) to display them on closeup.
+
+
 
 
