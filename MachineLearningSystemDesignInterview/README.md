@@ -1802,10 +1802,8 @@ print("Mean Average Precision (mAP):", mAP)
 
 ![](./reference_images/009.png)
 
-6) SimCLR is a paper released in 2020 in the field of contrastive learning.
-"It is is a self-supervised learning framework in deep learning,
-specifically designed for computer vision tasks.
-Developed by researchers at Google, SimCLR aims to learn useful image representations without the need for labeled data, which can then be fine-tuned on downstream tasks like classification."
+6) SimCLR is a paper released in 2020 in the field of contrastive learning."It is is a self-supervised learning framework in deep learning,specifically designed for computer vision tasks. Developed by researchers at Google, SimCLR aims to learn useful image representations without the need for labeled data, which can then be fine-tuned on downstream tasks like classification."
 
+7) BERT language model uses self supervised learning. Self supervised learning cares about creating good features, which are helpful for general tasks. Self super learning is also named as pretext task.
 
 
