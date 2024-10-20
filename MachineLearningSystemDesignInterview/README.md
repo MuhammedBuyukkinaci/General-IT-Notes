@@ -1798,6 +1798,14 @@ print("Mean Average Precision (mAP):", mAP)
 
 4) After finding similar contents to an anchor image, the id's of these contents are stored on a NoSQL DB(Hbase) to display them on closeup.
 
+5) Metric Learning and Proxy Based Metric Learning. Pinterest uses Proxy based metric learning.
+
+![](./reference_images/009.png)
+
+6) SimCLR is a paper released in 2020 in the field of contrastive learning.
+"It is is a self-supervised learning framework in deep learning,
+specifically designed for computer vision tasks.
+Developed by researchers at Google, SimCLR aims to learn useful image representations without the need for labeled data, which can then be fine-tuned on downstream tasks like classification."
 
 
 
