@@ -1836,6 +1836,14 @@ print("Mean Average Precision (mAP):", mAP)
 
 17) [OML](https://github.com/OML-Team/open-metric-learning) is a pytorch based metric learning library.
 
+18) Training a ML model with sparse data might result in overfitting.
 
+19) Distance Concentration is a term that the distance between 2 data points becomes very similar as the dimensionality increases. The contrast between nearest and farthest distances shrinks. It makes difficult to differentiate points based on distance alone.
+
+20) It is a good practice to stich with 10-15 dimensionals. For 50-100 range, dimensionality reduction can be employed.
+
+21) Variance Inflation Factor (VIF) is a way to detect multicollinearity.
+
+![](./reference_images/013.png)
 
 
