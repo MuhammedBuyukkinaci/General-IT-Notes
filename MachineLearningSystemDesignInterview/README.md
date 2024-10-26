@@ -1806,4 +1806,36 @@ print("Mean Average Precision (mAP):", mAP)
 
 7) BERT language model uses self supervised learning. Self supervised learning cares about creating good features, which are helpful for general tasks. Self super learning is also named as pretext task.
 
+10) Dot product: 
+
+![](./reference_images/010.png)
+
+11) Cosine similarity is the cosine of the angle between vectors.
+
+![](./reference_images/011.png)
+
+12) Euclidean distance:
+
+![](./reference_images/012.png)
+
+13) "The amount of data needed often grows exponentially with the dimensionality". A typical rule of thumb is row count >= 5 * column_count. **Hughes phenomenon** states that under the assumption of fixed row counts, the performance of a classifier/regressor increases first but after a certain dimensionality, it starts deteriorating.
+
+14) 4 types of similarity learning(metric learning)
+
+- Regression similarity learning: For input x1 and x2, we know the real distance between them. 
+
+- Classification similarity learning: For input x1 and x2, the target is 0 or 1.
+
+- Ranking similarity learning: For input x1, x1_plus, x1_minus; the goal is to learn a function that aims to output that (x1, x1_plus) is much more similar than (x1, x1_minus). This approach is a weaker supervision compared to Regression similarity learning.
+
+- Locality sensitive hashing: "Hashes input items so that similar items map to the same "buckets" in memory with high probability"
+
+15) When data is abundant, the common approach in similarity learning is siamese neural network.
+
+16) [metric-learn](https://github.com/scikit-learn-contrib/metric-learn) is a library of efficient implementations of several supervised and weakly supervised similarity and metric learning algorithms.
+
+17) [OML](https://github.com/OML-Team/open-metric-learning) is a pytorch based metric learning library.
+
+
+
 
