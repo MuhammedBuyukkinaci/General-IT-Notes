@@ -1846,4 +1846,18 @@ print("Mean Average Precision (mAP):", mAP)
 
 ![](./reference_images/013.png)
 
+22) Vector Quantization (VQ) is a technique used in signal processing and machine learning to approximate a large set of vectors (often in high-dimensional space) with a smaller set of representative vectors, known as code vectors or codebook entries. The goal of vector quantization is to reduce the data’s complexity by grouping similar data points together and representing them by a single code vector, leading to reduced storage or simplified analysis.Vector Quantization can be illustrated. It is used in image and audio compression, speech recognition.
+
+![](./reference_images/014.png)
+
+23) [Annoy](https://github.com/spotify/annoy) is a library for approximate nearest neighborhood. It is based on tree based algorithms.
+
+![](./reference_images/015.png)
+
+24)  [Faiss](https://github.com/facebookresearch/faiss?tab=readme-ov-file) is a library of Approximate Nearest Neighborhood. It is based on LSH-based(Locality-sensitive hashing) algorithms.
+
+25) Product Quantization (PQ) is a technique commonly used to efficiently compress high-dimensional data, primarily in tasks like nearest neighbor search, image retrieval, and similarity search. The goal of PQ is to reduce both the storage and computational requirements by representing data points as compact codes rather than full vectors, enabling faster retrieval and search operations in large datasets. PQ(Product Quantization) is an advanced form of VQ(Vector Quantization).
+
+
+
 
