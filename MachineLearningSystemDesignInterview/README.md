@@ -1858,6 +1858,10 @@ print("Mean Average Precision (mAP):", mAP)
 
 25) Product Quantization (PQ) is a technique commonly used to efficiently compress high-dimensional data, primarily in tasks like nearest neighbor search, image retrieval, and similarity search. The goal of PQ is to reduce both the storage and computational requirements by representing data points as compact codes rather than full vectors, enabling faster retrieval and search operations in large datasets. PQ(Product Quantization) is an advanced form of VQ(Vector Quantization).
 
+26) A summary of LSH
 
+![](./reference_images/016.png)
+
+27) [Scann](https://github.com/google-research/google-research/tree/master/scann) is a library released by Google for similarity search.
 
 
