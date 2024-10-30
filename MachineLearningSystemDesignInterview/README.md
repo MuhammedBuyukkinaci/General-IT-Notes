@@ -1864,4 +1864,10 @@ print("Mean Average Precision (mAP):", mAP)
 
 27) [Scann](https://github.com/google-research/google-research/tree/master/scann) is a library released by Google for similarity search.
 
+28) Training ML models with historical data perpetuates bias via a self reinforcing feedback loop.
+
+29) Position bias can be mitigated through adding some noise(randomization). This approach is a decent approach for primitive RS's. If randomization isn't an option, measured/learned position bias can be used to debias logged data.
+
+30) Saliency detection networks can be used to focus more on important parts of an image. One of its applications is to detect important regions of an image on X platform.
+
 
