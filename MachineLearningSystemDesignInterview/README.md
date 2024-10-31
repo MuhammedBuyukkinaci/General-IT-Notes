@@ -1870,4 +1870,25 @@ print("Mean Average Precision (mAP):", mAP)
 
 30) Saliency detection networks can be used to focus more on important parts of an image. One of its applications is to detect important regions of an image on X platform.
 
+31) Fır a GNN, On a graph, there are 3 types of feaures:
+
+- Node level: Node identity, number of neighbords
+- Edge level: Edge identity, edge weight
+- Global level: Number of nodes, maximum length
+
+32) Molecules and social networks can be represented as graph data.
+
+33) 3 types of prediction tasks in GNN's:
+
+- Node level: Predicting some property for each node in a graph. Analogous to image segmentation or named entity recognition(verb, adverb, adjective prediction etc)
+- Edge level: The property of presence of edges in a graph is predicted. 
+- Graph level: Predicting a single property on a graph. Analogous to image classification or sentiment analysis.
+
+34) Nodes, edges, global context features are straightforward. For n nodes, we can have a matrix of nxf, where f is the number of features. However, connectivity is hard to deal with. Passing connectivity is challenging. If it is given as as an adjaceny matrix, it would be so sparse and hard to deal with due to memory issues. A good way to pass connectivity is adjaceny lists.
+
+35) GNN Illustration(connectivity not included)
+
+![](./reference_images/017.png)
+
+
 
