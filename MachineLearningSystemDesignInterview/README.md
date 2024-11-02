@@ -1788,7 +1788,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 02) Notes
 
-1) At pinterest visual search in 2017, object detection is decoupled into 2 sonsecutive steps.
+1) At pinterest visual search in 2017, object detection is decoupled into 2 consecutive steps.
     - The first step is a classification of categories(accesories, bags, shoes etc)
     - The second step is a local object detector, which is acomputationally expensive operation.
 
@@ -1870,7 +1870,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 30) Saliency detection networks can be used to focus more on important parts of an image. One of its applications is to detect important regions of an image on X platform.
 
-31) Fır a GNN, On a graph, there are 3 types of feaures:
+31) For a GNN, On a graph, there are 3 types of feaures:
 
 - Node level: Node identity, number of neighbords
 - Edge level: Edge identity, edge weight
@@ -1889,6 +1889,14 @@ print("Mean Average Precision (mAP):", mAP)
 35) GNN Illustration(connectivity not included)
 
 ![](./reference_images/017.png)
+
+36) Active learning is a machine learning approach. It is used in the scenarios where labeling is expensive or requiring expertise. Let's assume we have 1000 labeled samples and 10000 unlabeled samples. We trained the model on the labeled data and scored unlabeled data. We will take the samples from unlabeled data where the model is less confident. This inconfidence might be detected via whether a model is assigning 50% in a binary classfication case, whether the different algorithms disagree most etc. Active learning aims to focus on most informative samples. 
+
+37) HITL(Human in the loop) is an approach in machine learning. It is incorporating human expertise in ML tasks. It can be employed in the areas where mistakes are too costly such as autonomous driving, medical diagnosis, customer support chatbots. It helps to maintain reliability and quality.
+
+38) Active learning is a specific technique within HITL, focusing mainly on efficient data labeling. HITL, on the other hand, is a broader concept involving various forms of human involvement throughout the model lifecycle
+
+
 
 
 
