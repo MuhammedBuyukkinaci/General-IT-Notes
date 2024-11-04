@@ -278,7 +278,7 @@
 
 ![](./images/029.png)
 
-18) Preprocessing and blurring services are 2 decoupled because preprocessing is a CPU-bound operation and blurring is a GPU-bound operation. It is easier to scale them when they are separated. Blurring service is responsible for making predictions, applying NMS, blurring predicted areas and storing the blurred images in object storage.
+18) Preprocessing and blurring services are 2 decoupled services because preprocessing is a CPU-bound operation and blurring is a GPU-bound operation. It is easier to scale them when they are separated. Blurring service is responsible for making predictions, applying NMS, blurring predicted areas and storing the blurred images in object storage.
 
 - Google Street View. https://www.google.com/streetview.
 - DETR. https://github.com/facebookresearch/detr.
@@ -286,7 +286,7 @@
 - Fast R-CNN paper. https://arxiv.org/pdf/1504.08083.pdf.
 - Faster R-CNN paper. https://arxiv.org/pdf/1506.01497.pdf.
 - YOLO family. https://pyimagesearch.com/2022/04/04/introduction-to-the-yolo-family.
-- SSD. https://jonathan-hui.medium.com/ssd-object-detection-single-shot-multibo x-detector-for-real-time-processing-9bd8deac0e06.
+- SSD. https://jonathan-hui.medium.com/ssd-object-detection-single-shot-multibox-detector-for-real-time-processing-9bd8deac0e06.
 - Data augmentation techniques. https://www.kaggle.com/getting-started/190280.
 - CNN. https://en.wikipedia.org/wiki/Convolutional_neural_network.
 - Object detection details. https://dudeperf3ct.github.io/object/detection/2019/01/07/Mystery-of-Object-Detection.
@@ -1653,7 +1653,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 # Notes
 
-# 01) Notes
+**Chapter 01 Notes**
 
 1) DWH is used in business intelligence and reporting. Data from different sources such as logs, production databases, datalakes are transformed and loaded into DWH. DWH can be on-premise or cloused-based. AWS's DWH solution is AWS Redshift. Google's DWH solution is BigQuery. Dashboards are built on top of DWH. Thus, DWH should support fast querying. The users of DWH is generally business people or BI analysts.
 
@@ -1786,7 +1786,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 - A research team in a university’s physics department is conducting simulations to study the behavior of fluid dynamics in complex systems. The simulations require a significant amount of computational power, far beyond what can be handled by a standard workstation. They have access to a large cluster of servers (a supercomputer) managed by Slurm to perform these simulations.
 
-02) Notes
+**Chapter 02 Notes**
 
 1) At pinterest visual search in 2017, object detection is decoupled into 2 consecutive steps.
     - The first step is a classification of categories(accesories, bags, shoes etc)
@@ -1895,6 +1895,19 @@ print("Mean Average Precision (mAP):", mAP)
 37) HITL(Human in the loop) is an approach in machine learning. It is incorporating human expertise in ML tasks. It can be employed in the areas where mistakes are too costly such as autonomous driving, medical diagnosis, customer support chatbots. It helps to maintain reliability and quality.
 
 38) Active learning is a specific technique within HITL, focusing mainly on efficient data labeling. HITL, on the other hand, is a broader concept involving various forms of human involvement throughout the model lifecycle
+
+**Chapter 03 Notes**
+
+1) DETR is a transformer based Object Detection architecture. Vision Transformers started to take precedence over CNN's. It combines Transformers and CNN's. It doesn't use NMS(Non maximum suppression). One stage networks and two stage networks use NMS.
+
+2) Transformer can be implemented using *nn.Transformer* .
+
+![](./reference_images/018.png)
+
+3) Hard Negative Mining is a technique in object detection in order to fulfil the need of negative samples in training OD efficiently. It is used by one stage networks and two stage networks. In object detection, negative samples are much more than positive samples. It is required to reduce the negative samples. Hard negative mining takes only the hardest
+negative samples that are mostly challenging. SSD networks generate/take 3 hard negatives corresponding to 1 positive sample in training. SSD networks perform bad at small objects.
+
+
 
 
 
