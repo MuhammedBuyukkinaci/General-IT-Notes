@@ -1904,10 +1904,25 @@ print("Mean Average Precision (mAP):", mAP)
 
 ![](./reference_images/018.png)
 
-3) Hard Negative Mining is a technique in object detection in order to fulfil the need of negative samples in training OD efficiently. It is used by one stage networks and two stage networks. In object detection, negative samples are much more than positive samples. It is required to reduce the negative samples. Hard negative mining takes only the hardest
-negative samples that are mostly challenging. SSD networks generate/take 3 hard negatives corresponding to 1 positive sample in training. SSD networks perform bad at small objects.
+3) Hard Negative Mining is a technique in object detection in order to fulfil the need of negative samples in training OD efficiently. It is used by one stage networks and two stage networks. In object detection, negative samples are much more than positive samples. It is required to reduce the negative samples. Hard negative mining takes only the hardest negative samples that are mostly challenging. SSD networks generate/take 3 hard negatives corresponding to 1 positive sample in training. SSD networks perform bad at small objects.
 
+4) Semantic segmentation vs Classification & Regression vs Object Detection vs Instance Segmentation
 
+![](./reference_images/019.png)
+
+5) Before deep learning, Viola Jones algorithm was used in object detection. It was composed of 3 classifiers. It was used in face detection tasks more.
+
+6) An Intersection over Union(IoU) value bigger than 0.5 is considered good generally.
+
+7) Smooth L1 Loss is a combination of L1 loss and L2 loss. In OD, overall loss is the summation of regression loss and classification loss.
+
+![](./reference_images/020.png)
+
+8) Different OB algorithms and their results
+
+![](./reference_images/021.png)
+
+9) [Pascal Data](http://host.robots.ox.ac.uk/pascal/VOC/voc2008/index.html) is used in OD tasks.
 
 
 
