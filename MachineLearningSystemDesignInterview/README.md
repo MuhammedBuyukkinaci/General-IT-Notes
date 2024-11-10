@@ -314,7 +314,7 @@
 
 ![](./images/030.png)
 
-2) How visual search works. The similarity score between video embedding and text embedding is calculated using dot product. Then, most similar vides are shown for a query.
+2) How visual search works. The similarity score between video embedding and text embedding is calculated using dot product. Then, most similar videos are shown for a query.
 
 ![](./images/031.png)
 
@@ -322,7 +322,7 @@
 
 ![](./images/032.png)
 
-4) Inverted index is a popular technique for creating text based document search. Elastic search is an example of Inverted Index. It doesn't use ML. Elastic search is a scalable search engine and document store. For more information as to Elastic Search, click here[https://www.tutorialspoint.com/elasticsearch/elasticsearch_query_dsl.htm].
+4) Inverted index is a popular technique for creating text based document search. Elastic search is an example of Inverted Index. It doesn't use ML. Elastic search is a scalable search engine and document store. For more information as to Elastic Search, click [here](https://www.tutorialspoint.com/elasticsearch/elasticsearch_query_dsl.htm)
 
 5) How to represent a text with a numerical vector
 
@@ -1948,7 +1948,33 @@ print("Mean Average Precision (mAP):", mAP)
 
 15) Istio with K8s is recommended to deploy ML models on k8s environment. It easens A/B testing.
 
+**Chapter 04 Notes**
 
+1) Inverted index is a data structure used in informatio retrieval systems, especially in search engines. Inverted index can be considered as a python dictionary whose keys are texts and values are document id's that texts exist in. Besides document id's, it can have frequency or positions. Inverted index is scalable, flexible and efficient.
 
+2) An example feature hashing code is below. Feature hashing works well for scenarios where perfect accuracy in feature mapping isn't critical.
+
+```python
+import numpy as np
+from hashlib import md5
+
+def hash_feature_vector(word_dict, vector_size=1000):
+    vector = np.zeros(vector_size)
+    
+    for word, count in word_dict.items():
+        # Hash word to integer
+        hashed_value = int(md5(word.encode()).hexdigest(), 16)
+        index = hashed_value % vector_size
+        
+        # Populate vector
+        vector[index] += count  # or apply TF-IDF or other weighting here
+    
+    return vector
+
+# Example dictionary
+word_dict = {"apple": 3, "banana": 1, "orange": 2}
+vector = hash_feature_vector(word_dict)
+print(vector)
+```
 
 
