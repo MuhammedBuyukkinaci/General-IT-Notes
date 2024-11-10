@@ -255,7 +255,7 @@
 
 13) MSE(Mean Squared Error) should be use in regression task and Cross Entropy loss should be used in classification task. The final loss should be the sum of regression and classification losses.
 
-14) How Intersection Over Union(IoU) is calculated
+14) How Intersection Over Union(IoU) is calculated. It is also called as Jaccard Index
 
 ![](./images/023.png)
 
@@ -1923,6 +1923,30 @@ print("Mean Average Precision (mAP):", mAP)
 ![](./reference_images/021.png)
 
 9) [Pascal Data](http://host.robots.ox.ac.uk/pascal/VOC/voc2008/index.html) is used in OD tasks.
+
+10) Entropy equation. Entropy means how unpredictable the probability distribution is.
+
+![](./reference_images/022.png)
+
+11) Cross Entropy = Entropy + KL Divergence
+
+12) Some usecases of OD
+
+- Person detection
+- Pedestrian Detection
+- Animal Detection
+- Vehicle Detection
+- People counting
+- Face Detection
+- Text Detection
+- Pose estimation
+- Number-plate recognition
+
+13) **tf.distribute.Strategy** is a tensorflow API that provides training among multiple machines or training across multiple gpu's or TPU's.
+
+14) In pytorch, distributed training is under torch.distributed.
+
+15) Istio with K8s is recommended to deploy ML models on k8s environment. It easens A/B testing.
 
 
 
