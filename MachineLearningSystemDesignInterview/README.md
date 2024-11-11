@@ -1977,4 +1977,9 @@ vector = hash_feature_vector(word_dict)
 print(vector)
 ```
 
+3)  Elasticsearch is a highly efficient, distributed search engine tailored for high-speed retrieval, real-time data analysis, and full-text search, enabling it to power many data-intensive applications and provide actionable insights quickly. Elastic search is used in ELK stack with Logstash and kibana for visualization purposes.
+
+4) RDBMS vs Redis vs NoSQL vs ElasticSearch
+
+![](./reference_images/023.png)
 
