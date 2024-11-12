@@ -374,7 +374,7 @@
     ![](./images/038.png)
     - Word2Vec:
     ![](./images/039.png)
-    - Transformers: ıts advantage is capturing context
+    - Transformers: Its advantage is capturing context
     ![](./images/040.png)
 
 10) Video encoding can be done in 2 ways:
@@ -1982,4 +1982,27 @@ print(vector)
 4) RDBMS vs Redis vs NoSQL vs ElasticSearch
 
 ![](./reference_images/023.png)
+
+5) Different Processors on huggingface:
+
+- Tokenizer: Text
+- FeatureExtractor: Audio
+- ImageProcessor: input
+- Processor: Multi modal input
+- AutoProcessor: Chooses the suitable one.
+
+6) 3 main tokenizers used in HF tokenizers. Each language model uses one of these tokenizers. Using a wrong tokenizer for a language model worsens things. [spaCy](https://spacy.io/) and [Moses](http://www.statmt.org/moses/?n=Development.GetStarted) are 2 popularrule based tokenizers.
+
+- BPE(Byte Pair Encoding): Relies on a pre-tokenization before tokenization. This pre-tokenization can be a space tokenization of words as the simplest case. Its tokenization process is based on some hyperparameters such as vocabulary size and the number of merges(merging different tokens). GPT uses this tokenization technique.
+- Word Piece: Similar to BPE.
+- Sentence Piece
+
+7) Transformers use generally a vocabulary less than 50000. This is a rule of thumb if they are trained on a single language.
+
+8) Character tokenization is simple, memory efficient but not useful. It doesn't capture contextual meanings.
+
+9) Subword tokenization sits between chacter tokenization and word tokenization. It is the defacto tokenization technique in modern LLM's.
+
+
+
 
