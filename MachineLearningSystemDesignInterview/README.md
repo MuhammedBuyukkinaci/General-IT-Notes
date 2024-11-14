@@ -2003,6 +2003,10 @@ print(vector)
 
 9) Subword tokenization sits between chacter tokenization and word tokenization. It is the defacto tokenization technique in modern LLM's.
 
+10) Hash collision means that 2 different data share the same value in the hash table. Open addressing and separate chaining are 2 techniques to solve this problem. Open addressing is sliding the value to the next empty value if a collision happens. Separate chaining is using linked lists to overcome the problem.
+
+![](./reference_images/024.png)
+
 
 
 
