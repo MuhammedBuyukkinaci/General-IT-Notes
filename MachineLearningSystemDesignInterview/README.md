@@ -2007,6 +2007,17 @@ print(vector)
 
 ![](./reference_images/024.png)
 
+11) Word-Word co occurence matrix and SVD(Singular) usage. The first k dimensions of U is chosen.
+
+![](./reference_images/025.png)
+
+12) Skip gram Word2Vec tends to outperform CBOW models.
+
+13) Word2Vec models are still useful if corpus is small and effficieny is so important.
+
+14) [Sentence transformers](https://github.com/UKPLab/sentence-transformers) is a Python library in order to compute dense vector embeddings for different inputs such as sentences, paragraphs, and images. The models are built based on transformer networks like BERT / RoBERTa / XLM-RoBERTa. Its outputs can be used in tasks such as clustering, similarity search etc.
+
+
 
 
 
