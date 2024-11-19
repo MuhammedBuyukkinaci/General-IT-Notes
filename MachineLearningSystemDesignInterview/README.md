@@ -2017,7 +2017,7 @@ print(vector)
 
 14) [Sentence transformers](https://github.com/UKPLab/sentence-transformers) is a Python library in order to compute dense vector embeddings for different inputs such as sentences, paragraphs, and images. The models are built based on transformer networks like BERT / RoBERTa / XLM-RoBERTa. Its outputs can be used in tasks such as clustering, similarity search etc.
 
-
+15) [BLOOM](https://bigscience.huggingface.co/) is a language model. It is freely available. It is developed by BigScience project.
 
 
 
