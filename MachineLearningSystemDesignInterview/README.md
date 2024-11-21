@@ -2019,5 +2019,36 @@ print(vector)
 
 15) [BLOOM](https://bigscience.huggingface.co/) is a language model. It is freely available. It is developed by BigScience project.
 
+16) Self attention illustration(Softmax not included). Softmax is carried out across w's. The dot product expresses how related two vectors in the input sequence are.
 
+![](./reference_images/026.png)
+
+![](./reference_images/027.png)
+
+17) The analogy between self attention and user-item matrix
+
+![](./reference_images/028.png)
+
+18) Self attention ignores the sequential nature of the input. If we give "I have the car" instead of "the car I have", it will give the same result in the permuted way. Self attention is permutation equivariant.
+
+19) A basic implementation of self attention. From [here](https://peterbloem.nl/blog/transformers)
+
+```python
+import torch
+import torch.nn.functional as F
+
+# assume we have some tensor x with size (b, t, k)
+x = ...
+
+raw_weights = torch.bmm(x, x.transpose(1, 2))
+# - torch.bmm is a batched matrix multiplication. It
+#   applies matrix multiplication over batches of
+#   matrices.
+# Converting raw weights to positive values
+weights = F.softmax(raw_weights, dim=2)
+# Multiplying weights by input
+y = torch.bmm(weights, x)
+
+
+```
 
