@@ -2019,7 +2019,7 @@ print(vector)
 
 15) [BLOOM](https://bigscience.huggingface.co/) is a language model. It is freely available. It is developed by BigScience project.
 
-16) Self attention illustration(Softmax not included). Softmax is carried out across w's. The dot product expresses how related two vectors in the input sequence are.
+16) Self attention illustration(Softmax not included). Softmax is carried out across w's. The dot product expresses how related two vectors in the input sequence are. Self attention is the only operation that propagates the information between vectors. Other operations in transformers are applied to vectors without interactions between networks.
 
 ![](./reference_images/026.png)
 
@@ -2029,7 +2029,7 @@ print(vector)
 
 ![](./reference_images/028.png)
 
-18) Self attention ignores the sequential nature of the input. If we give "I have the car" instead of "the car I have", it will give the same result in the permuted way. Self attention is permutation equivariant.
+18) Self attention ignores the sequential nature of the input. It sees the input as a set rather than a sequence. If we give "I have the car" instead of "the car I have", it will give the same result in the permuted way. Self attention is permutation equivariant.
 
 19) A basic implementation of self attention. From [here](https://peterbloem.nl/blog/transformers)
 
@@ -2049,6 +2049,32 @@ weights = F.softmax(raw_weights, dim=2)
 # Multiplying weights by input
 y = torch.bmm(weights, x)
 
-
 ```
+
+20) Q, K and V represent Query, Key and Value in matrix transformations. Wq, Wk and Wv are 3 weight matrices whose weights are learned in training. If a token has an embedding of size k, these 3 matrices have the shape of k,k.
+
+![](./reference_images/029.png)
+
+21) An illustration of Q, K and V matrices. This is an advanced form with Q, K and V of previous illustration.
+
+![](./reference_images/030.png)
+
+22) The dot product operation between q(query) and k(key) should be divided by √k, which is the size of embeddings of inputs.
+
+![](./reference_images/031.png)
+
+23) Instead of using single head self attention, multi head self attention can be employed. Let's assume that the input vector has a shape of 256. If we use single head attention, we will have 3 matrices corresponding to Q,K and V with the shapes of (256,256). However, single head self attention isn't able to capture syntax, nearby words, distant dependencies and sentence structure simultaneously. Multi head attention solves this problem. Each head in multi head self attention will focus on a different thing. One head might focus on syntax, one might focus on distant dependencies etc.
+
+24) If we have 256 dimensions for the input and 4 attention heads, our Q, K and V matrices are projects to 64 dimensions(256/4). In each head, we have 3 matrices having the shape of (256, 64). Instead of 3 matrices with (256, 256) shape in single head self attention, we have 12 matices(4 Q, 4 K and 4 V) whose shapes are (256, 64).
+
+![](./reference_images/032.png)
+
+25) Instead of 12 matrices, we can just use slicing operations on 3 matrices(1 Q, 1 K and 1 V) to divide for multiple heads.
+
+![](./reference_images/033.png)
+
+
+
+
+
 
