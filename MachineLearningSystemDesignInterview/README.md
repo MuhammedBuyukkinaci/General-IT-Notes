@@ -2073,6 +2073,11 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/033.png)
 
+26) Transformers is an architecture "designed to process a connected set of units—such as the tokens in a sequence or the pixels in an image—where the only interaction between units is through self-attention".
+
+27) Transformer block is composed of attention, layer normalization, MLP and layer normalization.
+
+![](./reference_images/034.png)
 
 
 
