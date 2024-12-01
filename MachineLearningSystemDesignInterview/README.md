@@ -2079,6 +2079,33 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/034.png)
 
+28) Global average pooling is converting a tensor with the shape of (Height, Width, Channel) to the tensor with the shape of (Channel). 
+
+29) In the encoder of Transformers, multiple transformer blocks are put consecutively. The output of the first transformer block will be the input of transformer block.
+
+30) Encoder architecture for a classification task
+
+![](./reference_images/035.png)
+
+31) The current design is permutation invariant. This means that the order of the input tokens doesn't affect the output. In order to add the effect of positions, there are 2 ways.
+
+- Position embeddings: Just like embedding the words, the positions are also fed as embeddings. Just like creating embeddings for dog and cat, we create embeddings for position 2 and position 27. It is easy to implement. The drawback is that we have to see the embeddings of each positions.
+
+- Position encodings: Instead of embeddings for positions, we use a simple function such as sinus or cosinus or another function in order to integrate the effect of position. Let's assume we have a sentence like "I have a car. I don't have a bicycyle". The words of "I" are positioned as first and fifth words. Despite the words are the same, their positions are different and thus their embeddings(sin(1), sin(5)) are different. The choice of the function that integrates position effect is hard to make and it is a hyperparameter.
+
+32) Autoregressive model can be exemplified as h,e,l,l is fed as input and e,l,l,o is expected as output. 
+
+33) Appyling the mask before softmax layer. This is made to prevent leakage.
+
+![](./reference_images/034.png)
+
+34) 1D Convolution doesn't capture long range dependencies. LSTM requires high computation power due to sequential architecture. Transformers solve both of these problems
+
+35) Nonlinearity exist only in softmax operation of self attention and relu operation of feed forward network.
+
+36) **Teacher forcing** is about using the ground truth output instead of predicted output to predict the next word. It has pros and cons. It improves convergence but leads to bias. It can be tuned with a ratio that incorporates teacher forcing sometimes.
+
+37) In current state of the art LLM's, Context window size can start from 4k and go to 100k. EMbedding size might vary from 256 to 1024.
 
 
 

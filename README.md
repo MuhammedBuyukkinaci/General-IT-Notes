@@ -66,6 +66,18 @@
   - Code Runner to run our code via right-upper green triangle
   - Ayu to have a different theme workplace
 
+3) Add the following lines to enable word wrapping and disable quick suggestions.
+
+```json
+"window.zoomLevel": 3,
+"editor.wordWrap": "on",
+"editor.quickSuggestions": {
+"other": false,
+"comments": false,
+"strings": false}
+
+```
+
 # PyCharm Settings
 
 1) Install Rainbow brackets, rainbow csv, rainbow indent as plugins.
