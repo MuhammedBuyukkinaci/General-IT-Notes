@@ -2105,7 +2105,26 @@ y = torch.bmm(weights, x)
 
 36) **Teacher forcing** is about using the ground truth output instead of predicted output to predict the next word. It has pros and cons. It improves convergence but leads to bias. It can be tuned with a ratio that incorporates teacher forcing sometimes.
 
-37) In current state of the art LLM's, Context window size can start from 4k and go to 100k. EMbedding size might vary from 256 to 1024.
+37) In current state of the art LLM's, Context window size can start from 4k and go to 100k. Embedding size might vary from 256 to 1024.
+
+38) Attention mechanism was first used in RNN's. In vanilla RNN's/LSTM's, the output of first layer layer will be the input of the second layer. An intermediate step between these 2 was Attention Layer. "The general mechanism was as follows. We call the input the values. Some (trainable) mechanism assigns a key to each value. Then to each output, some other mechanism assigns a query". This analogy comes from NoSQL technologies, which are key value stores.
+
+39) *Attention is All you need* paper didn't dispense with encoder-decoder architecture. In those days, it was a defacto architecture. However, later transformer models such as BERT and GPT-2 didn't utilize encoder-decoder architecture. A simple stack of transformer blocks became sufficient.
+
+40) Encoder only transformer is a model without masking. Decoder-only transformer is an autoregressive model.
+
+41) Some of the modern transformers:
+
+- BERT: Uses masking and next sequence classification for pretraining. It uses WordPiece tokenization.
+    - Masking: Take a sequence. Randomly change some elements in it. Set up a transformer model to predict which elements are changed randomly.
+    - Next Sequence classification: Two sequences of 256 words are sampled that either follow each other directly in the corpus or are taken from random places.
+    - WordPiece tokenization: A tokenization between word level and character level.
+    - 24 transformer blocks, embedding dimension of 1024, 16 attention heads, 340 M parameters
+
+- GPT-2: It is a language generation model. It uses byte-pair encoding(similar to Wordpiece). It uses 48 transformer blocks, 1024 context window size, embedding dimension of 1600, 1.5 billion parameters.
+- Transformer-XL: "A large sequence of text is broken up with shorter segments".
+
+42) Basic transformer is a set-to-set model. As long as your data is a set of units, transformer can be applied. Transformers are pretty handy in multi modal learning. "We could easily combine a captioned image into a set of pixels and characters and design some clever embeddings and sparsity structure to help the model figure out how to combine and align the two".
 
 
 
