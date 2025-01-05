@@ -2097,7 +2097,7 @@ y = torch.bmm(weights, x)
 
 33) Appyling the mask before softmax layer. This is made to prevent leakage.
 
-![](./reference_images/034.png)
+![](./reference_images/036.png)
 
 34) 1D Convolution doesn't capture long range dependencies. LSTM requires high computation power due to sequential architecture. Transformers solve both of these problems
 
@@ -2125,6 +2125,17 @@ y = torch.bmm(weights, x)
 - Transformer-XL: "A large sequence of text is broken up with shorter segments".
 
 42) Basic transformer is a set-to-set model. As long as your data is a set of units, transformer can be applied. Transformers are pretty handy in multi modal learning. "We could easily combine a captioned image into a set of pixels and characters and design some clever embeddings and sparsity structure to help the model figure out how to combine and align the two".
+
+43) Illustration of 1D convolution. It is used in sequence datasets. It is also used in NLP. A sentence is composed of 100 words.
+
+![](./reference_images/037.png)
+
+44) 3D convolution. Used in event detection in videos, medical imaging. 3D convolution can be applied to 2D images.
+
+![](./reference_images/038.png)
+
+45) Illustration of vision transformer. CLS is prepended to patch embeddings in order to collect information from all patches. We don't need to apply pooling at classification layer.
+
 
 
 
