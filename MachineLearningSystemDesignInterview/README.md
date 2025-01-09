@@ -1950,7 +1950,7 @@ print("Mean Average Precision (mAP):", mAP)
 
 **Chapter 04 Notes**
 
-1) Inverted index is a data structure used in informatio retrieval systems, especially in search engines. Inverted index can be considered as a python dictionary whose keys are texts and values are document id's that texts exist in. Besides document id's, it can have frequency or positions. Inverted index is scalable, flexible and efficient.
+1) Inverted index is a data structure used in information retrieval systems, especially in search engines. Inverted index can be considered as a python dictionary whose keys are texts and values are document id's that texts exist in. Besides document id's, it can have frequency or positions. Inverted index is scalable, flexible and efficient.
 
 2) An example feature hashing code is below. Feature hashing works well for scenarios where perfect accuracy in feature mapping isn't critical.
 
@@ -2136,7 +2136,31 @@ y = torch.bmm(weights, x)
 
 45) Illustration of vision transformer. CLS is prepended to patch embeddings in order to collect information from all patches. We don't need to apply pooling at classification layer.
 
+![](./reference_images/039.png)
 
+46) Query understanding is the process of inferring the intent of a search query from the searches keywords. It takes place **before** the search engine retrives and ranks results.
 
+47) How to train a query categorization tool
+
+![](./reference_images/040.png)
+
+48) A Query can be thought as a bag of products associated with the query. Conversions, clicks and even impressions can be utilized to compute query vector as average of associated vectors.
+
+![](./reference_images/041.png)
+
+49) Some ways for reranking
+
+- Train a separate model to remove clickbait videos from candidate list
+- Rank candidates with respec to video age and video length.
+
+50) Diversity can be integrated into a RS by using different candidate generators, different rankers and different rerankers functions.
+
+51) Products Search Model of Amazon. For a given query, each product is in exactly one of three categories: purchased, impressed but not purchased, or random. Siamese neural network is used.
+
+![](./reference_images/042.png)
+
+52) Different tokenizations such as unigrams and bigrams can be used together.
+
+53) BM25(Best matching 25) is a ranking function used as a baseline used in information retrieval. It is a refinement of TF-IDF. It is a member of probablistic IR models. It can be used in ElasticSearch and Apache Lucene. It is computationally efficient.
 
 
