@@ -2163,4 +2163,15 @@ y = torch.bmm(weights, x)
 
 53) BM25(Best matching 25) is a ranking function used as a baseline used in information retrieval. It is a refinement of TF-IDF. It is a member of probablistic IR models. It can be used in ElasticSearch and Apache Lucene. It is computationally efficient.
 
+**Chapter 05 Notes**
+
+1) When training an ML model with multiple modalities, overfitting might be experienced. Multi modality networks are prone to overfitting. Gradient blending is a method to prevent this. It is a rearrangement of gradients. For example, we train an ML model via image and text. Instead of summing the gradients directly, we scale them in a way that we define such as loss based weighting, uncertainty weighting or dynamic balancing. 
+
+2) PR curves are much more reasonable to be used in imbalanced datasets compared to AUROC. AUROC is much more reasonable when classes are distributed evenly.
+
+3) Confusion Matrix
+
+![](./reference_images/043.png)
+
+4) 
 
