@@ -2173,5 +2173,9 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/043.png)
 
-4) 
+4) Isolation Forest is an unsupervised outlier detection algorithm. It is introduced in 2008. It is implemented in scikit-learn. Its comlexity is O(n).log(n). It outputs a score for each data point. If the score is close to 1, the data point seems to be an anomaly. If the score is close to 0.5, it seems normal. It is based on trees. It takes one feature. It splits the data according to a random split value. It does this until maximum tree height is achieved or each data is isolated. It scales well with huge datasets and high dimensions. It doesn't require any underlying distribution. One of its cons is that the features should be independent to each other. Isolation forests are easy to retrain if feature distributions shift. 
+
+![](./reference_images/044.png)
+
+5)
 
