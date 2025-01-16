@@ -1,6 +1,6 @@
 # Machine Learning System Design Interview
 
-# 01) Introduction and Overview
+# Chapter 01) Introduction and Overview
 
 1) ML system design steps
 
@@ -104,7 +104,7 @@
 - Interpretability in ML. https://fullstackdeeplearning.com/spring2021/lecture-6/.
 - Chip Huyen. Designing Machine Learning Systems: An Iterative Process for Production-Ready Application. ” O’Reilly Media, Inc.”, 2022.
 
-# 02) Visual Search System
+# Chapter 02) Visual Search System
 
 1) A visual search problem can be thought as a ranking problem.
 
@@ -203,7 +203,7 @@
 - Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
 - Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
-# 03) Google Street View Blurring System
+# Chapter 03) Google Street View Blurring System
 
 1) The purpose is to blur license plates and human faces.
 
@@ -308,7 +308,7 @@
 - Active learning. https://en.wikipedia.org/wiki/Active_learning_(machine_learning).
 - Human-in-the-loop ML. https://arxiv.org/pdf/2108.00941.pdf.
 
-# 04) YouTube Video Search
+# Chapter 04) YouTube Video Search
 
 1) The problem can be framed as a ranking problem. The input(video with its metadata like description and title) will be fed into **visual search** and **text search** components separately. Then, the results will be combined.
 
@@ -441,7 +441,7 @@
 - Ranking relevance in Yahoo search. https://www.kdd.org/kdd2016/papers/files/adf0361-yinA.pdf.
 - Semantic product search in E-Commerce. https://arxiv.org/pdf/2008.08180.pdf.
 
-# 05) Harmful Content Detection
+# Chapter 05) Harmful Content Detection
 
 1) Posts that contain violence, nudity, self-harm and hate speech are recognized as harmful content.
 
@@ -586,7 +586,7 @@
 - Linear Transformer paper. https://arxiv.org/pdf/2006.04768.pdf.
 - Efficient AI models to detect hate speech. https://ai.facebook.com/blog/how-facebook-uses-super-efficient-ai-models-to-detect-hate-speech/.
 
-# 06) Video Recommendation System
+# Chapter 06) Video Recommendation System
 
 1) A customized homepage is going to be fed via ML.
 
@@ -805,7 +805,7 @@
 - A multitask ranking system. https://daiwk.github.io/assets/youtube-multitask.pdf.
 - Benefit from a negative feedback. https://arxiv.org/abs/1607.04228?context=cs.
 
-# 07) Event Recommendation System
+# Chapter 07) Event Recommendation System
 
 1) The design will be similar to [eventbrite](https://www.eventbrite.com/). Eventbrite is an event management and ticketing marketplace. The aim is to display a list of personalized events to users.
 
@@ -1093,7 +1093,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Data leakage. https://machinelearningmastery.com/data-leakage-machine-learning/.
 - Online training frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
 
-# 08) Ad Click Prediction on Social Platforms
+# Chapter 08) Ad Click Prediction on Social Platforms
 
 1) "Online advertising allows advertisers to bid and place their advertisements (ads) on a platform for measurable responses such as impressions, clicks, and conversions. Displaying relevant ads to users is a fundamental for many online platforms such as Google, Facebook, and Instagram."
 
@@ -1249,7 +1249,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Field-aware Factorization Machines. https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf.
 - Catastrophic forgetting problem in continual learning. https://www.cs.uic.edu/~liub/lifelong-learning/continual-learning.pdf.
 
-# 09) Similar Listings on Vacation Rental Platforms
+# Chapter 09) Similar Listings on Vacation Rental Platforms
 
 1) The aim is to find similar listings to an anchor listing. There will be a similar listing carousel on a listing detail page. The project will work in the same way for anonymous users and registered users. No personalization is in use.
 
@@ -1339,7 +1339,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Seasonality in recommendation systems. https://www.computer.org/csdl/proceedings-article/big-data/2019/09005954/1hJsfgT0qL6.
 
 
-# 10) Personalized News Feed
+# Chapter 10) Personalized News Feed
 
 1) It can be recognized as Facebook timeline or Twitter's *Special for you* feature. It will show the unseen posts and posts with unseen comments.
 
@@ -1492,7 +1492,7 @@ print("Mean Average Precision (mAP):", mAP)
 - Positional bias. https://eugeneyan.com/writing/position-bias/.
 - Determine retraining frequency. https://huyenchip.com/2022/01/02/real-time-machine-learning-challenges-and-solutions.html#towards-continual-learning.
 
-# 11) People You May Know
+# Chapter 11) People You May Know
 
 1) PYMK(People you may know) is feature similar to Facebook friends, Twitter accounts and Linkedin people etc.
 
@@ -2178,4 +2178,18 @@ y = torch.bmm(weights, x)
 ![](./reference_images/044.png)
 
 5) In NLP, "unsupervised pre training is an integral part of many language understanding systems".
+
+6) In vanilla Transformer, there is an encoder and decoder. It is mainly designed for sequence to sequence tasks like machine translation.
+
+7) However, BERT only uses the encoder stack of the Transformer. It doesn't use Decoder block of Transformers. The aim of BERT is to understand and contextualize the input text, not to generate text. BERT is bidirectional, whereas vanilla Transformers are unidirectional. BERT uses 2 techniques such as MLM(Masked Language Modeling) and Next Sentence Prediction(NSP). The losses coming from MLM and NSP are summed. The combination of MLM and NSP ensures that the model learns both fine-grained token-level relationships and broader sentence-level relationships
+
+- Masked Language Modeling (MLM):
+    - Input: "The cat is [MASK] on the mat."
+    - Output: "The cat is sitting on the mat."
+- Next Sentence Prediction (NSP):
+    - Pair 1 (IsNext): "The weather is nice today." → "Let's go for a walk."
+    - Pair 2 (NotNext): "I like apples." → "The weather is nice today."
+
+8) RoBERTa is an improved version BERT. It removed NSP. It only used MLM.
+
 
