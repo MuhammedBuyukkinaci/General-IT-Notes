@@ -2181,7 +2181,7 @@ y = torch.bmm(weights, x)
 
 6) In vanilla Transformer, there is an encoder and decoder. It is mainly designed for sequence to sequence tasks like machine translation.
 
-7) However, BERT only uses the encoder stack of the Transformer. It doesn't use Decoder block of Transformers. The aim of BERT is to understand and contextualize the input text, not to generate text. BERT is bidirectional, whereas vanilla Transformers are unidirectional. BERT uses 2 techniques such as MLM(Masked Language Modeling) and Next Sentence Prediction(NSP). The losses coming from MLM and NSP are summed. The combination of MLM and NSP ensures that the model learns both fine-grained token-level relationships and broader sentence-level relationships
+7) However, BERT only uses the encoder stack of the Transformer. It doesn't use Decoder block of Transformers. The aim of BERT is to understand and contextualize the input text, not to generate text. BERT is bidirectional, whereas vanilla Transformers are unidirectional. BERT uses 2 techniques such as MLM(Masked Language Modeling) and Next Sentence Prediction(NSP). The losses coming from MLM and NSP are summed. The combination of MLM and NSP ensures that the model learns both fine-grained token-level relationships and broader sentence-level relationships. BERT is more useful in Text Classification, NER and QA. BERT is well suited in language understanding tasks.
 
 - Masked Language Modeling (MLM):
     - Input: "The cat is [MASK] on the mat."
@@ -2192,4 +2192,39 @@ y = torch.bmm(weights, x)
 
 8) RoBERTa is an improved version BERT. It removed NSP. It only used MLM.
 
+9) GPT is Generative Pretrained Transformers. It is designed for language generation. It uses decoder-only portion of Transformer Architecture. It uses CLM(Causal Language Modeling) to predict the next token. GPT is more useful in creative and generative tasks. 
 
+10) Transformers vs BERT vs GPT
+
+![](./reference_images/045.png)
+
+11) Autoregression is inherited from Time Series. Let'a assume we have the sentence of "I really like my car." If we have the input of "I really like", it will try to predict "my". After obtaining the prediction such as "your", it will use "I really like your" as input. It will go until the desired length is completed or stopping condition is met.
+
+12) Some mostly used special tokens:
+
+- CLS(Classification Token): Added to the beginning of the input. THe hidden state corresponding to this token is a pooled representation of the whole input. Used in sentiment analysis, sentence classification:
+
+    - [CLS] The cat is on the mat.
+
+- SEP(Separator Token): Used to separate different segments in the input. It is essential in tasks like Next Sentence Prediction(NSP) of BERT or question answering tasks to distinguish between different sentences.
+
+    - [CLS] The cat is on the mat. [SEP] It is gray. [SEP]
+
+- MASK(Masking Token): Used in the training phase of BERT in order to mask certain tokens in the input sentence. The model learns to predict the masked token with unmasked tokens.
+
+    - The cat is [MASK] the mat
+
+- PAD(Padding Token): It is used to pad shorter sentences. It ensures that all sentences in a batch have the same length for efficient training. It is ignored by attention mechanism using padding masks.
+
+    - [CLS] The cat is on the mat. [PAD] [PAD]
+
+- UNK(Unknown Token): Represents out of vocabulary(OOV) words that aren't part of vocabulary. It is used as a placeholder for unrecognized tokens.
+
+    - [CLS] The flibbertigibbet is flying. [UNK] [SEP]
+
+- SOS(Start of Sequence Token): It indicates the beginning of a sentence in text generation. It starts sequence generation.
+
+    - [SOS] The cat
+
+- EOS(End of Sequence Token): It indicates the end of a sequence during tasks like text generation or question answering.
+    - The cat is on the mat. [EOS]
