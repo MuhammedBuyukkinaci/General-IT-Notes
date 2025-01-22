@@ -572,7 +572,7 @@
 - VideoMoCo paper. https://arxiv.org/pdf/2103.05905.pdf.
 - Hyperparameter tuning. https://cloud.google.com/ai-platform/training/docs/hyperparameter-tuning-overview.
 - Overfitting. https://en.wikipedia.org/wiki/Overfitting.
-- Focal loss. https://amaarora.github.io/2020/06/29/FocalLoss.html.
+- Focal loss. https://amaarora.github.io/posts/2020-06-29-FocalLoss.html
 - Gradient blending in multimodal systems. https://arxiv.org/pdf/1905.12681.pdf.
 - ROC curve vs precision-recall curve. https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/.
 - Introduced bias by human labeling. https://labelyourdata.com/articles/bias-in-machine-learning.
@@ -2240,7 +2240,12 @@ y = torch.bmm(weights, x)
 
 16) CLIP is a multimodal model developed by OpenAI. It works based on contrastive learning. It is labeled on images with annotations. It has 2 backbones. The first backbone is an image model that converts an image to an embedding. The second backbone is a text model(Transformers) that converts a sentence to an embedding. For each batch, the model takes a positive pair(anchor image and its corresponding sentence) and many negative pairs(anchor image and its non-corresponding text). The model uses contrastive learning in learning. It minimizes the distance for positive pair and maximizes the distane for negative pair. It isn't a generative model. For example, I have an image. I want to learn which object is available in the image from a set(glass, bottle, plate). I can use CLIP for this case.
 
-17) Moco(Momentum Contrast) is a self supervised way to learn image embeddings. It produces learned representations of images. It is an alternative to SimCLR. Moco uses contrastive learning. Its training is easier than SimCLR.
+17) Moco(Momentum Contrast) is a self supervised way to learn image embeddings. It produces learned representations of images. It is an alternative to SimCLR. Moco uses contrastive learning. Its training is easier than SimCLR. It has 2 networks named as Query Encoder and Momentum Encoder(handling negative pairs).
+
+18) Videomoco is a self supervised way for video represantation learning.
+
+19) Focal loss is especially useful for imbalanced datasets.
+
 
 
 
