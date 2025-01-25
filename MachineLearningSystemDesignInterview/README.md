@@ -2180,7 +2180,7 @@ y = torch.bmm(weights, x)
 
 6) In vanilla Transformer, there is an encoder and decoder. It is mainly designed for sequence to sequence tasks like machine translation.
 
-7) However, BERT only uses the encoder stack of the Transformer. It doesn't use Decoder block of Transformers. The aim of BERT is to understand and contextualize the input text, not to generate text. BERT is bidirectional, whereas vanilla Transformers are unidirectional. BERT uses 2 techniques such as MLM(Masked Language Modeling) and Next Sentence Prediction(NSP). The losses coming from MLM and NSP are summed. The combination of MLM and NSP ensures that the model learns both fine-grained token-level relationships and broader sentence-level relationships. BERT is more useful in Text Classification, NER and QA. BERT is well suited in language understanding tasks.
+7) However, BERT only uses the encoder stack of the Transformer. It doesn't use Decoder block of Transformers. The aim of BERT is to understand and contextualize the input text, not to generate text. BERT is bidirectional, whereas vanilla Transformers are unidirectional. BERT uses 2 techniques such as MLM(Masked Language Modeling) and Next Sentence Prediction(NSP). The losses coming from MLM and NSP are summed. The combination of MLM and NSP ensures that the model learns both fine-grained token-level relationships and broader sentence-level relationships. BERT is more useful in Text Classification, NER and QA. BERT is well suited in language understanding tasks. Masked Language Modeling can be thought as a denoising autoencoder.
 
 - Masked Language Modeling (MLM):
     - Input: "The cat is [MASK] on the mat."
@@ -2246,6 +2246,12 @@ y = torch.bmm(weights, x)
 
 19) Focal loss is especially useful for imbalanced datasets.
 
+20) An example bias for a recommendation engine in retail is that the model will tend to recmmend the things purchased by the same users.
 
+21) Few shot learning decreases the time in harmful content detection. If we want to train a classifier with determined labels and data, it would be hard to adopt to the changes and business requirements. If a new undesired harmful content emerges, it is required to train a new model. However, few shot learning removes this problem. There is a shift from traditional and bespoke AI systems to larger and generalized model that trusts in less labeled data.
+
+22) Self supervised learning makes more sense in NLP compared to CV.
+
+23) Until 2019, siamese neural networks didn't gain enough importance.
 
 
