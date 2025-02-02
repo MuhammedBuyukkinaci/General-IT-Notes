@@ -2254,4 +2254,9 @@ y = torch.bmm(weights, x)
 
 23) Until 2019, siamese neural networks didn't gain enough importance.
 
+24) Automated Labels vs Human Labels. Multi stage- multi task learning.
+
+![](./reference_images/046.png)
+
+25) Let's assume Facebook has a harmful content detection model. It is trained with human reports or hand labeling. There are 6 types of violations. When a new type of violation emerges, some posts having this type of violation are labeled by moderators as harmful. As it is labeld as harmful, the embedding of this type of post is tried to be closer to the embeddings of the existing violations. This learning is carried out with contrastive learning. When this fine tuning is carried out, only the last layers of the NN is updated. Future occurrences of this new harmful content are now automatically detected.
 
