@@ -2260,3 +2260,7 @@ y = torch.bmm(weights, x)
 
 25) Let's assume Facebook has a harmful content detection model. It is trained with human reports or hand labeling. There are 6 types of violations. When a new type of violation emerges, some posts having this type of violation are labeled by moderators as harmful. As it is labeld as harmful, the embedding of this type of post is tried to be closer to the embeddings of the existing violations. This learning is carried out with contrastive learning. When this fine tuning is carried out, only the last layers of the NN is updated. Future occurrences of this new harmful content are now automatically detected.
 
+26) Linformer is a transformer model developed by Facebook. It reduces the attention level complexity from O(n)^2 to O(n) using low rank projection. Let's assume our model is processing 10k tokens. Instead of having 10kx10k matrice computations, there is an intermediary matrice of 256x256 to reduce matrice. It is an analogy to matrix factorication.
+
+![](./reference_images/047.png)
+
