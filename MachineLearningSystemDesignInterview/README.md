@@ -2264,3 +2264,10 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/047.png)
 
+# Chapter 06 Notes
+
+1) FastText is a word2vec model. Instead of having embeddings for words, it splits words into character level -grams. A word's embedding is computed as the summation of its subword embeddings. For example, *cursor* is the summation of *cur* and *sor*. FastText = Word2Vec + Subwords.
+
+
+
+
