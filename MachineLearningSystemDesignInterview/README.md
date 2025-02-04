@@ -2268,6 +2268,14 @@ y = torch.bmm(weights, x)
 
 1) FastText is a word2vec model. Instead of having embeddings for words, it splits words into character level -grams. A word's embedding is computed as the summation of its subword embeddings. For example, *cursor* is the summation of *cur* and *sor*. FastText = Word2Vec + Subwords.
 
+2) CBOW Word2vec can be utilized in order to convert videos into embeddings. Let's assume user watched 5 videos as v1, v2, v3, v4, v5. v1, v2, v4, v5 can be used to predict v3, which is the middle of the sequence.
 
+3) What Youtube was doing in candidate generation is below. 1 million videos are used in embedding layer. 50 recent videos and 50 recent searches used. In softmax layer, the probability for 1 million videos are created. The label is the video watched next.
 
+![](./reference_images/048.png)
 
+4) In previous times, Youtube's ranking model in Recommendation engine accepts positive samples as impression + click. The ranking model accepts negatives samples as impression without click. The durations of clicks also passed as weighting factor in training model.
+
+![](./reference_images/049.png)
+
+5) 
