@@ -2278,4 +2278,18 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/049.png)
 
-5) 
+5) Recommendation engine can be an analogy to finding relevant books in a library without the help of the librarians.
+
+6) In 2021, Youtube collects 80 billion pieces of information, called as signals.
+
+- Clicks
+- Watchtime
+- Survey Responses
+- Sharing
+- Likes
+- Dislikes
+
+7) Borderline content is a content that is about to be regarded as dangerous but not dangerous actually. "The world is flat" or "Orange juice can cure cancer" can be examples of Borderline Content.
+
+
+
