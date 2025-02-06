@@ -2291,5 +2291,20 @@ y = torch.bmm(weights, x)
 
 7) Borderline content is a content that is about to be regarded as dangerous but not dangerous actually. "The world is flat" or "Orange juice can cure cancer" can be examples of Borderline Content.
 
+8) ML models in Instagram Explore predict 90 million scores per second.
+
+9) Instagram developed a new domain-specific language named IGQL for recommendation engine. This language is used in candidate retrieval. It is a high level language. Instagram used ig2vec, which is a method to obtain account embeddings similar to word2vec. "If an individual interacts with a sequence of accounts in the same session, it’s more likely to be topically coherent compared with a random sequence of accounts from the diverse range of Instagram accounts".
+
+10) One type of Explore Source. Like can be replaced with follow, comment, save, share. Photo can be replaced with Video, Live and Story. In this way, Instagram can generate tens of thousands of candidate videos
+
+![](./reference_images/050.png)
+
+11) After candidates are generated, a filtering model runs and drops borderline content, dangerous content, obscene content etc.
+
+12) For each ranking request on Instagram Explore, 500 candidates are sent to ranking phase. The ranking component is composed of 3 ranking models. First model is a distillation model dropping 500 candidates to 150 with minimal features. The second model diminishes 150 candidates to 50 candidates and it is a lightweight NN with full set of dense features. The third model is a deep neural network diminishing 50 candidates to 25 with full set of dense and sparse features.
+
+13) The third model as known as final pass can be illustrated below. Action 2 can be the probability of like. Action 2 can be the probability of save. Action 3 can be the probability of SFPLT(See Fewer Posts Like This, which is an indication of dislike) etc. This makes the problem a MTML(Multi task multi label). Eventually, [w_like * P(Like) + w_save * P(Save) - w_negative_action * P(Negative Action)] can be computed to rank the videos. In this way, the significance of events can be tuned with weights in the formula.
+
+![](./reference_images/051.png)
 
 
