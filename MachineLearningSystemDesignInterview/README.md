@@ -791,7 +791,7 @@
 32) References:
 
 - YouTube recommendation system. https://blog.youtube/inside-youtube/on-youtubes-recommendation-system.
-- DNN for YouTube recommendation. https://static.googleusercontent.com/media/r esearch.google.com/en//pubs/archive/45530.pdf.
+- DNN for YouTube recommendation. https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf.
 - CBOW paper. https://arxiv.org/pdf/1301.3781.pdf.
 - BERT paper. https://arxiv.org/pdf/1810.04805.pdf.
 - Matrix factorization. https://developers.google.com/machine-learning/recommendation/collaborative/matrix.
