@@ -662,7 +662,7 @@
 10) There are 2 MF optimization techniques. WALS converges faster and it is parallelizable.
 
 - Stochastic Gradient Descent: Used to minimize losses
-- Weighted Alternating Least Squares (WALS): Specific to matrix factorization
+- Weighted Alternating Least Squares (WALS): It is specific to matrix factorization. Each stage can be solved exactly (via solution of a linear system) and can be distributed. WALS guarantees the convergence because each step is guaranteed to decrease the loss
     - Fix one embedding matrix (U), and optimize the other embedding (V)
     - Fix the other embedding matrix (V), and optimize the embedding matrix (U)
     - Repeat.
@@ -2306,5 +2306,26 @@ y = torch.bmm(weights, x)
 13) The third model as known as final pass can be illustrated below. Action 2 can be the probability of like. Action 2 can be the probability of save. Action 3 can be the probability of SFPLT(See Fewer Posts Like This, which is an indication of dislike) etc. This makes the problem a MTML(Multi task multi label). Eventually, [w_like * P(Like) + w_save * P(Save) - w_negative_action * P(Negative Action)] can be computed to rank the videos. In this way, the significance of events can be tuned with weights in the formula.
 
 ![](./reference_images/051.png)
+
+
+14) BERT requires task specific fine tuning. If the task needs deeper understanding, prefer BERT. If you want zero-shot or few-shot learning without retraining, go with GPT.
+
+15) In Matrix Factorization, there are empty values. If we don't take these empty values into consideration, the recommender will not be efficient. To integrate the effect of zeros, the loss function should be a weighted loss function as the second image. Furthermore, frequent users or items might dominate the loss. To remove this effect, a weight can be assigned to training samples for a fair model as the third image.
+
+![](./reference_images/052.png)
+
+![](./reference_images/053.png)
+
+![](./reference_images/054.png)
+
+16) Pros and cons of SGS(Stochastic Gradient Descent) and WALS(Weighted Alternating Least Squares) to solve MF.
+
+![](./reference_images/055.png)
+
+17) The weights are so significant in WALS for matrix factorization. Below is a benchmark of different weights in WALS for movielens data. In LOG and LINEAR weights, the more the user rates an item, the less the weight of the item. "LINEAR RATINGS seems to put more weights on those items that are rated only a few times in comparisons to LOG RATINGS".
+
+![](./reference_images/056.png)
+
+![](./reference_images/057.png)
 
 
