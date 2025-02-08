@@ -2328,4 +2328,19 @@ y = torch.bmm(weights, x)
 
 ![](./reference_images/057.png)
 
+18) User data is partially biased to the choices that Recommendation Engine suggests. People only click the things shown to them.
+
+19) Youtube's What video to watch next is a different recommendation engine. It is a multi-objective learning with an extension of Multi-gate Mixture-of-Experts. It uses 2 engagement behaviors such as click and watch. It uses 2 satisfaction behaviors such as likes and dismissals.
+
+20) Some ways to generate candidates in the first stage of Recommendation Engine in Youtube, watch Next
+
+- Candidates by matching topics of query video
+- Co-watch videos
+- Popular videos
+- Trending videos
+
+21) Features of candidate video, features of query video and context(time, device etc) are used in ranking model. The problem is formulated as a pointwise ranking problem, not a pairwise or listwise.
+
+
+
 
