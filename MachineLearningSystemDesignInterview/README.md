@@ -655,7 +655,7 @@
 
 ![](./images/072.png)
 
-9) The loss function will include the loss computer for observed and unobserved pairs.
+9) The loss function will include the loss computed for observed and unobserved pairs.
 
 ![](./images/073.png)
 
