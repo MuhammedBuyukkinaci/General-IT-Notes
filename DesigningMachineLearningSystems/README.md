@@ -47,3 +47,10 @@
     - Scalability
     - Maintainability
     - Adaptability
+
+4) Code, data, and artifacts should be versioned.
+
+5) ML project lifecycle
+
+![](./images/003.png)
+
