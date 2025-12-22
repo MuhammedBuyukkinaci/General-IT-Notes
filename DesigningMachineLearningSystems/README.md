@@ -54,3 +54,23 @@
 
 ![](./images/003.png)
 
+6) Binary classification is simpler than multiclass classification.
+
+7) It is a good practice to have at least 100 examples for each class in a multiclass classification setup.
+
+8) When the number of classes is high, hierarchical classification is useful. Let's assume we work in an e-commerce website. We are trying to predict the subcategory of a product. Instead of predicting subgroup via single model, split the problem into two: the first ML model predicts product category as fashion, electronics, kitchen etc. Then, the second model is going to predict as skirt, t-shirt, jacket etc.
+
+9) Multilabel classification can be handled in two ways:
+    - One model, one sample can have many labels as positive. The target array is like (0,1,1,0) instead of (0,1,0,0).
+    - A separate model for each label. COnverting the problem into multiclass.
+
+10) Multilabel classification is hard to solve compared to multiclass classification and binary classification. The first reason is the ambiguity in labeling. One labeller might think differently than another labeller. Another reason is the interpretation of the output. In multiclass classification, we predict the category with the highest category. However, in a multilabel classification, we aren't sure to assign a label because multiple labels can be assigned.
+
+11) Framing a problem might differ. The problem is next app opening. The latter approacih is more correct. The former is vulnerable to app delete, new installed app because it requires retraining. However, the second approach doesn't require retraining.
+
+![](./images/004.png)
+
+![](./images/005.png)
+
+
+
