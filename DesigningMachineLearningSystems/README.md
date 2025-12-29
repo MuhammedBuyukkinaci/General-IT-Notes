@@ -72,5 +72,9 @@
 
 ![](./images/005.png)
 
+12) Pareto optimization is about optimizing several competing objectives at the same time. Let's assume we have an ML project. We want best model performance on test data, lower latency in inference, small model in RAM, no bias in model etc. These different objectives sometimes conflict with each other. Improving one can make another one worse. "Pareto Optimization finds a set of solutions where no objective can be improved without hurting at least one other objective."
+
+13) Let's assume we want to feed a social media homepage using ML. We want high quality content to appear at the top and we want contents resulting in more engagement to appear at the top. These two objectives are goals of the project. In such a scenario, it is a good practice to decouple objectives. One model for quality score, one model for engagement score.
+
 
 
