@@ -76,5 +76,21 @@
 
 13) Let's assume we want to feed a social media homepage using ML. We want high quality content to appear at the top and we want contents resulting in more engagement to appear at the top. These two objectives are goals of the project. In such a scenario, it is a good practice to decouple objectives. One model for quality score, one model for engagement score.
 
+14) Data Science Hierarchy
+
+![](./images/006.png)
+
+# Chapter 3 - Data Engineering
+
+1) Storing data is interesting if you are going to retrieve it later. To grab stored data, its structure is also as important as its format. "Data models define how the data stored in a particular data format is structured".
+
+2) Migrating logs from a log service such as datadog or logstash to object storage such as s3 might be a cheaper alternative to preserve logs in the long run.
+
+3) Different types of data:
+- First party data: Data owned by the company
+- Second party data: Data owned by another company, our company buy it from them.
+- Third party data: Data obtained from another company, which sells data to our company.
+
+4) Each phone used to have a unique advertiser ID.
 
 
