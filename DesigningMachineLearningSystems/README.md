@@ -93,4 +93,18 @@
 
 4) Each phone used to have a unique advertiser ID.
 
+5) Data serialization is the process of transforming a data structure or object state into a format which can be stored, transmitted or reconstructed later.
+
+6) Common data formats and how they are used
+
+![](./images/007.png)
+
+7) JSON is text. Thus, it consumes a lot of space.
+
+8) CSV is row-major, which means consecutive elements in a row are stored next to each other in memory. Parquet is column-major, which means consecutive elements in a column are stored next to each other in memory. Row-major formats is faster in data writes. Pandas library in Python is in columnar format. Accessing a variable by row in pandas is much slower than accessing a variable by column in numpy.
+
+![](./images/008.png)
+
+9) AWS recommends parquet over CSV. Parquet is 2x faster in unloading and consumes up to 6x less storage in S3, according to AWS study.
+
 
