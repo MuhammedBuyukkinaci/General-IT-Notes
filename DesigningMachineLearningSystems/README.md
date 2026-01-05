@@ -107,4 +107,13 @@
 
 9) AWS recommends parquet over CSV. Parquet is 2x faster in unloading and consumes up to 6x less storage in S3, according to AWS study.
 
+10) Data model tells us how data is represented. Let's assume we can store the information of a car with its model, its year and its color. We can also store its plate number, its address, its owner. These are 2 different data models. How data is stored matters a lot.
+
+11) Python is an imperative language. Whereas, SQL is a declarative language.
+
+12) [Ludwig](https://github.com/ludwig-ai/ludwig) and [H2o Auto ML](https://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html) are 2 declarative ML frameworks.
+
+13) Declarative ML is useful in development. However, things get complicated when moving into the production.
+
+
 
