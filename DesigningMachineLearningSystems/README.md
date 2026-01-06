@@ -115,5 +115,14 @@
 
 13) Declarative ML is useful in development. However, things get complicated when moving into the production.
 
+14) The first reason why some companies start using NoSQL is that schema management in RDBMS's is painful.
 
+15) PostgreSQL and MySQL support both RDBMS and NoSQL.
 
+15) There are 2 types of non-relational data models:
+    - Document: The relationship between one document and another is rare. Document databases move the responsibility of assuming structures from apps writing to databases to apps reading from databases. Structure is cared in reading, not in writing. The con is that retrieving data such as filtering all items whose prices are less than 30 dollars. In order to do this, you should read all documents, extract price field, compare the price to 30 dollars. The content of a document is important.
+    - Graph: Relationship between data items is common and important. The relationship between data items is important.
+
+16) An example graph database
+
+![](./images/009.png)
