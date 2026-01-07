@@ -126,3 +126,13 @@
 16) An example graph database
 
 ![](./images/009.png)
+
+17) Data warehouses store structured data. Data lakes store unstructured data.
+
+18) Transactional databases(OLTP db's) require low latency and high availability. These databases have ACID(Atomicity, Consistency, Isolation, Durability).
+    - Atomicity: All transactions in a group must be completed successfully. If payment fails on Uber app, no ride should be ordered.
+    - Consistency: All transactions must follow predefined rules.Only logged in users can order a ride on Uber app. 
+    - Isolation: 2 transactions can be carried out at the same time if there are isolated. 2 people can't have the same taxi ordered on Uber appç
+    - Durability: When a change is commited, it should persist even the system breaks. Let's assume we order a ride on Uber app and our phone died. The taxi should come to us.
+
+    
