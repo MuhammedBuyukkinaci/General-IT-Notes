@@ -135,4 +135,11 @@
     - Isolation: 2 transactions can be carried out at the same time if there are isolated. 2 people can't have the same taxi ordered on Uber appç
     - Durability: When a change is commited, it should persist even the system breaks. Let's assume we order a ride on Uber app and our phone died. The taxi should come to us.
 
-    
+19) OLTP isn't may not be a perfect fit for analytics. Thereforo, OLAP(Online Analytical Processing) emerged.
+
+20) The separation between OLTP and OLAP was in the past. It is obsolete. Nowadays, OLTP databases like CoachRockDB can handle analyticaly queries. In addition, OLAP databases like Apache Iceberg and DuckDB can handle transactional queries.
+
+21) It is a good practice to decouple storage from processing. We can store our data on PostgreSQL and we can process it on Apache Spark.
+
+
+
