@@ -141,5 +141,20 @@
 
 21) It is a good practice to decouple storage from processing. We can store our data on PostgreSQL and we can process it on Apache Spark.
 
+22) ETL illustration
+
+![](./images/010.png)
+
+23) ETL is much more used than ELT.
+
+24) Data can move in 3 ways:
+
+- Data passing through databases: Process A writes to a database. Process B reads it from the database. This way isn't feasible in latency-critic operations.
+
+- Data passing through services such as REST, RPC
+
+- Data passing through via a real time transport like Kafka and AWS Kinesis
+
+
 
 
