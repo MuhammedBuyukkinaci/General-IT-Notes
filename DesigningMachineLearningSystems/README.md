@@ -149,12 +149,14 @@
 
 24) Data can move in 3 ways:
 
-- Data passing through databases: Process A writes to a database. Process B reads it from the database. This way isn't feasible in latency-critic operations.
+- Data passing through databases: Process A writes to a database. Process B reads it from the database. This way isn't feasible in latency-critic operations. Reading and writing operations cause to high latency in database operations.
 
-- Data passing through services such as REST, RPC
+- Data passing through services such as REST, RPC: Client-server architecture. REST is used generally by Public API's. RPC is used between services of the same company. RPC frameworks such as gRPC is designed to be utilized internally.
 
-- Data passing through via a real time transport like Kafka and AWS Kinesis
+- Data passing through via a real time transport like Kafka and AWS Kinesis: a Real time transport can be thought as in-memory storage. Event driven design. Request driven system is optimal for the systems relying more on logic rather than data. Event driven architecture(EDA) is optimal for the systems relying more on data rather than logic. EDA has 2 types: pub-sub(Kafka) and message-broker(RabbitMQ). Kafka is optimized for throughput, RabbitMQ is optimized for low latency. Kafka is for event streaming and large scale data pipelines. RabbitMQ is for tradional messaging, task queues, complex routing.
 
+![](./images/011.png)
 
+![](./images/012.png)
 
 
