@@ -153,10 +153,16 @@
 
 - Data passing through services such as REST, RPC: Client-server architecture. REST is used generally by Public API's. RPC is used between services of the same company. RPC frameworks such as gRPC is designed to be utilized internally.
 
-- Data passing through via a real time transport like Kafka and AWS Kinesis: a Real time transport can be thought as in-memory storage. Event driven design. Request driven system is optimal for the systems relying more on logic rather than data. Event driven architecture(EDA) is optimal for the systems relying more on data rather than logic. EDA has 2 types: pub-sub(Kafka) and message-broker(RabbitMQ). Kafka is optimized for throughput, RabbitMQ is optimized for low latency. Kafka is for event streaming and large scale data pipelines. RabbitMQ is for tradional messaging, task queues, complex routing.
+- Data passing through via a real time transport like Kafka and AWS Kinesis: a Real time transport can be thought as in-memory storage. Event driven design. Real time transport introduces asynchronous data passing with low latency. Request driven system is optimal for the systems relying more on logic rather than data. Event driven architecture(EDA) is optimal for the systems relying more on data rather than logic. EDA has 2 types: pub-sub(Kafka) and message-broker(RabbitMQ). Kafka is optimized for throughput, RabbitMQ is optimized for low latency. Kafka is for event streaming and large scale data pipelines. RabbitMQ is for tradional messaging, task queues, complex routing.
 
 ![](./images/011.png)
 
 ![](./images/012.png)
+
+25) Data can be processed in 2 ways: 
+    - Batch: Map Reduce and Spark are 2 batch processing methods.
+    - Streaming: Useful for low latency. Kafka s an example to hos streaming data. Apache Flink is a streaming processing method. There is also Kafka Streaming processing option, but it is limited. Flink is highly scalable and fully distributed. The frequency of kicking off a job(once in 5 minutes) is more compared to batch(once a day). KSQL and Spark Streaming are also other streaming alternatives. Flink and KSQL are industry-standards and they provide SQL-alike abstraction for querying.
+
+26) The features computed via batch processing are called static features. They are less frequently updated. Whereas, the features computed via streaming processing are called dynamic features. The average rating of an Uber driver is a static feature, computed via batch processing. How many rides to be completed in the next 2 minutes is a dynamic feature, computed via streaming processing.
 
 
