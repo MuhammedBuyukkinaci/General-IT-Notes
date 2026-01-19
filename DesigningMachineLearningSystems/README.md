@@ -165,4 +165,20 @@
 
 26) The features computed via batch processing are called static features. They are less frequently updated. Whereas, the features computed via streaming processing are called dynamic features. The average rating of an Uber driver is a static feature, computed via batch processing. How many rides to be completed in the next 2 minutes is a dynamic feature, computed via streaming processing.
 
+# Chapter 4 - Training Data
+
+1) Data is full of bias. Use data, but don't trust in it.
+
+2) There are 2 ways of sampling: nonprabability sampling and random sampling.
+
+3) Non probability sampling methods:
+
+- **Convenience sampling**: Data is selected based on availability. This method is popular because it is convenient. Data scraped from wikipedia, reddit etc. and used in the training phase of LLM's are obtained via this method.
+
+- **Snowball sampling**: Let's assume you want to scrape data on twitter. You choose a set of accounts. Scrape their tweets. Then, move to the accounts they follow. Do the same operation in the followp. Snowball effect. 
+
+- **Judgment sampling**: Data is selected based on the decision of experts.
+
+- **Quota sampling**: Data is selected based on quotas such as 30-60 aged individuals, under 30 people etc.
+
 
