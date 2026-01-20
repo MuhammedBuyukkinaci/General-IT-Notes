@@ -182,3 +182,20 @@
 - **Quota sampling**: Data is selected based on quotas such as 30-60 aged individuals, under 30 people etc.
 
 
+4) Random sampling:
+
+- Simple random sampling: It is about sampling randomly. Its advantage is its ease of use. Its drawback is that minority classes can be discarded while sampling.
+
+- Stratified sampling: It can be exemplified in this way: Let's assume there are 2 classes, class A and class B. You are sampling 1% of class A samples and 1% of class B samples. Its drawback is that it can't be implemented in multilabel classification.
+
+- Weighted sampling: Some weights are assigned to samples while sampling. The more the weight, the more probable the sample is selected.
+
+- Reservoir Sampling: It is useful in sampling streaming data.
+
+![](./images/013.png)
+
+- Importance sampling: Used in policy-based reinforcement learning.
+
+
+
+
