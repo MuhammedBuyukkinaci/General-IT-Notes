@@ -196,6 +196,12 @@
 
 - Importance sampling: Used in policy-based reinforcement learning.
 
+5) Different labeling methods:
+
+- Hand Labeling: Expensive and slow but accurate. It is a good practice to version data. For example, we trained a model using data 1. After that, we want hand labellers to label more data. Then, we concatenated data 1 and data 2 to train a newer model. However, the model performance detoriated. In this scenario, it would better to version data to detect performance shift. This versioning is known as data lineage.
+
+- Natural Labeling: Label exists in data. For example, ETA of Google Maps, stock price prediction, recommendation engine have the label themselves. Not need to be labeled.
+
 
 
 
