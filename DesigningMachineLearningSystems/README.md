@@ -202,6 +202,13 @@
 
 - Natural Labeling: Label exists in data. For example, ETA of Google Maps, stock price prediction, recommendation engine have the label themselves. Not need to be labeled.
 
+6) Many recommender systems have low feedback durations. Let's assume we showed a list of products to a user. After the user views the widget,  we can obtain the labels as whether the user clicked or not afterwards.
 
+7) Some recommender systems aim to optimize click. Some recommender systems aim to optimize purchase. Both approaches are valid.
 
+8) Fraud detection has long feedback loop. A transaction might be reported as fraudelent in 1 to 3 months.
+
+9) Some techniques to handle lack of labels.
+
+![](./images/014.png)
 
