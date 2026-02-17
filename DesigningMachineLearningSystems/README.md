@@ -212,3 +212,9 @@
 
 ![](./images/014.png)
 
+- Weak Supervision: It is also known as programatic labeling. It is around labeling function(LF). It extracts labels from data according to some specific patterns such as whether a note has "heart attack" in nurse note, whether the texts matches a specific regex message, database lookup, the output of other models etc. It is a good practice to validate weak supervision on a labeled data. It is a good practice to combine several LF's. [Snorkel](https://github.com/snorkel-team/snorkel) is a library used for this purpose. It is simple but powerful. However, it is not perfect. In the following second image, the performances of weak supervision and a radiologist are compared. They appeared close when data points increases.
+
+![](./images/015.png)
+
+![](./images/016.png)
+
