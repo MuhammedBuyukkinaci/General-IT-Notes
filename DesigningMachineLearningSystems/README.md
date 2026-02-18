@@ -218,3 +218,11 @@
 
 ![](./images/016.png)
 
+- Semi Supervision: It is different than weak supervision. We have a limited labeled dataset. It is especially useful when the number of training records is limited. It has different implementations:
+
+    - Self Training: We train a model on top of limited data. Then, we predict the unlabeld samples. Pick the predicted labels of records whose predictions are confident. Iterate over this.
+
+    - Similar characteristics have the same data: Let's assume we have a tweet like "The department of computer science #AI #ML # NLP". We labeled #AI as **computer science**. We can also label #ML and #NLP as **computer science** too.
+
+    - Perturbation Based Model: It is based on the assumption of adding a small noise to a record doesn't change its label. An example is adding noise to a training record in computer vision, adding noise to the embedding represantion of a token in NLP.
+
