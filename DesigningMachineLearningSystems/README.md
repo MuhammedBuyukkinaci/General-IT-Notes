@@ -226,3 +226,23 @@
 
     - Perturbation Based Model: It is based on the assumption of adding a small noise to a record doesn't change its label. An example is adding noise to a training record in computer vision, adding noise to the embedding represantion of a token in NLP.
 
+- Transfer Learning: A model developed for a task is reused as the starting point of the second task.
+
+- Active Learning: Instead of randomly labeling data, it requires focusing on hard samples to label. It is extremely useful if the systems works with real time data. It enables us to adopt to the changes in production. Instead of labeling cats and dogs randomly, focus on hard samples for each class for the betterment of the training. There are different ways to choose hard samples:
+
+    - Uncertainty measurement: Let's assume we have 30 classes in a classfication project. We deployed the model to the production. The model predicts the streaming data. We are logging the outputs. We are sampling the least certain samples to be annotated by human labellers.
+
+    - Disagreement among multiple candidate models: Score the test data with different models. Choose the samples with least certain predictions according to the predicts of different models. If a sample is disagreed most, move it to human annotators to be labelled.
+
+    - Choosing the samples that contribute to biggest gradient updates or reducing the loss most.
+
+
+![](./images/017.png)
+
+
+10) ML models, especially DL models, work well with balanced data. They don't work well with imbalanced data.
+
+11) Class imbalance leads to getting stuck in a nonoptimal solution by exploiting a simple heuristic rather than learning something useful.
+
+12) The classical example of class imbalance is fraud detection.
+
