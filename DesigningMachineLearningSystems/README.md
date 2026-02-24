@@ -246,3 +246,10 @@
 
 12) The classical example of class imbalance is fraud detection.
 
+13) The harder the ML problem, the more affected by class imbalance. If the problem is linearly solvable, it doesn't get affected by class imbalance irrespective of imbalance ratio.
+
+14) Class imbalance can be handled in 3 ways:
+
+    - Using correct metrics: Picking Accuracy in class imbalance problems is misleading. Prefer F1, Precision, Recall and AUROC.
+
+    - Resampling: Undersampling or Oversampling. Another technique is Tomek's Links is an undersampling method. It is about finding intimate records having different labels and deleting them from data. It is making decision boundary clearer. SMOTE is an oversampling method. Tomek's links and SMOTE work on low dimensional data effectively compared to high dimensional data. **Never** validate your model on resampled data. Another technique is two phase learning: Develop the first model on data where class distributions are equal. Use the output of the first model as transfer learning model to train data which has the real distirbution.
