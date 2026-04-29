@@ -274,4 +274,9 @@
 - Perturbation: It is about adding a small amount of noise to training samples to make models robuster. According to the research, modifying a pixel can lead to huge detoriation in model performance. In NLP, BERT trained benefited from perturbation by first choosing 15% of the sequences, and secondly replacing 10% of the tokens of the chosen sentences. This corresponds to 1.5% of the tokens becoming non-sence. "My cat is alone" becomes "My cat are alone" in the perturbation operation.
     ![](./images/020.png)
 
-- Data synthesis: 
+- Data synthesis: It is about augmenting training data.
+
+    - In NLP, data can be augmented using templated.
+    ![](./images/021.png)
+    - In CV, mixup approach is creating images with artificial labels. Let's assume we deal with a binary image classification example. Dog=0, Cat=1. In this scenario, we create a middle input with a mixup label as below.
+    ![](./images/022.png)
