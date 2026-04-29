@@ -250,6 +250,28 @@
 
 14) Class imbalance can be handled in 3 ways:
 
-    - Using correct metrics: Picking Accuracy in class imbalance problems is misleading. Prefer F1, Precision, Recall and AUROC.
+- Using correct metrics: Picking Accuracy in class imbalance problems is misleading. Prefer F1, Precision, Recall and AUROC.
 
-    - Resampling: Undersampling or Oversampling. Another technique is Tomek's Links is an undersampling method. It is about finding intimate records having different labels and deleting them from data. It is making decision boundary clearer. SMOTE is an oversampling method. Tomek's links and SMOTE work on low dimensional data effectively compared to high dimensional data. **Never** validate your model on resampled data. Another technique is two phase learning: Develop the first model on data where class distributions are equal. Use the output of the first model as transfer learning model to train data which has the real distirbution.
+- Resampling: Undersampling or Oversampling. 
+    - Another technique is Tomek's Links is an undersampling method. It is about finding intimate records having different labels and deleting them from data. It is making decision boundary clearer. - SMOTE is an oversampling method. 
+    - Tomek's links and SMOTE work on low dimensional data effectively compared to high dimensional data. **Never** validate your model on resampled data. 
+    - Another technique is two phase learning: Develop the first model on data where class distributions are equal. Use the output of the first model as a starting point. The first model would become a transfer learning model to train data which has the real distirbution. 
+    - Another technique is dynamic sampling, which is about oversampling low-performing class and undersampling high-performing class during training.
+
+- Algorithmic level methods: It is not about data or metrics. It is about how to modify lost function.
+    - Cost-sensitive learning, 2001. Let's assume we train a binary classification problem. We have a 2x2 confusion matrix. We are definining 4 coefficients such as C00,C01,C10,C11. We are integrating these coefficients to lost function. We are manually defining these coefficients, which can be challenging for some tasks.
+    - Class based loss, it is about assigning weights to classees improportional to distribution. If a class has more instances, a smaller weight is assigned or vice versa.
+    - Focal Loss, assigning more weights to challenging samples. It can be tuned.
+
+    ![](./images/018.png)
+
+15) Data augmentation can be implemented in 3 different ways. It is different for CV and NLP tasks.
+
+- Simple label-preserving transformations: Rotating, cropping, flipping, erasing part of an image can be examples of this type. PyTorch and TF support these type of operations. It is computationally cheap can be run on CPU. It can also be implemented for NLP tasks as below:
+
+![](./images/019.png)
+
+- Perturbation: It is about adding a small amount of noise to training samples to make models robuster. According to the research, modifying a pixel can lead to huge detoriation in model performance. In NLP, BERT trained benefited from perturbation by first choosing 15% of the sequences, and secondly replacing 10% of the tokens of the chosen sentences. This corresponds to 1.5% of the tokens becoming non-sence. "My cat is alone" becomes "My cat are alone" in the perturbation operation.
+    ![](./images/020.png)
+
+- Data synthesis: 
