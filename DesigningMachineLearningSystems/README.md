@@ -280,3 +280,7 @@
     ![](./images/021.png)
     - In CV, mixup approach is creating images with artificial labels. Let's assume we deal with a binary image classification example. Dog=0, Cat=1. In this scenario, we create a middle input with a mixup label as below.
     ![](./images/022.png)
+
+# Chapter 5 - Training Data
+
+1) According to a paper published by Facebook in 2014, the most important thing for an ML model is features.
