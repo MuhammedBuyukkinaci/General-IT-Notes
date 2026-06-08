@@ -284,3 +284,14 @@
 # Chapter 5 - Training Data
 
 1) According to a paper published by Facebook in 2014, the most important thing for an ML model is features.
+
+
+2) Preprocessing for texts before Deep Learning
+
+![](./images/023.png)
+
+3) Not all types of missing values are equal. Let's assume we want to predict which customers are going to buy a home in the upcoming 12 months.
+- Missing not at random: Some people didn't want to disclose their incomes.
+- Missing at random: Women tend not to share their ages with surveyors.
+- Missing completely at random: No pattern why the value is missing.
+
