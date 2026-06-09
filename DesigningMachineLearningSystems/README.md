@@ -295,3 +295,15 @@
 - Missing at random: Women tend not to share their ages with surveyors.
 - Missing completely at random: No pattern why the value is missing.
 
+
+4) There are 2 ways to deal with missing data. Regardless of the way, there is no perfect way to handle missing data.
+
+- Deletion
+
+- Imputation
+
+5) Scaling helps gradient boosting algorithms & logistic regression learn better generally.
+
+6) While sclaing, the minimum, maximum and median values are computed on training phase. Then, these precomputed values are used in inference.
+
+7) Discretization rarely helps model learn. It is also called as quantization or binning. This technique is generally more useful while training data is scarce.
