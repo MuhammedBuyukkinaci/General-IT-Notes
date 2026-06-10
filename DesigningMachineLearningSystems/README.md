@@ -307,3 +307,9 @@
 6) While sclaing, the minimum, maximum and median values are computed on training phase. Then, these precomputed values are used in inference.
 
 7) Discretization rarely helps model learn. It is also called as quantization or binning. This technique is generally more useful while training data is scarce.
+
+8) One of the useful approaches to deal with a categorical feature is to use hashing trick. Let's assume we want to encode ip's on the web, restaurants on doordash or items on amazon. The cardinality of these ones are huge. We can't one-hot encode them. An appropriate hashing function can be utilized to convert the category into a numerical representation. Let's assume we have 2 million items on amazon.com. We choose a hash space of 18 bits, which is 262144 possible hash values. Some items collide with each other. The more the hash space, the less the collision. One of the advantages of hash functions is that cold start items also have an index.
+
+9) Locality sensitive hashing functions can be used to place similar items close to each other. "Lenovo thinkplus notebook" and "Dell XPS 13 notebook" can have close hashed values if locality sensitive hashing functions are used.
+
+10) Hashing functions aren't decent according to academia. However, it is being utilized by the industry. It is especially useful in continual learning systems.
