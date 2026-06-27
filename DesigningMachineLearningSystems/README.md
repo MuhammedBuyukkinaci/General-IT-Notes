@@ -313,3 +313,32 @@
 9) Locality sensitive hashing functions can be used to place similar items close to each other. "Lenovo thinkplus notebook" and "Dell XPS 13 notebook" can have close hashed values if locality sensitive hashing functions are used.
 
 10) Hashing functions aren't decent according to academia. However, it is being utilized by the industry. It is especially useful in continual learning systems.
+
+11) Feature crossing can be used to capture nonlinear relationship. Feature crossing helps logistic regression, linear regression, tree based models learn. It also helps neural networks learn faster such as DeepFM and xDeepFM. Take care while using feature crossing. It may result in overfitting.
+
+12) Pinterest is creating embeddings for queries entered by users. It also creates embeddings for graphs.
+
+13) In original Transformer paper, positional encodings are created using sine and cosine functions. In GPT-2, positinal embeddins are created, these positional embeddings are added to token embeddings to obtain final embeddings to be used in inference. In modern LLM's such as deepseek, llama and mistral, A techinique called RoPe is used. RoPe(Rotary Positional Embeddings) isn't using positional embeddings. The vectors are rotated during Q, K, V matrice computations.
+
+14) It is a good practice to split data according to time rather than random to avoid data leakage whenever possible.
+
+15) While filling missing values, compute the mean on training data and fill with it. Don't use train+ test to compute the mean to be used in imputation. The same is valid for scaling.
+
+16) Remove duplicate values from data before splitting it into train and test.
+
+17) Let's assume we have 2 CT machines. Their resolutions are different. We are going to use data collected by both. It is required to normalized both machines to have the same resolution.
+
+18) Let's assume we have 2 features. Each feature isn't leading to data leakage independently. However, their usage together might result in data leakage. One example is to predict one's stay duration in a company using start date and end date. Incorporating these 2 features together leads to data leakage.
+
+19) In order to extract the importance of a feature to a model, do ablation studies. Remove that feature from the model and learn its importance.
+
+20) In theory, using a regularization technique such as L1 regularization to repress redundant features might seem reasonable. However, it is better to remove redundant features from the model to converge faster in practice.
+
+21) [InterpretML](https://github.com/interpretml/interpret) is a library for ML Interpretability. Use it if you want to have inherently explainable model.
+
+22) Feature Importance of Facebook's CTR prediction model on Ads. There are more than 400 features. The contribution of 10 features are more than 50 percent while the least important 300 features contribute less than 1 percent.
+
+![](./images/024.png)
+
+23) Coverage means the fillness ratio of a feature. The less the missing data, the more the coverage. However, the low coverage shouldn't lead us to drop it. A feature with low coverage might contain important signals.
+
