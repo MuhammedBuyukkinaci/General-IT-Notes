@@ -342,3 +342,17 @@
 
 23) Coverage means the fillness ratio of a feature. The less the missing data, the more the coverage. However, the low coverage shouldn't lead us to drop it. A feature with low coverage might contain important signals.
 
+# Chapter 6 - Model Development and Offline Evaluation
+
+1) Although Deep Learning is spreading among the industry, classical ML algorithms such as gradient boosting, collaborative filtering and matrice factorization are also being utilized.
+
+2) Fraud detection can be solved using different approaches such as k nearest neighbors, isolation forest, clustering and neural networks.
+
+3) Non Neural Networks are more interpretable.
+
+4) There can be human biases in selecting models. Some people tend to use gradient boosting algorithms, whereas some prefer using Neural networks etc.
+
+5) Learning curve is plotting sample numbers on x axis and performance on y axis.
+
+![](./images/025.png)
+
