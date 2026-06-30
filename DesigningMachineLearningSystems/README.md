@@ -356,3 +356,19 @@
 
 ![](./images/025.png)
 
+6) Ensemle models aren't frequently used in production due to their complexities.
+
+7) Ensemble approaches:
+
+- Bagging: Instead of building a single model, subset data with replacement and build a model on each. Random Forest is an implementation of Bagging.
+
+![](./images/026.png)
+
+- Boosting: Build models iteratively. The latter models will focus on misclassified samples.
+
+![](./images/027.png)
+
+- Stacking: Combining different base learners via majority vote for classification, averaging for regression. Stacking can be a simple Linear/Logistic Regression model.
+
+![](./images/028.png)
+
