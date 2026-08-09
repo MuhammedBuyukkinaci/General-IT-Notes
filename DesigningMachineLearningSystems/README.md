@@ -372,3 +372,18 @@
 
 ![](./images/028.png)
 
+
+8) If data is text and we want to evaluate the speed of the ML model, we can regard the number of tokens processed per second as a metric.
+
+9) When experimenting, it is a good pracrice to log the ground truth labels and model predictions for adhoc analysis.
+
+10) Debugging an ML model is hard compared to Software Engineering because it touches multiple parts. Data is provided by data engineers, labels are provided by subject experts, algorithms are utilized by data scientists, infrastructure by ML Engineers.
+
+11) Some debugging techniques by Andrej Karpathy on training ML models:
+
+- Start with a simple model.
+
+- Overfit with a small amount of data to verify whether everytihng works fine.
+
+- Set a random seed
+
