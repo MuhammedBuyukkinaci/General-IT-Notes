@@ -387,3 +387,17 @@
 
 - Set a random seed
 
+12) [gradient-checkpointing](https://docs.pytorch.org/docs/2.13/checkpoint.html) is a way to optimize memory usage while training a NN. It only uses the activations of specific layers. Let's assume we have 4 layers as A -> B -> C -> D. We only keep the activations of A and C. The activations of B and D aren't stored in VRAM. Therefore, it saves memory. When backpropagation, B's activation is calculated via A's activation and the weight between A and B. The pro is to use less memory on VRAM. The con is the increase in compute time.
+
+13) Data parallelism is about splitting data into multiple servers, training the model on all of these servers and accumulate the gradients. Aggregate the gradients and send the aggregated gradients to each model on each separate server.
+
+![](./images/029.png)
+
+14) Model parallelism is about splitting the model. As shown, where it splits is inside a layer.
+
+![](./images/030.png)
+
+15) Pipeline parallelism is similar to model parallelism. It alsoserves to the same goal. However, the split is vertical. The first 10 layers are computed on machine 1, the second 10 layers are computed on machine 2 etc.
+
+![](./images/031.png)
+
