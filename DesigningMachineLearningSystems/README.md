@@ -402,3 +402,23 @@
 ![](./images/031.png)
 
 17) [Ray Tune](https://docs.ray.io/en/latest/tune/index.html) is an ML library for hyperparameter tuning.
+
+18) Some baselines to evaluate the performance
+
+- Random baseline: Randomly shifted target
+
+- Simple heuristic baseline: Reverse chronological order of tweets on Twitter.
+
+- Zero rule baseline: Next app usage, recommending the most used app as baseline.
+
+- Human baseline: Human performance on Self driving cars can be considered as a human baseline.
+
+- Existing solutions: A thidr party solution or multiple if/else business logic
+
+19) If the distribution of input features used in training and the distribution of production input features consumed by ML model are similar, it is ideal.
+
+20) Perturbation test can be considered in this manner: Let's assume we have 2 ML models. The first model outscored the second model on validation. Some noise is added to validation dataset in order to benchmark models again. If the performance of the first model significanly detoriated compared to the second model, you should take a step back and reconsider moving the first ML model.
+
+
+
+
