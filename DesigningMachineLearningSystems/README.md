@@ -419,6 +419,38 @@
 
 20) Perturbation test can be considered in this manner: Let's assume we have 2 ML models. The first model outscored the second model on validation. Some noise is added to validation dataset in order to benchmark models again. If the performance of the first model significanly detoriated compared to the second model, you should take a step back and reconsider moving the first ML model.
 
+21) In order to learn whether our model has bias, we should change sensitive information while getting predictions. In US, people apply for mortgages. Let's assume they have the same credit scores and incomes. The first person is white, the second person is latino. If the mortgage of the first person is accepted and the mortage of the second person is rejected, this can be considered as race bias.
+
+22) Directional expectation test is this: Choose a feature whose effect on the target is predictable. If it is squaremeter, it is increasing the price normally. If the model's predictions aren't increasing when sqm increases, something wrong happens in the model. Take care before deploying.
+
+23) Model calibration is post processing. In order to calculate model calibration, you count how often the model predicts probability X and how frequently that prediction actually occurs, then plot X against the observed frequency Y. Logistic regression beats other algorithms because it optimizes logistic loss directly.
+
+![](./images/032.png)
+
+23) Slice based evaluation should be taken into consideration. A model can perform well on a slice and perform worse on another sliece. Take a look at the following statistics. The model outperforms overall but performs worse on Minority subgroup.
+
+![](./images/033.png)
+
+24) Simpson paradox can be exemplified as below. It states that aggregation of different subgroups might hide and contradict real results.
+
+![](./images/034.png)
+
+25) Slice based evaluation is an art more than a science. It can be carried out in various ways:
+
+- Heuristic based: Splitting data based on domain knowledge
+
+- Error analysis: Analysis of misclassified examples
+
+- Slice finder: Generating slices based on algorithms such as clustering, beam search 
+
+26) Accuracy and ROC are less affected by calibration. It is better to globally calibrate rather than calibrating each slice separately. Calibration should be non-parametric. It should be trained on independent data. Calibration function shouldn't change AUC and should be strictly monotonic. Platt's scaling is a calibration method that uses logistic regression. Sigmoid gunction can be considered as a calibration function. Isotonic regression is a good calibration method.
+
+27) For an imbalanced classification problem, assigning more weights to minorty class can be a solution. However, this affects probability distribution.
+
+
+
+
+
 
 
 
