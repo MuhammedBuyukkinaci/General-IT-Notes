@@ -447,6 +447,33 @@
 
 27) For an imbalanced classification problem, assigning more weights to minorty class can be a solution. However, this affects probability distribution.
 
+# Chapter 7. Model Deployment and Prediction Service
+
+1) Deployment is easy if you ignore the hard parts.
+
+2) Serialization is exporting the ML model into a binary format in order to be used by another application. There are 2 parts of serialization: model definition and model's parameter values.
+
+3) ML Deployment
+
+- How to run
+    - Batch prediction
+    ![](./images/036.png)
+    - Online prediction that uses batch features(precomputed embeddings)
+    ![](./images/037.png)
+    - Online prediction that uses batch features and streaming features
+
+- Where to run:
+    - On the edge device
+    - On the cloud
+
+4) Usage of ML in Netflix:
+
+![](./images/035.png)
+
+5) The creation of personalized movie list on Netflix per user hourly is an example of batch prediction. After the recommendation is created, it is dumped to a database. When a user logs in, the recommendation is displayed.
+
+6) On Delivery Hero, When a user orders something, both batch features and streaming features are going to be used for ETA. One batch feature can be **the mean preparation time of the restaurant**. However, **How many other orders they have**, **how many delivery people are available** can be examples of streaming features.
+
 
 
 
