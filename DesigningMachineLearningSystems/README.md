@@ -474,6 +474,41 @@
 
 6) On Delivery Hero, When a user orders something, both batch features and streaming features are going to be used for ETA. One batch feature can be **the mean preparation time of the restaurant**. However, **How many other orders they have**, **how many delivery people are available** can be examples of streaming features.
 
+7) Batch prediction using batch feature
+
+![](./images/038.png)
+
+
+8) Online prediction using batch features. Item embeddings can be illustrated as an example for this type. Item embeddings are precomputed and stored in a database. Then, they are fetched whenever needed to make an online prediction. An example is youtube
+
+![](./images/039.png)
+
+
+9) Online prediction(streaming) using batch features and streaming features.
+
+![](./images/040.png)
+
+10) Batch prediction vs online prediction
+
+![](./images/041.png)
+
+11) Let's assume you generate predictions daily for all yout users. If you have 50 million users totally and 1 million logged in users daily, you are going to generate 49 million predictions in vain. In this scenario, online prediction might be more handy than batch prediction.
+
+12) MapReduce and Spark are big data processing tools.
+
+13) If a company wants to have streaming features, it has to build a separate streaming pipeline.
+
+14) Batch pipeline for training and streaming pipeline for inference:
+
+![](./images/042.png)
+
+
+
+
+
+
+
+
 
 
 
